@@ -1,0 +1,39 @@
+<body>
+  <div class="container">
+    <div class="forms">
+      <div class="form-content">
+        <div class="signup-form">
+          <div class="title">Registrarse</div>
+          <form [formGroup]="form_register" (ngSubmit)="crearCliente()">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-id-card"></i>
+                <input type="text" formControlName="customer_dni" placeholder="DNI" maxlength="8" (keydown)="validarNumerico($event)" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" formControlName="customer_names" placeholder="Nombres" (keydown)="validarNoNumerico($event)" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" formControlName="customer_surnames" placeholder="Apellidos" (keydown)="validarNoNumerico($event)" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="email" formControlName="customer_email" placeholder="Correo" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" formControlName="customer_password" placeholder="Contraseña" required>
+              </div>
+              <div class="button input-box">
+                <button class="custom-button" type="submit">Registrarse</button>
+              </div>
+              <div class="text sign-up-text" *ngIf="errorStatus">{{ errorMsj }}</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

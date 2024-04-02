@@ -1,0 +1,26 @@
+<body>
+  <div class="container">
+    <div class="forms">
+      <div class="form-content">
+        <div class="signup-form">
+          <div class="title">Iniciar Sesión</div>
+          <form (ngSubmit)="login()">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="email" [(ngModel)]="email" name="email" placeholder="Correo electrónico" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" required>
+              </div>
+              <div class="button input-box">
+                <button class="custom-button" type="submit">Iniciar Sesión</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
