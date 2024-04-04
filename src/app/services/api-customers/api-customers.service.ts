@@ -37,4 +37,19 @@ export class ApiCustomersService {
   getCustomers(): Observable<any> {
     return this.http.get(`${this.baseUrl}/auth/customer/list`);
   }
+
+  confirmAccount(token: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/confirm/${token}`);
+  }
+
+  sendResetCode(email: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/sendResetCode`, email, { headers: this.httpHeaders });
+  }
+
+  resetPassword(resetCode: string, newPassword: string, email: string): Observable<any> {
+    const requestData = { resetCode, newPassword, email };
+    return this.http.post(`${this.baseUrl}/resetPassword`, requestData, { headers: this.httpHeaders });
+  }
+
+
 }

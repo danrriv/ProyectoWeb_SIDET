@@ -12,6 +12,8 @@ import { RegisterComponent } from './customers/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './customers/login/login.component';
+import { ConfirmationComponent } from './customers/confirmation/confirmation.component';
+import { ResetpasswordComponent } from './customers/resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { LoginComponent } from './customers/login/login.component';
     MenuComponent,
     ProductComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ConfirmationComponent,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,

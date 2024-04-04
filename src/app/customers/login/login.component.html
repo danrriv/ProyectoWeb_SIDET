@@ -7,7 +7,7 @@
           <form (ngSubmit)="login()">
             <div class="input-boxes">
               <div class="input-box">
-                <i class="fas fa-envelope"></i>
+                <i class="far fa-envelope"></i>
                 <input type="email" [(ngModel)]="email" name="email" placeholder="Correo electrónico" required>
               </div>
               <div class="input-box">
@@ -15,10 +15,11 @@
                 <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" required>
               </div>
               <div class="button input-box">
-                <button class="custom-button" type="submit">Iniciar Sesión</button>
+                <button class="custom-button" type="submit" [disabled]="empty()">Iniciar Sesión</button>
               </div>
-              <h6>¿No estás registrado?</h6>
-              <a href="mundo-literario/register" class="toggle">Regístrate</a>
+              <h6>¿Aún no estás registrado?</h6>
+              <a href="mundo-literario/register" class="toggle">Crear una cuenta</a>
+              <a href="mundo-literario/reset-password" class="toggle" style="display: block;">Olvidé mi contraseña</a>
             </div>
           </form>
         </div>

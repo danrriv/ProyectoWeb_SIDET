@@ -26,8 +26,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.form_register = this.formBuilder.group({
       customer_dni: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
-      customer_names: ['', [Validators.required, Validators.minLength(3)]],
-      customer_surnames: ['', [Validators.required, Validators.minLength(3)]],
+      customer_names: ['', [Validators.required]],
+      customer_surnames: ['', [Validators.required]],
       customer_email: ['', [Validators.required, Validators.email]],
       customer_password: ['', [Validators.required, Validators.minLength(8)]]
     });
@@ -53,27 +53,33 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-
+  
   get f() { return this.form_register.controls; }
 
   public crearCliente(): void {
     if (this.form_register.invalid) {
       this.errorStatus = true;
-      this.errorMsj = "Por favor, complete correctamente todos los campos.";
+      this.errorMsj = "Complete correctamente todos los campos.";
       return;
     }
 
+   console.log('Registrando cliente...');
     this.api_customer.register(this.form_register.value)
       .subscribe(
         response => {
-          // Redirigir a la página de inicio de sesión después del registro exitoso
-           Swal.fire('Bienvenido', '¡Registro exitoso!', 'success');
+          Swal.fire('Bienvenido', '¡Registro exitoso! Revise su correo y confirme su cuenta.', 'success');
           this.router.navigate(['mundo-literario/login']);
         },
         error => {
           if (error?.error?.message === 'Ya tiene una cuenta, inicie sesión.') {
-            this.errorStatus = true;
-            this.errorMsj = "Ya tiene una cuenta, inicie sesión.";
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Ya tiene una cuenta, inicie sesión',
+              confirmButtonText: 'Ok'
+            })
+            this.router.navigate(['mundo-literario/login']);
+        
           }
         }
       );

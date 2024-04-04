@@ -14,6 +14,10 @@ export class LoginComponent {
 
   constructor(private apiCustomersService: ApiCustomersService) { }
 
+  empty(): boolean {
+    return !this.email.trim() || !this.password.trim();
+  }
+
   login(): void {
     // Crea una instancia de la clase Login con los datos del formulario
     const loginData = new Login(this.email, this.password);
@@ -28,12 +32,11 @@ export class LoginComponent {
           Swal.fire('Bienvenido', '¡Inicio de sesión exitoso!', 'success');
           // Guardar el token en el almacenamiento local
           localStorage.setItem('token', response);
-          // Redirigir a otra página o realizar otras acciones necesarias
+          
         } 
       },
       (error) => {
         console.error('Error en el inicio de sesión:', error);
-        // Manejar el error de acuerdo a tus necesidades
         Swal.fire({
           icon: 'error',
           title: 'Error',
