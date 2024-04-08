@@ -4,7 +4,7 @@
       <div class="form-content">
         <div class="signup-form">
           <div class="title">Registrarse</div>
-          <form [formGroup]="form_register" (ngSubmit)="crearCliente()">
+          <form [formGroup]="form_register" (ngSubmit)="createCustomer()">
             <div class="input-boxes">
               <div class="input-box">
                 <i class="fas fa-id-card"></i>
@@ -20,7 +20,7 @@
               </div>
               <div class="input-box">
                 <i class="far fa-envelope"></i>
-                <input type="email" formControlName="customer_email" placeholder="Correo" required>
+                <input type="email" formControlName="customer_email" placeholder="Correo electrónico" required>
               </div>
               <div class="input-box">
                 <i class="fas fa-lock"></i>

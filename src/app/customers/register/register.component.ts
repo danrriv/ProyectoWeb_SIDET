@@ -56,11 +56,19 @@ export class RegisterComponent implements OnInit {
   
   get f() { return this.form_register.controls; }
 
-  public crearCliente(): void {
+  public createCustomer(): void {
     if (this.form_register.invalid) {
-      this.errorStatus = true;
-      this.errorMsj = "Complete correctamente todos los campos.";
-      return;
+      
+      const password = this.form_register.get('customer_password')?.value;
+      if (password && password.length < 8) {
+        this.errorStatus = true;
+        this.errorMsj = "La contraseña debe tener al menos 8 caracteres.";
+        return;
+      } else {
+        this.errorStatus = true;
+        this.errorMsj = "Complete correctamente todos los campos.";
+        return;
+      }
     }
 
    console.log('Registrando cliente...');
