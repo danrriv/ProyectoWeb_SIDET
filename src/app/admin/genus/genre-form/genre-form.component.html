@@ -1,0 +1,32 @@
+<body>
+    <div class="container">
+      <div class="forms">
+        <div class="form-content">
+          <div class="signup-form">
+            <div class="title">{{ genre.genre_id ? 'Edición de género' : 'Registro de género' }}</div>
+            <form (ngSubmit)="genre.genre_id ? updateGenre() : createGenre()">
+              <div class="input-boxes">
+                <div class="input-box">
+                  <input type="text" [(ngModel)]="genre.genre_name" name="nombre" placeholder="Nombre" required>
+                  <div *ngIf="genre.genre_name === ''" class="error-message">
+                    Campo requerido*
+                  </div>
+                </div>
+                <div class="input-box">
+                    <select  [(ngModel)]="selectedCategory" name="category_id" class="form-select">
+                      <option value="0" >Seleccionar categoría</option>
+                      <option *ngFor="let category of categories" [value]="category.category_id">{{ category.category_name }}</option>
+                    </select>
+                  </div>
+                <div class="button-group">
+                  <button type="submit" class="custom-button"><i class="fas fa-check"></i> {{ genre.genre_id ? 'Editar' : 'Crear' }}</button>
+                  <button type="button" [routerLink]="['/mundo-literario/admin/mantenimiento-generos']" class="toggle custom-button-cancelar">
+                    <i class="fas fa-close"></i> Cancelar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>

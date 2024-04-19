@@ -8,6 +8,7 @@ body {
 }
 
 .container {
+  display: flex;
   position: absolute;
   top: 50%; /* Centrar verticalmente */
   left: 50%; /* Centrar horizontalmente */
@@ -22,6 +23,7 @@ body {
 
 .container .forms {
   width: 100%;
+  margin-left: 60px;
 }
 
 .error-message{
@@ -158,4 +160,19 @@ body {
 
 .custom-button:hover {
   background-color: #e4aa3d;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  width: 80%; 
+  margin-top:10px;
+  margin-right: 60px;
+}
+
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
 }

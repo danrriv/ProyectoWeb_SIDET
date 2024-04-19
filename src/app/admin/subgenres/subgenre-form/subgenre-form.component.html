@@ -1,0 +1,26 @@
+<body>
+    <div class="container">
+      <div class="forms">
+        <div class="form-content">
+          <div class="signup-form">
+            <div class="title">{{ subgenre.subgenre_id ? 'Edición de subgénero' : 'Registro de subgénero' }}</div>
+            <form (ngSubmit)="subgenre.subgenre_id ? updateSubgenre() : createSubgenre()">
+              <div class="input-boxes">
+                <div class="input-box">
+                  <input type="text" [(ngModel)]="subgenre.subgenre_name" name="nombre" placeholder="Nombre" required>
+                  <div *ngIf="subgenre.subgenre_name === ''" class="error-message">
+                    Campo requerido*
+                  </div>
+                </div>
+                <div class="button-group">
+                  <button type="submit" class="custom-button"><i class="fas fa-check"></i> {{ subgenre.subgenre_id ? 'Editar' : 'Crear' }}</button>
+                  <button type="button" [routerLink]="['/mundo-literario/admin/mantenimiento-subgeneros']" class="toggle custom-button-cancelar">
+                    <i class="fas fa-close"></i> Cancelar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>

@@ -7,6 +7,7 @@ body{
   padding: 30px;
 }
 .container{
+  display: flex;
   position: relative;
   max-width: 850px;
   width: 100%;
@@ -14,6 +15,7 @@ body{
   padding: 40px 30px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   perspective: 2700px;
+  justify-content: space-between;
 }
 .container .cover{
   position: absolute;
@@ -88,15 +90,12 @@ body{
   height: 100%;
   width: 100%;
   background: #fff;
+  margin-left: 60px;
 }
 .container .form-content{
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.form-content .login-form,
-.form-content .signup-form{
-  width: calc(100% / 2 - 25px);
 }
 .forms .form-content .title{
   position: relative;
@@ -213,6 +212,21 @@ body{
 
 .custom-button:hover {
   background-color: #e4aa3d;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  width: 80%; 
+  margin-top:10px;
+  margin-right: 60px;
+}
+
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
 }
 
 @media (max-width: 730px) {

@@ -9,7 +9,7 @@ import { Login } from 'src/app/clases/login';
 })
 export class ApiCustomersService {
 
-  private baseUrl = 'http://localhost:8090/mundo-literario/customer';
+  private baseUrl = 'http://localhost:8090/mundo-literario';
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) { }

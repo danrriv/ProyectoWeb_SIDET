@@ -57,6 +57,7 @@ export class RegisterComponent implements OnInit {
   get f() { return this.form_register.controls; }
 
   public createCustomer(): void {
+    this.errorStatus=false;
     if (this.form_register.invalid) {
       
       const password = this.form_register.get('customer_password')?.value;
@@ -64,7 +65,12 @@ export class RegisterComponent implements OnInit {
         this.errorStatus = true;
         this.errorMsj = "La contraseña debe tener al menos 8 caracteres.";
         return;
-      } else {
+      }
+      if (this.form_register.get('customer_email')?.hasError('email')) {
+        this.errorStatus = true;
+        this.errorMsj = "El correo electrónico no tiene un formato válido.";
+      }
+      else {
         this.errorStatus = true;
         this.errorMsj = "Complete correctamente todos los campos.";
         return;

@@ -1,0 +1,26 @@
+<body>
+  <div class="container">
+    <div class="forms">
+      <div class="form-content">
+        <div class="signup-form">
+          <div class="title">{{ category.category_id ? 'Edición de categoría' : 'Registro de categoría' }}</div>
+          <form (ngSubmit)="category.category_id ? updateCategory() : createCategory()">
+            <div class="input-boxes">
+              <div class="input-box">
+                <input type="text" [(ngModel)]="category.category_name" name="nombre" placeholder="Nombre" required>
+                <div *ngIf="category.category_name === ''" class="error-message">
+                  Campo requerido*
+                </div>
+              </div>
+              <div class="button-group">
+                <button type="submit" class="custom-button"><i class="fas fa-check"></i> {{ category.category_id ? 'Editar' : 'Crear' }}</button>
+                <button type="button" [routerLink]="['/mundo-literario/admin/mantenimiento-categorias']" class="toggle custom-button-cancelar">
+                  <i class="fas fa-close"></i> Cancelar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -52,7 +52,7 @@ export class ResetpasswordComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Error',
-          text: 'Correo electrónico no registrado',
+          text: 'El correo electrónico no está asociado a una cuenta existente.',
           confirmButtonText: 'Entendido'
         })
       }
@@ -84,6 +84,7 @@ gotoLogin(): void {
     this.apiService.resetPassword(this.resetCode, this.newPassword, this.email).subscribe(
       () => {
         this.resetSuccess = true;
+        Swal.fire('¡En hora buena!', 'Se ha restablecido su contraseña correctamente', 'success');
         setTimeout(() => {
           this.router.navigate(['mundo-literario/login']);
         }, 3000); // Redirigir después de 3 segundos

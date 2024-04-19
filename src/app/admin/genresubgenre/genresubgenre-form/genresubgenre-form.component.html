@@ -1,0 +1,32 @@
+<body>
+    <div class="container">
+      <div class="forms">
+        <div class="form-content">
+          <div class="signup-form">
+            <div class="title">Registro de Género - Subgénero</div>
+            <form>
+              <div class="input-boxes">
+                <div class="input-box">
+                  <select [(ngModel)]="selectedGenre" name="genre_id" class="form-select" (change)="onGenreSelected()">
+                    <option value="0">Seleccionar género</option>
+                    <option *ngFor="let gen of genre" [value]="gen.genre_id">{{ gen.genre_name }}</option>
+                  </select>
+                </div>
+                <div class="input-box">
+                  <select [(ngModel)]="selectedSubgenre" name="subgenre_id" class="form-select">
+                    <option value="0">Seleccionar subgénero</option>
+                    <option *ngFor="let subg of subgenre" [value]="subg.subgenre_id">{{ subg.subgenre_name }}</option>
+                  </select>
+                </div>
+                <div class="button-group">
+                  <button type="submit" class="custom-button" (click)="createGenreSubgenre()"><i class="fas fa-check"></i> Crear</button>
+                  <button type="button" [routerLink]="['/mundo-literario/admin/mantenimiento-generos-subgeneros']" class="toggle custom-button-cancelar">
+                    <i class="fas fa-close"></i> Cancelar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
