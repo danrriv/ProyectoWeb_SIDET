@@ -22,6 +22,7 @@ import { SubgenreComponent } from './admin/subgenres/subgenre/subgenre.component
 import { SubgenreFormComponent } from './admin/subgenres/subgenre-form/subgenre-form.component';
 import { GenressubgenreComponent } from './admin/genresubgenre/genressubgenre/genressubgenre.component';
 import { GenresubgenreFormComponent } from './admin/genresubgenre/genresubgenre-form/genresubgenre-form.component'; 
+import { MainComponent } from './customers/main/main.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { GenresubgenreFormComponent } from './admin/genresubgenre/genresubgenre-
     SubgenreComponent,
     SubgenreFormComponent,
     GenressubgenreComponent,
-    GenresubgenreFormComponent
+    GenresubgenreFormComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
