@@ -1,0 +1,27 @@
+<script src="https://sdk.mercadopago.com/js/v2">
+</script>
+<script>src="cart.js"</script>
+
+
+<div class="col-md-6 scroll-container">
+
+    <article class="productCart" *ngFor="let product of myCart$ | async">
+      <div class="productCart-body">
+
+        <!--
+        <div class="product-image m-lg-3">
+          <img src="{{product.img}}">
+        </div>
+-->
+        <div class="product-info">
+          <p>{{product.book_name}}</p>
+        </div>
+          <div class="productCart-body-info">
+            <p>S/.{{product.book_price}}</p>
+            <p>{{product.book_quantity}} unidad(es)</p>
+          </div>
+      </div>
+    </article> 
+  </div>
+<div id="wallet_container">
+</div>

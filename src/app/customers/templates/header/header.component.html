@@ -1,0 +1,74 @@
+<header>
+    <nav>
+      <ul>
+        <li class="logo"><a href="/">Mundo Literario</a></li>
+        <!-- Repite este bloque por cada categoría -->
+        <li *ngFor="let category of menuData" class="dropdown">
+          <a class="menu-option">{{category.name}}</a>
+          <ul class="submenu">
+            <li *ngFor="let genre of category.generos" class="submenu-group">
+              <h4>{{genre.name}}</h4>
+              <ul class="submenu-list">
+                <li *ngFor="let subgenre of genre.subgenre">
+                  <a [routerLink]="['/']" [queryParams]="{subgenre: subgenre}">{{subgenre}}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+    <!-- Fin de la repetición -->
+        <li class="nav-item login" *ngIf="isAuthenticated()">
+          <button class="btn btn-link text-black" (click)="toggleMenu()">
+            <i class="fas fa-user"></i> {{ customerName}}
+            <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="user-menu" *ngIf="showMenu">
+            <button class="btn btn-secondary" [routerLink]="['/'] " (click)="onLogout()">Cerrar sesión</button>
+          </div>
+          <br>
+          <div class="user-menu" *ngIf="showMenu">
+            <button class="btn btn-secondary" [routerLink]="['/mundo-literario/compras'] ">Mis compras</button>
+          </div>
+        </li>
+        <li class="nav-item login" *ngIf="!isAuthenticated()">
+          <a class="btn btn-link text-black" href="mundo-literario/login">
+            <i class="fas fa-user"></i> Iniciar sesión
+          </a>
+        </li>
+        
+      <li class="carrito" >
+        <a (click)="onToggleCart()">
+          <li class="navbar-cart-items" *ngIf="(myCart$ |async)?.length">
+            <p>{{ (myCart$ | async)?.length }}</p>
+          </li>
+          <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+      </li>
+  
+  
+  
+        <div class="cart" [ngClass]="{ show: viewCart }">
+          <app-car></app-car>
+        </div>
+  
+      </ul>
+    </nav>
+  </header>
+  
+  
+  <script>
+    const dropdowns = document.querySelectorAll('.dropdown');
+  
+    dropdowns.forEach((dropdown) => {
+      const menuOption = dropdown.querySelector('.menu-option');
+      const submenu = dropdown.querySelector('.submenu');
+  
+      menuOption.addEventListener('mouseenter', () => {
+        submenu.style.display = 'block'; // Cambia 'grid' por 'block'
+      });
+  
+      dropdown.addEventListener('mouseleave', () => { // Cambia 'menuOption' por 'dropdown'
+        submenu.style.display = 'none';
+      });
+    });
+  </script>

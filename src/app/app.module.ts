@@ -4,10 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CarComponent } from './customers/car/car.component';
-import { ProductsComponent } from './customers/products/products.component';
+import { CarComponent } from './customers/sales/car/car.component';
+import { ProductsComponent } from './customers/sales/products/products.component';
 import { MenuComponent } from './admin/menu/menu.component';
-import { ProductComponent } from './admin/product/product.component';
+import { ProductComponent } from './admin/books/product/product.component';
 import { RegisterComponent } from './customers/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,6 +23,13 @@ import { SubgenreFormComponent } from './admin/subgenres/subgenre-form/subgenre-
 import { GenressubgenreComponent } from './admin/genresubgenre/genressubgenre/genressubgenre.component';
 import { GenresubgenreFormComponent } from './admin/genresubgenre/genresubgenre-form/genresubgenre-form.component'; 
 import { MainComponent } from './customers/main/main.component';
+import { ProductFormComponent } from './admin/books/product-form/product-form.component';
+import { AuthorComponent } from './admin/authors/author/author.component';
+import { AuthorFormComponent } from './admin/authors/author-form/author-form.component';
+import { CustomersPurchasesComponent } from './customers/customers-purchases/customers-purchases.component';
+import { HeaderComponent } from './customers/templates/header/header.component';
+import { FooterComponent } from './customers/templates/footer/footer.component';
+import { SaleConfirmationComponent } from './customers/sales/sale-confirmation/sale-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +50,14 @@ import { MainComponent } from './customers/main/main.component';
     SubgenreFormComponent,
     GenressubgenreComponent,
     GenresubgenreFormComponent,
-    MainComponent
+    MainComponent,
+    ProductFormComponent,
+    AuthorComponent,
+    AuthorFormComponent,
+    CustomersPurchasesComponent,
+    HeaderComponent,
+    FooterComponent,
+    SaleConfirmationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Customer } from 'src/app/clases/customer';
+import { Customer } from 'src/app/clases/customer/customer';
 import { ApiCustomersService } from 'src/app/services/api-customers/api-customers.service';
 import Swal from 'sweetalert2';
 @Component({

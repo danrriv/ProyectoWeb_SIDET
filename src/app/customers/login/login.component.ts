@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Login } from 'src/app/clases/login';
+import { CustomerLoginDto } from 'src/app/clases/customer/customerLoginDto';
+import { Login } from 'src/app/clases/login/login';
 import { ApiCustomersService } from 'src/app/services/api-customers/api-customers.service';
 import Swal from 'sweetalert2';
 
@@ -14,6 +15,7 @@ export class LoginComponent {
   password: string = '';
   errorStatus: boolean = false;
   errorMsj: any = "";
+  dto: CustomerLoginDto = new CustomerLoginDto();
 
   constructor(private apiCustomersService: ApiCustomersService,private router: Router) { }
 
@@ -41,7 +43,8 @@ export class LoginComponent {
           this.router.navigate(['/']);
           // Guardar el token en el almacenamiento local
           localStorage.setItem('token', response);
-          
+          //Guardar id y nombre del cliente en el almacenamiento local
+          this.obtainLoginData();          
         } 
       },
       (error) => {
@@ -60,6 +63,19 @@ export class LoginComponent {
         });
       }
       
+    );
+  }
+  obtainLoginData():void{
+    this.apiCustomersService.obtainLoginData(this.email).subscribe(
+      (data) =>{
+        this.dto = data;
+        localStorage.setItem('customer_id', this.dto.customer_id);
+        localStorage.setItem('name', this.dto.customer_name);
+        localStorage.setItem('logged','true' );
+      },
+      (error) =>{
+        console.error(error);
+      }
     );
   }
 }

@@ -1,0 +1,46 @@
+<body>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="jumbotron text-center custom-jumbotron">
+            <h1 class="title display-4">Autores</h1>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="d-flex justify-content-between mb-3 align-items-center">
+                <div class="col-md-5 p-0">
+                  <input type="text" class="form-control custom-input" placeholder="Ingrese un autor." />
+                </div>
+                <button class="custom-btn-create " [routerLink]="['/mundo-literario/admin/form-autor']"><i class="fas fa-plus"></i>  Registrar</button>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="error-message text-center" *ngIf="errorStatus">{{ errorMsj }}</div>
+              <div class="table-responsive">
+                <table class="table table-hover custom-table">
+                  <thead class="custom-thead text-center">
+                    <tr>
+                      <th>Id</th>
+                      <th>Nombre</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-center">
+                    <tr *ngFor="let aut of authors" class="table-row">
+                      <td>{{ aut.author_id }}</td>
+                      <td>{{ aut.author_name }}</td>
+                      <td>
+                        <button type="button" name="button" [routerLink]="['/mundo-literario/admin/form-autor', aut.author_id]" class="custom-btn-update"> <i class="fas fa-pen"></i> </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
