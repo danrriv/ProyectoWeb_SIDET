@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Subgenre } from 'src/app/clases/subgenre/subgenre';
 import { ApiSubgenreService } from 'src/app/services/api-subgenre/api-subgenre.service';
 
@@ -9,9 +11,9 @@ import { ApiSubgenreService } from 'src/app/services/api-subgenre/api-subgenre.s
 })
 export class SubgenreComponent {
   subgenres: Subgenre[] = [];
-  search: string = '';
-  errorStatus: boolean = false;
-  errorMsj: any = "";
+  searchInput:string = '';
+  dataSource: MatTableDataSource<Subgenre>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private subgenreService: ApiSubgenreService){}
 
@@ -22,28 +24,12 @@ export class SubgenreComponent {
   getSubgenres(){
     this.subgenreService.getSubgenre().subscribe((data) =>{
       this.subgenres = data;
+      this.dataSource = new MatTableDataSource<Subgenre>(this.subgenres);
+        this.dataSource.paginator = this.paginator;
     });
   }
 
-  findSubgenre(name: string): void {
-    this.errorStatus = false; // Restablece el estado de error
-
-    if (name.trim() === '') {
-      this.getSubgenres(); // Si el campo de búsqueda está vacío, muestra todao el registro
-    } else {
-      this.subgenreService.findSubgenre(name).subscribe(
-        (data: Subgenre[]) => {
-          if (data.length > 0) {
-            this.subgenres = data; // Actualiza los resultados de búsqueda
-          } else {
-            this.errorStatus = true;
-            this.errorMsj = 'No se encontraron resultados para "' + name + '"';
-          }
-        },
-        (error) => {
-          console.error('Error al buscar el subgénero ', name, ': ', error);
-        }
-      );
-    }
+  applyFilter(): void {
+    this.dataSource.filter = this.searchInput.trim().toLowerCase(); // Aplica el filtro
   }
 }

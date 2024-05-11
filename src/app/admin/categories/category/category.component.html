@@ -1,46 +1,42 @@
-<body>
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div class="jumbotron text-center custom-jumbotron">
-          <h1 class="title display-4">Categorías</h1>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <div class="d-flex justify-content-between mb-3 align-items-center">
-              <div class="col-md-5 p-0">
-                <input type="text" class="form-control custom-input" [(ngModel)]="search" (input)="findCategory(search)" placeholder="Ingrese una categoría." />
-              </div>
-              <button class="custom-btn-create " [routerLink]="['/mundo-literario/admin/form-categoria']"><i class="fas fa-plus"></i>  Registrar</button>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <div class="error-message text-center" *ngIf="errorStatus">{{ errorMsj }}</div>
-            <div class="table-responsive">
-              <table class="table table-hover custom-table">
-                <thead class="custom-thead text-center">
-                  <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
-                <tbody class="text-center">
-                  <tr *ngFor="let category of categories" class="table-row">
-                    <td>{{ category.category_id }}</td>
-                    <td>{{ category.category_name }}</td>
-                    <td>
-                      <button type="button" name="button" [routerLink]="['/mundo-literario/admin/form-categoria', category.category_id]" class="custom-btn-update"> <i class="fas fa-pen"></i> </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="title">Categorías</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <div class="d-flex justify-content-between mb-3 align-items-center">
+      <div class="col-md-5 p-0">
+        <input type="text" class="form-control custom-input" [(ngModel)]="searchInput" (keyup)="applyFilter()" placeholder="Buscar" />
       </div>
+      <button mat-raised-button color="primary" class="custom-btn-create" [routerLink]="['/mundo-literario/admin/form-categoria']">
+        <mat-icon matPrefix class="material-icons icon-btn">add_circle</mat-icon>Registrar
+      </button>
     </div>
-  </div>
-</body>
+    <mat-table [dataSource]="dataSource">
+      <!-- Columnas de la tabla -->
+      <ng-container matColumnDef="category_id">
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let category">{{ category.category_id }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="category_name">
+        <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+        <mat-cell *matCellDef="let category">{{ category.category_name }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let category">
+          <button class="cancel-btn" mat-raised-button [routerLink]="['/mundo-literario/admin/form-categoria', category.category_id]">
+            <mat-icon matPrefix class="material-icons icon-btn">edit</mat-icon>
+            Editar
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="['category_id', 'category_name', 'actions']"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: ['category_id', 'category_name', 'actions'];"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  </mat-card-content>
+</mat-card>

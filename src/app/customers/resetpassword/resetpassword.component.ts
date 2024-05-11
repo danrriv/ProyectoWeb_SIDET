@@ -15,19 +15,16 @@ export class ResetpasswordComponent implements OnInit {
   confirmPassword: string="";
   resetCodeSent: boolean | undefined;
   resetSuccess: boolean | undefined;
-  error: string="";
-  passwordValid: boolean = true;
+  errorMsj: string="";
+  passwordValid: boolean = false;
 
   constructor(private apiService: ApiCustomersService, private router: Router) { }
 
   ngOnInit(): void {
     this.resetCodeSent = false;
     this.resetSuccess = false;
-    this.error = '';
-  }
-
-  validatePassword(): void {
-    this.passwordValid = this.newPassword.length >= 8;
+    this.passwordValid = false;
+    this.errorMsj = '';
   }
 
   sendResetCode(): void {
@@ -65,21 +62,26 @@ gotoLogin(): void {
 
   resetPassword(): void {
 
-    this.validatePassword();
+    this.errorMsj= "";
 
      // Verificar si las contraseñas coinciden
      if (this.newPassword !== this.confirmPassword) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Las contraseñas no coinciden',
-        confirmButtonText: 'Ok'
-      });return;
+      this.errorMsj= "Las contraseñas no coinciden"
+      return;
     }
 
-    if (!this.passwordValid) {
+    else if(this.resetCode.length==0 || this.newPassword.length==0 || this.confirmPassword.length==0){
+      this.errorMsj= "Complete los campos correctamente"
       return;
+    }
+
+    else if (this.newPassword == this.confirmPassword){
+      if (this.newPassword.length < 8 || this.confirmPassword.length < 8) {
+      this.errorMsj= "Su contraseña debe tener un mínimo 8 carácteres"
+      return;
+    }
   }
+
 
     this.apiService.resetPassword(this.resetCode, this.newPassword, this.email).subscribe(
       () => {

@@ -23,6 +23,12 @@ import { SubgenreFormComponent } from './admin/subgenres/subgenre-form/subgenre-
 import { GenressubgenreComponent } from './admin/genresubgenre/genressubgenre/genressubgenre.component';
 import { GenresubgenreFormComponent } from './admin/genresubgenre/genresubgenre-form/genresubgenre-form.component'; 
 import { MainComponent } from './customers/main/main.component';
+import { HeaderComponent } from './customers/templates/header/header.component';
+import { UserFormComponent } from './admin/users/user-form/user-form.component';
+import { UserComponent } from './admin/users/user/user.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
+import { LoginUsersComponent } from './admin/users/login-users/login-users.component';
 
 @NgModule({
   declarations: [
@@ -43,14 +49,20 @@ import { MainComponent } from './customers/main/main.component';
     SubgenreFormComponent,
     GenressubgenreComponent,
     GenresubgenreFormComponent,
-    MainComponent
+    MainComponent,
+    HeaderComponent,
+    UserFormComponent,
+    UserComponent,
+    LoginUsersComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

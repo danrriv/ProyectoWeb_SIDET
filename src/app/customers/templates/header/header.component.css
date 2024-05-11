@@ -1,0 +1,31 @@
+.top-menu {
+    background-color: #5b13b9;
+    padding: 10px 0;
+}
+
+.top-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.top-menu ul li {
+    display: inline;
+}
+
+.top-menu ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.top-menu ul li a:hover {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.top-menu ul li.mundo-literario a {
+    color: #f0bf4c;
+    font-size: 18px;
+    font-weight: bold;
+}

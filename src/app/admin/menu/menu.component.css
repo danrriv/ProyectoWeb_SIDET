@@ -1,0 +1,88 @@
+/* Estilos para el menú lateral */
+.menu-wrapper {
+    height: 100vh;
+  }
+  
+.sidebar {
+    width: 300px;
+    background-color: #fff;
+  }
+  
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 0;
+  }
+
+.icon {
+    margin-right: 10px;
+    font-size: 24px;
+    color: #fff;
+  }
+
+.account {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+.name {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff;
+}
+
+.role {
+    color: #fff;
+}
+
+.menu-header {
+    margin-bottom: 20px;
+    margin-left: 15px;
+  }
+
+
+.title a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+.texto{
+    color: #fff;
+  }
+  
+a .sub-options{
+    color: #fff !important;
+}
+
+.item{
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.icon-arrow {
+    margin-left: 40px;
+    transition: transform 0.3s;
+    color: #fff;
+}
+
+.arrow-rotated {
+    transform: rotate(180deg);
+}
+
+.sidebar{
+    background-color: #4d109c;
+}
+
+.user-info {
+  margin-top: 20px;
+  margin-left: 15px;
+  color: #fff;
+}
+
+.user-info p {
+  margin: 5px 0;
+}

@@ -1,26 +1,27 @@
-<body>
-  <div class="container">
-    <div class="forms">
-      <div class="form-content">
-        <div class="signup-form">
-          <div class="title">{{ category.category_id ? 'Edición de categoría' : 'Registro de categoría' }}</div>
-          <form (ngSubmit)="category.category_id ? updateCategory() : createCategory()">
-            <div class="input-boxes">
-              <div class="input-box">
-                <input type="text" [(ngModel)]="category.category_name" name="nombre" placeholder="Nombre" required>
-                <div *ngIf="category.category_name === ''" class="error-message">
-                  Campo requerido*
-                </div>
-              </div>
-              <div class="button-group">
-                <button type="submit" class="custom-button"><i class="fas fa-check"></i> {{ category.category_id ? 'Editar' : 'Crear' }}</button>
-                <button type="button" [routerLink]="['/mundo-literario/admin/mantenimiento-categorias']" class="toggle custom-button-cancelar">
-                  <i class="fas fa-close"></i> Cancelar</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="title">{{ isNewCategory ? 'Registro de categoría' : 'Edición de categoría' }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+<form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+  <mat-form-field appearance="fill"  class="form-field">
+    <mat-label>Categoría</mat-label>
+    <input matInput formControlName="category_name" required>
+    <mat-error *ngIf="categoryForm.get('category_name')?.hasError('required')">Campo requerido</mat-error>
+  </mat-form-field>
+  <div class="button-group">
+    <button mat-raised-button color="primary" type="submit">
+      <mat-icon matPrefix class="material-icons icon-btn">
+        {{ isNewCategory ? 'check_circle' : 'edit' }}
+      </mat-icon> 
+      {{ isNewCategory ? 'Crear' : 'Editar' }}
+    </button>
+    <button mat-raised-button class="btn-cancel" type="button" [routerLink]="['/mundo-literario/admin/mantenimiento-categorias']">
+      <mat-icon matPrefix class="material-icons icon-btn">cancel</mat-icon>
+      Cancelar
+    </button>
   </div>
-</body>
+</form>
+</mat-card-content>
+</mat-card>
