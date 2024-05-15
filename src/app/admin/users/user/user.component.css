@@ -12,6 +12,8 @@
   mat-card{
     border: none !important;
     padding: 20px;
+    max-width: 1200px;
+    height: 100vh;
   }
 
   mat-table{
@@ -25,4 +27,5 @@
 
   .edit-btn{
     background-color: #f0bf4c !important;
+    padding: 15px;
   }
