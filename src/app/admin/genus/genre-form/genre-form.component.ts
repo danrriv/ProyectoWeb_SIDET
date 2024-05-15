@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/clases/category/category';
 import { Genre } from 'src/app/clases/genre/genre';
@@ -13,19 +14,24 @@ import Swal from 'sweetalert2';
 export class GenreFormComponent implements OnInit {
   public genre : Genre = new Genre();
   categories: Category[] =[];
+  isNewGenre: boolean = true;
   selectedCategory:number | number=0;
-  errorStatus: boolean = false;
-  errorMsj: any = "";
+  genreForm :FormGroup;
 
   constructor(
     private genreService: ApiGenreService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ){}
 
   ngOnInit(): void {
     this.loadGenre();
     this.listCategories();
+    this.genreForm = this.formBuilder.group({
+      genre_name : ['', Validators.required],
+      selectedCategory: [null, Validators.required]
+    });
 }
 
   listCategories(): void {
@@ -44,10 +50,14 @@ export class GenreFormComponent implements OnInit {
       const id = +params['id'];
 
       if (id) {
+        this.isNewGenre = false;
+        this.genre.genre_id= id;
         this.genreService.findGenreId(id).subscribe(
           (data) => {
-            this.genre = data;
-            this.selectedCategory = this.genre.category?.category_id || 0; 
+            this.genreForm.patchValue({
+              genre_name: data.genre_name,
+              selectedCategory: data.category?.category_id
+          });
           },
           (error) => {
             console.error(error);
@@ -57,16 +67,15 @@ export class GenreFormComponent implements OnInit {
     });
   }
 
-  validarCampos(): boolean {
-    if (!this.genre.category && !this.genre.genre_name) return false;
-    return true;
-  }
-
+  
   public createGenre(): void {
 
-    if(this.validarCampos()) {
+    console.log(this.genreForm.value)
+    if(this.genreForm.valid) {
+      this.genre = Object.assign({}, this.genre, this.genreForm.value);
+      
       this.genreService
-        .createGenre(this.genre, this.selectedCategory)
+        .createGenre(this.genre, this.genreForm.value.selectedCategory)
         .subscribe(
           (genre) => {
             this.router.navigate(['/mundo-literario/admin/mantenimiento-generos']);
@@ -81,18 +90,14 @@ export class GenreFormComponent implements OnInit {
           }
         );
     }
-    Swal.fire({
-      icon: 'error',
-      title: 'Error',
-      text: 'Complete todos los campos.'
-    });
-    
   }
 
   public updateGenre(): void {
-    if(this.validarCampos()) {
+    if(this.genreForm.valid) {
+      this.genre = Object.assign({}, this.genre, this.genreForm.value);
+
     this.genreService
-      .updateGenre(this.genre, this.selectedCategory)
+      .updateGenre(this.genre, this.genreForm.value.selectedCategory)
       .subscribe(
         (genre) => {
           this.router.navigate(['/mundo-literario/admin/mantenimiento-generos']);
@@ -107,11 +112,6 @@ export class GenreFormComponent implements OnInit {
         }
       );
     }
-    Swal.fire({
-      icon: 'error',
-      title: 'Error',
-      text: 'Complete todos los campos.'
-    });
   }
 
 }

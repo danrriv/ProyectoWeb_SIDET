@@ -1,149 +1,31 @@
-header {
-    background-color: #8251d1;
-    padding: 10px;
-  }
-  
-  .navbar-collapse {
-    flex-basis: 100%;
-  }
-  
-  .navbar-nav {
-    width: 100%;
-  }
-  
-  .right {
-    display: flex;
-    align-items: center;
-  }
-  
-  .left {
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-  }
-  
-  .crisol {
-    font-size: 24px;
-    font-weight: bold;
-    color: #002d85;
-  }
-  
-  nav ul {
-    list-style: none;
+.top-menu {
+    background-color: #5b13b9;
+    padding: 10px 0;
+}
+
+.top-menu ul {
+    list-style-type: none;
     margin: 0;
     padding: 0;
-  }
-  
-  nav ul li {
-    display: inline-block;
-    margin-bottom: 10px;
-  }
-  
-  nav ul li a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: #333;
-    border-radius: 20px;
-    transition: background-color 0.3s;
-  }
-  
-  nav ul li:not(.crisol):hover > a {
-    background-color: #002d85;
+}
+
+.top-menu ul li {
+    display: inline;
+}
+
+.top-menu ul li a {
     color: white;
-  }
-  
-  .submenu {
-    display: none;
-    position: absolute;
-    background-color: #ffffff;
-    padding: 30px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 10px;
-    width: 1000px;
-    text-align: center;
-    list-style: none;
-  }
-  
-  .submenu-group {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
-  
-  .submenu-list {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .dropdown {
-    position: relative;
-  }
-  
-  .dropdown:hover .submenu {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-    top: 100%;
-  }
-  
-  .login {
-    margin-left: 480px;
-  }
-  
-  /*
-  Carrito
-  */
-  .cart {
-    display: none;
-  }
-  .show {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    z-index: 1;
-    position: absolute;
-    background-color: white;
-    border-radius: 0.5rem;
-    border: 1px solid #cc1414;
-    right: 0px;
-    min-width: 40%;
-  }
-  .show app-cart {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  
-  
-  
-  /* Estilos responsivos */
-  @media only screen and (max-width: 768px) {
-    nav ul li {
-      display: block;
-      margin-bottom: 10px;
-    }
-  
-    .dropdown:hover .submenu {
-      display: block;
-      position: static;
-      width: 100%;
-      margin-top: 10px;
-    }
-  
-    .submenu-group,
-    .submenu-list {
-      margin-bottom: 20px;
-    }
-  
-    .login {
-      margin-left: 0;
-      margin-top: 10px;
-    }
-  } 
+    text-decoration: none;
+    padding: 10px;
+}
+
+.top-menu ul li a:hover {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.top-menu ul li.mundo-literario a {
+    color: #f0bf4c;
+    font-size: 18px;
+    font-weight: bold;
+}

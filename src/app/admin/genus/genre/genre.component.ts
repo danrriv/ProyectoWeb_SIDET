@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Genre } from 'src/app/clases/genre/genre';
 import { ApiGenreService } from 'src/app/services/api-genre/api-genre.service';
 
@@ -10,43 +12,33 @@ import { ApiGenreService } from 'src/app/services/api-genre/api-genre.service';
 export class GenreComponent {
 
   genre : Genre[]=[];
-  search: string = '';
-  errorStatus: boolean = false;
-  errorMsj: any = "";
+  searchInput:string = '';
+  dataSource: MatTableDataSource<Genre>;
+  displayedColumns: string[] = ['genre_id','genre_name','category','actions'];
 
-  constructor(private genreService: ApiGenreService){}
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  constructor(private genreService: ApiGenreService,
+  ){}
 
   ngOnInit():void {
-    this.getGenre();
+    this.getGenres();
   }
 
-  getGenre(){
+  getGenres(){
     this.genreService.getGenre().subscribe(
       (data)=>{ 
         this.genre = data
-      });
+        this.dataSource = new MatTableDataSource<Genre>(this.genre);
+        this.dataSource.paginator = this.paginator;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
-
-  findGenre(name: string): void {
-    this.errorStatus = false; // Restablece el estado de error
-
-    if (name.trim() === '') {
-      this.getGenre(); // Si el campo de búsqueda está vacío, muestra todaos ls géneros
-    } else {
-      this.genreService.findGenre(name).subscribe(
-        (data: Genre[]) => {
-          if (data.length > 0) {
-            this.genre = data; // Actualiza la tabla con los resultados de búsqueda
-          } else {
-            this.errorStatus = true;
-            this.errorMsj = 'No se encontraron resultados para "' + name + '"';
-          }
-        },
-        (error) => {
-          console.error('Error al buscar el género ', name, ': ', error);
-        }
-      );
-    }
+  applyFilter(): void {
+    this.dataSource.filter = this.searchInput.trim().toLowerCase(); // Aplica el filtro
   }
 
 }

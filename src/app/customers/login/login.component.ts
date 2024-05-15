@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomerLoginDto } from 'src/app/clases/customer/customerLoginDto';
 import { Login } from 'src/app/clases/login/login';
@@ -10,41 +11,38 @@ import Swal from 'sweetalert2';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  email: string = '';
-  password: string = '';
-  errorStatus: boolean = false;
-  errorMsj: any = "";
-  dto: CustomerLoginDto = new CustomerLoginDto();
+export class LoginComponent implements OnInit{
+  loginForm! : FormGroup
 
-  constructor(private apiCustomersService: ApiCustomersService,private router: Router) { }
+  constructor(
+    private customerService: ApiCustomersService,
+    private router: Router,
+    private formBuilder: FormBuilder){}
 
+    ngOnInit(): void {
+      this.loginForm = this.formBuilder.group({
+        email: ['',[Validators.required, Validators.email]],
+        password: ['', Validators.required]
+      })
+    }
 
   login(): void {
 
-    if (!this.email || !this.password) {
-      console.error('Correo electrónico o contraseña nulos');
-      this.errorStatus = true;
-      this.errorMsj = "Complete correctamente todos los campos.";
+    if (this.loginForm.invalid) {
       return;
     }
 
-    // Crea una instancia de la clase Login con los datos del formulario
-    const loginData = new Login(this.email, this.password);
-
-    this.apiCustomersService.login(loginData).subscribe(
+    this.customerService.login(this.loginForm.value).subscribe(
       (response) => {
-        console.log('Respuesta recibida:', response);
-        
         // Verificar si la respuesta es un token válido
         if (response) {
           console.log('Inicio de sesión exitoso');
-          Swal.fire('Bienvenido', '¡Inicio de sesión exitoso!', 'success');
-          this.router.navigate(['/']);
-          // Guardar el token en el almacenamiento local
-          localStorage.setItem('token', response);
-          //Guardar id y nombre del cliente en el almacenamiento local
-          this.obtainLoginData();          
+          Swal.fire(
+            'Éxito!',
+            'Bienvenido',
+            'success'
+          );
+          this.router.navigate(['/']);      
         } 
       },
       (error) => {
@@ -63,19 +61,6 @@ export class LoginComponent {
         });
       }
       
-    );
-  }
-  obtainLoginData():void{
-    this.apiCustomersService.obtainLoginData(this.email).subscribe(
-      (data) =>{
-        this.dto = data;
-        localStorage.setItem('customer_id', this.dto.customer_id);
-        localStorage.setItem('name', this.dto.customer_name);
-        localStorage.setItem('logged','true' );
-      },
-      (error) =>{
-        console.error(error);
-      }
     );
   }
 }

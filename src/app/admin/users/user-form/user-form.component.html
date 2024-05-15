@@ -1,0 +1,101 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="title">{{ isNewUser ? 'Registro de Usuario' : 'Edición de Usuario' }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form (ngSubmit)="isNewUser ? createUser() : updateUser()" [formGroup]="userForm">
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>DNI</mat-label>
+          <mat-icon matPrefix class="material-icons icon">badge</mat-icon>
+          <input matInput type="text" id="dni" name="dni" formControlName="user_dni" maxlength="8" (keydown)="validarNumerico($event)" required [readonly]="!isNewUser">
+          <mat-error *ngIf="userForm.controls['user_dni'].hasError('required')">
+            Campo requerido.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Nombres</mat-label>
+          <mat-icon matPrefix class="material-icons icon">person</mat-icon>
+          <input matInput type="text" id="names" name="names" formControlName="user_names" (keydown)="validarNoNumerico($event)" required [readonly]="!isNewUser">
+          <mat-error *ngIf="userForm.controls['user_names'].hasError('required')">
+            Campo requerido.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Apellidos</mat-label>
+          <mat-icon matPrefix class="material-icons icon">person</mat-icon>
+          <input matInput type="text" id="surnames" name="surnames" formControlName="user_surnames" (keydown)="validarNoNumerico($event)" required [readonly]="!isNewUser">
+          <mat-error *ngIf="userForm.controls['user_surnames'].hasError('required')">
+            Campo requerido.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Email</mat-label>
+          <mat-icon matPrefix class="material-icons icon">email</mat-icon>
+          <input matInput type="email" id="email" name="email" formControlName="user_email" required [readonly]="!isNewUser">
+          <mat-error *ngIf="userForm.controls['user_email'].hasError('required')">
+            Campo requerido.
+          </mat-error>
+          <mat-error *ngIf="userForm.controls['user_email'].hasError('email')">
+            Email no tiene un formato válido.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field" >
+          <mat-label>Contraseña</mat-label>
+          <mat-icon matPrefix class="material-icons icon">key</mat-icon>
+          <input matInput type="password" id="password" name="password" formControlName="user_password" required [readonly]="!isNewUser">
+          <mat-error *ngIf="userForm.get('user_password')?.hasError('required')">
+            Campo requerido.
+          </mat-error>
+          <mat-error *ngIf="userForm.get('user_password')?.hasError('minlength')">
+            La contraseña debe tener al menos 8 caracteres.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Teléfono</mat-label>
+          <mat-icon matPrefix class="material-icons icon">phone</mat-icon>
+          <input matInput type="tel" id="phone" name="phone" formControlName="user_phone_number" maxlength="9" (keydown)="validarNumerico($event)" [readonly]="!isNewUser">
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Estado</mat-label>
+          <mat-select id="status" name="status" formControlName="user_status" [disabled]="!isNewUser">
+            <mat-option value="ACTIVO">Activo</mat-option>
+            <mat-option value="INACTIVO">Inactivo</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Rol</mat-label>
+          <mat-select id="role" name="role" formControlName="roleSelect" [disabled]="!isNewUser">
+            <mat-option *ngFor="let role of roles" [value]="role.role_id">{{role.role_name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="userForm.controls['user_surnames'].hasError('required')">
+            Campo requerido.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="button-container">
+        <button mat-raised-button color="primary" type="submit">
+          <mat-icon matPrefix class="material-icons icon-btn">check_circle</mat-icon>
+          {{ isNewUser ? 'Registrar' : 'Editar' }}
+        </button>
+        <button mat-raised-button class="btn-cancel" type="button" [routerLink]="['/mundo-literario/admin/mantenimiento-usuarios']">
+          <mat-icon matPrefix class="material-icons icon-btn">cancel</mat-icon>
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

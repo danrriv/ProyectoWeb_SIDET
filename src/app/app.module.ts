@@ -27,9 +27,14 @@ import { ProductFormComponent } from './admin/books/product-form/product-form.co
 import { AuthorComponent } from './admin/authors/author/author.component';
 import { AuthorFormComponent } from './admin/authors/author-form/author-form.component';
 import { CustomersPurchasesComponent } from './customers/customers-purchases/customers-purchases.component';
-import { HeaderComponent } from './customers/templates/header/header.component';
 import { FooterComponent } from './customers/templates/footer/footer.component';
 import { SaleConfirmationComponent } from './customers/sales/sale-confirmation/sale-confirmation.component';
+import { HeaderComponent } from './customers/templates/header/header.component';
+import { UserFormComponent } from './admin/users/user-form/user-form.component';
+import { UserComponent } from './admin/users/user/user.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
+import { LoginUsersComponent } from './admin/users/login-users/login-users.component';
 
 @NgModule({
   declarations: [
@@ -57,14 +62,19 @@ import { SaleConfirmationComponent } from './customers/sales/sale-confirmation/s
     CustomersPurchasesComponent,
     HeaderComponent,
     FooterComponent,
-    SaleConfirmationComponent
+    SaleConfirmationComponent,
+    UserFormComponent,
+    UserComponent,
+    LoginUsersComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,4 +7,5 @@ export class Customer {
     customer_email: string | null = null;
     customer_password: string | null = null;
     customer_status: string | null = null;
+    customer_token: string | null = null;
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Genre } from 'src/app/clases/genre/genre';
 import { Genresubgenre } from 'src/app/clases/genresubgenre/genresubgenre';
 import { Subgenre } from 'src/app/clases/subgenre/subgenre';
@@ -13,26 +14,34 @@ import Swal from 'sweetalert2';
 })
 export class GenresubgenreFormComponent {
 
-  genre: Genre[]=[];
-  subgenre: Subgenre[]=[];
-  selectedGenre : number | number=0;
-  selectedSubgenre : number | number=0;
+  genres: Genre[]=[];
+  subgenres: Subgenre[]=[];
+  selectedGenre : number | null = null;
+  selectedSubgenre : number | null = null;
   public gensubgenre : Genresubgenre = new Genresubgenre();
+  gensubgenreForm :FormGroup;
+
 
   constructor(
     private gensubService: ApiGensubService,
-    private router: Router
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private formBuilder: FormBuilder
   ){}
 
   ngOnInit(): void {
     this.loaadGenres();
     this.loaadSubgenres();
+    this.gensubgenreForm = this.formBuilder.group({
+      selectedGenre: [null, Validators.required],
+      selectedSubgenre: [ null, Validators.required]
+    })
   }
 
   loaadGenres(): void {
     this.gensubService.getGenre().subscribe(
       (response: Genre[]) => {
-        this.genre = response;
+        this.genres = response;
       },
       (error) => {
         console.error(error);
@@ -43,7 +52,7 @@ export class GenresubgenreFormComponent {
   loaadSubgenres(): void {
     this.gensubService.getSubgenre().subscribe(
       (response: Subgenre[]) => {
-        this.subgenre = response;
+        this.subgenres = response;
       },
       (error) => {
         console.error(error);
@@ -51,10 +60,12 @@ export class GenresubgenreFormComponent {
     )
   }
 
+  //lista subgéneros no asignados al género seleccionado
   loadSubgenresByGenreId(genreId: number): void {
     this.gensubService.findUnassignedSubgenresByGenreId(genreId).subscribe(
       (response: Subgenre[]) => {
-        this.subgenre = response;
+        console.log(response);
+        this.subgenres = response;
       },
       (error) => {
         console.error(error);
@@ -63,21 +74,18 @@ export class GenresubgenreFormComponent {
   }
 
   onGenreSelected(): void {
-    if (this.selectedGenre && this.selectedGenre !== 0) {
+    if (this.selectedGenre !=null) {
+      console.log('Género seleccionado:', this.selectedGenre);
       this.loadSubgenresByGenreId(this.selectedGenre);
     }
-  
-  }
-
-  validSelected(): boolean {
-    if (!this.selectedGenre || this.selectedGenre === 0) return false;
-    if (!this.selectedSubgenre || this.selectedSubgenre === 0) return false;
-    return true;
+    console.log('Género seleccionado:', this.selectedGenre);
   }
 
   public createGenreSubgenre():void {
-    if(this.validSelected()){
-      this.gensubService.createGenreSubgenre(this.gensubgenre, this.selectedGenre, this.selectedSubgenre)
+    if(this.gensubgenreForm.valid) {
+     this.gensubgenre = Object.assign({}, this.gensubgenre, this.gensubgenreForm.value);
+      this.gensubService
+      .createGenreSubgenre(this.gensubgenre,  this.gensubgenreForm.value.selectedGenre,  this.gensubgenreForm.value.selectedSubgenre)
       .subscribe(
         (gensub) => {
           this.router.navigate(['mundo-literario/admin/mantenimiento-generos-subgeneros']);
@@ -92,13 +100,7 @@ export class GenresubgenreFormComponent {
         }
       );
     }
-    else{
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Datos incompletos'
-      })
-    }
+    console.log(this.gensubgenreForm.value)
   }
 
 }
