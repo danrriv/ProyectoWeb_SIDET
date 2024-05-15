@@ -1,5 +1,10 @@
 body {
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4e109f;
+  padding: 30px;
   background: #000;
 }
 

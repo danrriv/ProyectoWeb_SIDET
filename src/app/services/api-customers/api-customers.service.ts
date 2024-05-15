@@ -71,11 +71,17 @@ export class ApiCustomersService {
     }, 800);
       });
     }
+    localStorage.removeItem('id');
+    localStorage.removeItem('name');
+    localStorage.removeItem('logged')
   }
 
   logoutCustomer(token: string): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/logout/${token}`, {});
   }
 
-
+  //Métodos para Login y Deslogueo
+  obtainLoginData(customerEmail: String):Observable<any>{
+    return this.http.get(`${this.baseUrl}/customer/nameId/${customerEmail}`);
+  }
 }

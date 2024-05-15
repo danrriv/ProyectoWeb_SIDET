@@ -1,10 +1,61 @@
-<header>
-    <nav class="top-menu">
-        <ul>
-            <li class="mundo-literario"><a href="/">Mundo Literario</a></li>
-            <li *ngIf="!islogged"><a href="mundo-literario/login" class="toggle">Inicia sesión</a></li>
-            <li><a href="mundo-literario/register" class="toggle">Crear una cuenta</a></li>
-            <li *ngIf="islogged"><a class="toggle" (click)="logout()">Cerrar Sesión</a></li>
-        </ul>
+<header class="header">
+<div class="container logo-nav-container">
+  <a href="/" class="logo">
+  <img class="image-logo" src="assets/images/LogoBlancoSLetras.png">
+  Mundo Literario
+  </a>
+  <span class="menu-icon"> Ver menú</span>
+    <nav class="navigation">
+      <ul>
+        <!-- Repite este bloque por cada categoría -->
+        <li *ngFor="let category of menuData" class="dropdown">
+          <a class="menu-option">{{category.name}}</a>
+          <ul class="submenu">
+            <li *ngFor="let genre of category.generos" class="submenu-group">
+              <h4>{{genre.name}}</h4>
+              <ul class="submenu-list">
+                <li *ngFor="let subgenre of genre.subgenre">
+                  <a [routerLink]="['/']" [queryParams]="{subgenre: subgenre}">{{subgenre}}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+    <!-- Fin de la repetición -->
+        <li class="nav-item login" *ngIf="islogged">
+          <button class="btn btn-link text-black">
+            <i class="fas fa-user"></i> {{ customerName}}
+            <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="user-menu" *ngIf="showMenu">
+            <button class="btn btn-secondary" [routerLink]="['/'] " (click)="logout()">Cerrar sesión</button>
+          </div>
+          <br>
+          <div class="user-menu" *ngIf="showMenu">
+            <button class="btn btn-secondary" [routerLink]="['/mundo-literario/compras'] ">Mis compras</button>
+          </div>
+        </li>
+        <li class="nav-item login" *ngIf="!islogged">
+          <a class="btn btn-link text-black" href="mundo-literario/login">
+            <i class="fas fa-user"></i> Iniciar sesión
+          </a>
+          <a href="mundo-literario/register" class="toggle">Crear una cuenta</a>
+        </li>
+        
+      <li class="carrito" >
+        <a (click)="onToggleCart()">
+          <li class="navbar-cart-items" *ngIf="(myCart$ |async)?.length">
+            <p>{{ (myCart$ | async)?.length }}</p>
+          </li>
+          <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+      </li>
+        <div class="cart" [ngClass]="{ show: viewCart }">
+          <app-car></app-car>
+        </div>
+  
+      </ul>
     </nav>
-</header>
+  </div>
+  </header>
+<script src="/src/assets/js/header.js"></script>

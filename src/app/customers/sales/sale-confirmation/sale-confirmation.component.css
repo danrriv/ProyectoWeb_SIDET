@@ -1,0 +1,36 @@
+.header{
+    background-color: #4e109f;
+    color: white;
+    padding: 1rem 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+  }
+    .header a{
+      color:white;
+      text-decoration: none;
+    }
+    .image-logo {
+        max-width: 55px;
+        margin-right: 10px;
+      }
+      .logo{
+        letter-spacing: 0.2px;
+        font-size: 1.4em;
+        align-items: self-start;
+      }
+      .product-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+    
+    .product-image img {
+        max-width: 120%;
+        max-height: 120%;
+        object-fit: contain;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-right: 10px; 
+    }

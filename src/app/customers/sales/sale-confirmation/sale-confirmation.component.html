@@ -1,0 +1,47 @@
+<header class="header">
+  <div class="container logo-nav-container">
+    <a href="/" class="logo">
+      <img class="image-logo" src="assets/images/LogoBlancoSLetras.png">
+      Mundo Literario
+    </a>
+  </div>
+</header>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="scroll-container">
+        <div class="product-list">
+          <h4>Tus productos</h4>
+          <hr>
+          <article class="productCart" *ngFor="let product of myCart$ | async">
+            <div class="productCart-body">
+              <div class="product-info">
+                <p>{{product.book_name}}</p>
+                <img class="product-image" [src]="product.book_img">
+              </div>
+              <div class="productCart-body-info">
+                <p>S/.{{product.book_price}}</p>
+                <p>{{product.book_quantity}} unidad(es)</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="totals">
+        <h4>Total</h4>
+        <hr>
+        <!-- Aquí puedes mostrar el total y subtotal por producto -->
+        <!-- Ejemplo -->
+        <div *ngFor="let product of myCart$ | async">
+          <p>{{ product.book_name }} - S/. {{ product.book_price * product.book_quantity }}</p>
+        </div>
+        <p>Total:S/. {{ totalCart() }}</p>
+      </div>
+      <button id="miBoton">Comprar</button>
+      <div id="wallet_container"></div>
+    </div>
+  </div>
+</div>

@@ -6,10 +6,10 @@
         <div class="col-lg-10">
             <div class="d-flex justify-content-between mb-3">
                 <div class="col-md-5 p-0">
-                 <!--    <input type="text" class="form-control" [(ngModel)]="busqueda" (input)="buscarPorNombreAutorEditorial(busqueda)" placeholder="Buscar por nombre, editorial o autor" /> -->
+                    <input type="text" class="form-control" [(ngModel)]="search" (input)="findByName(search)" placeholder="Buscar por nombre" />
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-primary mr-4" [routerLink]="['/admin/principal/crud-producto']">Registrar Libro</button>
+                    <button class="btn btn-primary mr-4" [routerLink]="['/mundo-literario/admin/form-libros']">Registrar Libro</button>
                     <button (click)="exportExcel()" class="btn btn-success mr-4"><i class="fa-solid fa-file-excel fa-lg" style="color: #ffffff;"></i></button>
                  <!--   <button (click)="exportPdf()" class="btn btn-danger"><i class="fa-solid fa-file-pdf fa-lg" style="color: #fafafa;"></i></button> -->
                 </div>
@@ -20,12 +20,12 @@
                     <thead class="bg-secondary table-light">
                         <tr>
                             <th>Id</th>
-                            <th>Imagen</th>
                             <th>Nombre</th>
-                            <th>Peso</th>
                             <th>Editorial</th>
-                            <th>Precio</th>
                             <th>Publicación</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Estado</th>
                             <th>Autor</th>
                             <th>Subgenero</th>
                             <th>Acciones</th>
@@ -34,16 +34,16 @@
                     <tbody>
                         <tr *ngFor="let a of books">
                             <td>{{a.book_id}}</td>
-                            <td><img src= "{{a.img}}"></td>
-                            <td>{{a.name}}</td>
-                            <td>{{a.weight}}</td>
-                            <td>{{a.editorial}}</td>
-                            <td>S/.{{a.price}}</td>
-                            <td>{{a.year}}</td>
-                            <td>{{a.autor}}</td>
+                            <td>{{a.book_name}}</td>
+                            <td>{{a.book_editorial}}</td>
+                            <td>{{a.book_year | date: 'dd/MM/yyyy'}}</td>
+                            <td>S/ {{a.book_price}}</td>
+                            <td>{{a.book_stock}}</td>
+                            <td>{{a.book_status === true ? 'Activo':(a.book_status === false ? 'Inactivo': '') }}</td>
+                            <td>{{a.author}}</td>
                             <td>{{a.subgenre}}</td>
                             <td>
-                                <button type="button" name="button"  [routerLink]="['/admin/principal/crud-producto',a.book_id]"
+                                <button type="button" name="button"  [routerLink]="['/mundo-literario/admin/form-libros',a.book_id]"
                                 class="btn btn-warning btn-sm"> <i class="fa-solid fa-pen"></i> </button>
                                 <!--- <button class="btn btn-danger">Eliminar</button> -->
                             </td>
