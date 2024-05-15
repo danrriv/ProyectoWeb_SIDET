@@ -3,6 +3,7 @@ import { MenuData } from 'src/app/clases/menuData/menu-data';
 import { ApiCategoriesService } from 'src/app/services/api-categories/api-categories.service';
 import { ApiCustomersService } from 'src/app/services/api-customers/api-customers.service';
 import { CartProductsService } from 'src/app/services/cart-products/cart-products.service';
+import { SalesService } from 'src/app/services/api-sales/sales.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private categotyService: ApiCategoriesService,
     private customerService: ApiCustomersService,
-    private cartService: CartProductsService) { }
+    private cartService: CartProductsService) {}
 
 
   ngOnInit(): void {
@@ -45,7 +46,7 @@ export class HeaderComponent implements OnInit {
           };
         }
 
-        if (data.genre_name && !groupedData[data.category_name].generos[data.genre_name]) {
+        if (data.genre_name && !groupedData[data.category_name].genre[data.genre_name]) {
           groupedData[data.category_name].genre[data.genre_name] = {
             name: data.genre_name,
             subgenre: []
@@ -61,7 +62,7 @@ export class HeaderComponent implements OnInit {
       this.menuData = Object.values(groupedData).map((category: any) => {
         return {
           ...category,
-          genre: Object.values(category.generos)
+          genre: Object.values(category.genre)
         };
       });
     });

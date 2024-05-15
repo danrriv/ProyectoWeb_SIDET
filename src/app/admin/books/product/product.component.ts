@@ -33,7 +33,7 @@ export class ProductComponent implements OnInit {
     if(name.trim() === '') {
       this.getBooks();
     } else {
-      this.bookService.findNameBook(name).subscribe(
+      this.bookService.findSimilarNameBook(name).subscribe(
         data=> {
           this.books = data;
         },

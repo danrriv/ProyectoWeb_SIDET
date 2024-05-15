@@ -1,7 +1,12 @@
-<header>
-    <nav>
+<header class="header">
+<div class="container logo-nav-container">
+  <a href="/" class="logo">
+  <img class="image-logo" src="assets/images/LogoBlancoSLetras.png">
+  Mundo Literario
+  </a>
+  <span class="menu-icon"> Ver menú</span>
+    <nav class="navigation">
       <ul>
-        <li class="logo"><a href="/">Mundo Literario</a></li>
         <!-- Repite este bloque por cada categoría -->
         <li *ngFor="let category of menuData" class="dropdown">
           <a class="menu-option">{{category.name}}</a>
@@ -44,31 +49,12 @@
           <i class="fa-solid fa-cart-shopping"></i>
         </a>
       </li>
-  
-  
-  
         <div class="cart" [ngClass]="{ show: viewCart }">
           <app-car></app-car>
         </div>
   
       </ul>
     </nav>
+  </div>
   </header>
-  
-  
-  <script>
-    const dropdowns = document.querySelectorAll('.dropdown');
-  
-    dropdowns.forEach((dropdown) => {
-      const menuOption = dropdown.querySelector('.menu-option');
-      const submenu = dropdown.querySelector('.submenu');
-  
-      menuOption.addEventListener('mouseenter', () => {
-        submenu.style.display = 'block'; // Cambia 'grid' por 'block'
-      });
-  
-      dropdown.addEventListener('mouseleave', () => { // Cambia 'menuOption' por 'dropdown'
-        submenu.style.display = 'none';
-      });
-    });
-  </script>
+<script src="/src/assets/js/header.js"></script>

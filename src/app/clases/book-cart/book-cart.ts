@@ -3,4 +3,5 @@ export class BookCart {
     book_name: string;
     book_quantity: number;
     book_price: number;
+    book_img:string
 }

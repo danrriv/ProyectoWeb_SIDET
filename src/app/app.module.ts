@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +29,11 @@ import { CustomersPurchasesComponent } from './customers/customers-purchases/cus
 import { HeaderComponent } from './customers/templates/header/header.component';
 import { FooterComponent } from './customers/templates/footer/footer.component';
 import { SaleConfirmationComponent } from './customers/sales/sale-confirmation/sale-confirmation.component';
-
+import { ProductsMainComponent } from './customers/products-main/products-main.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+// Needs to import the BrowserAnimationsModule
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductsDetailsComponent } from './customers/products-details/products-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,14 +60,18 @@ import { SaleConfirmationComponent } from './customers/sales/sale-confirmation/s
     CustomersPurchasesComponent,
     HeaderComponent,
     FooterComponent,
-    SaleConfirmationComponent
+    SaleConfirmationComponent,
+    ProductsMainComponent,
+    ProductsDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

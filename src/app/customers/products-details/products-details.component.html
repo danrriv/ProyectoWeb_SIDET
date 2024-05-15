@@ -1,0 +1,70 @@
+<app-header></app-header>
+<div class="app-container">
+  <div class="card-wrapper">
+    <div class="card">
+      <!-- card left -->
+      <div class="product-imgs">
+        <div class="img-select">
+          <div class="img-item">
+            <img [src]="book.book_img" alt="Imagen">
+          </div>
+        </div>
+      </div>
+      <!-- card right -->
+      <div class="product-content">
+        <h2 class="product-title">{{book.book_name}}</h2>
+        <h2 class="product-autor">{{book.author.author_name}}</h2>
+        <div class="product-detail">
+          <h2>Sinopsis: </h2>
+          <p>{{book.book_synopsis}}</p>
+          <ul>
+            <li>Peso: <span>{{book.book_weight}} kg</span></li>
+            <li>Alto: <span>{{book.book_heigth}}</span></li>
+            <li>Ancho: <span>{{book.book_width}}</span></li>
+            <li>Editorial: <span>{{book.book_editorial}}</span></li>
+            <li>NºPáginas: <span>{{book.book_npages}}</span></li>
+            <li>Año de Publicación: <span>{{book.book_year}}</span></li>
+          </ul>
+        </div>
+        <div class="product-price">
+          <p class="new-price">Precio: <span>S/.{{book.book_price}}</span></p>
+          <p class="new-price">Stock disponible: <span>{{book.book_stock}}</span></p>
+        </div>
+
+        <div class="purchase-info">
+          <button type="button" class="btn">
+            Agregar al carrito <i class="fas fa-shopping-cart"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="container-products">
+      <h2 class="product-title">Libros Relacionados</h2>
+      <owl-carousel-o [options]="customOptions">
+
+        <ng-container *ngFor="let p of relatedBooks">
+          <ng-template class="slide" carouselSlide [id]="p.book_name">
+            <div class="card-carrousel">
+              <a [routerLink]="['/mundo-literario/libros', p.book_name]">
+                <div class="img-wrapper">
+                  <img [src]="p.book_img"
+                    class="d-block w-100" alt="...">
+                </div>
+              </a>
+              <div class="card-body-carrousel">
+                <h5 class="card-title-carrousel">{{p.book_name}}</h5>
+                <h5 class="card-autor-carrousel">{{p.author}}</h5>
+                <a href="#" class="btn btn-primary">Agregar al carrito</a>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

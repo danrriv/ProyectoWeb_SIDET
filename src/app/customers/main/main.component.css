@@ -1,0 +1,25 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #e4daf0;
+}
+
+.container {
+  flex: 1 0 auto;
+  padding-top: 12rem;
+}
+
+app-footer {
+  flex-shrink: 0;
+}
+.container-title {
+  margin-bottom: 1.5rem;
+}
+.container-products app-products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+

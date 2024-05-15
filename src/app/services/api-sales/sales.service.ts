@@ -61,5 +61,4 @@ export class SalesService {
     return this.httpClient.put<SaleL>(`${this.baseUrl}confirmar/${saleId}`,{ headers: this.httpHeaders });
 
   }
-
 }

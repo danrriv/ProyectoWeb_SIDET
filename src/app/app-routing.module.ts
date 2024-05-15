@@ -19,6 +19,7 @@ import { AuthorFormComponent } from './admin/authors/author-form/author-form.com
 import { MainComponent } from './customers/main/main.component';
 import { CustomersPurchasesComponent } from './customers/customers-purchases/customers-purchases.component';
 import { SaleConfirmationComponent } from './customers/sales/sale-confirmation/sale-confirmation.component';
+import { ProductsDetailsComponent } from './customers/products-details/products-details.component';
 
 const routes: Routes = [
 
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'mundo-literario/reset-password',component: ResetpasswordComponent },
   {path:'mundo-literario/compras', component:CustomersPurchasesComponent},
   {path: 'mundo-literario/continuar-compra',component:SaleConfirmationComponent},
+  {path: 'mundo-literario/libros/:id',component:ProductsDetailsComponent},
    //Categorías
    { path: 'mundo-literario/admin/mantenimiento-categorias',component: CategoryComponent},
    { path:  'mundo-literario/admin/form-categoria', component:CategoryFormComponent},

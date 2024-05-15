@@ -1,149 +1,107 @@
-header {
-    background-color: #8251d1;
-    padding: 10px;
-  }
-  
-  .navbar-collapse {
-    flex-basis: 100%;
-  }
-  
-  .navbar-nav {
-    width: 100%;
-  }
-  
-  .right {
-    display: flex;
-    align-items: center;
-  }
-  
-  .left {
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-  }
-  
-  .crisol {
-    font-size: 24px;
-    font-weight: bold;
-    color: #002d85;
-  }
-  
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav ul li {
-    display: inline-block;
-    margin-bottom: 10px;
-  }
-  
-  nav ul li a {
-    display: block;
-    padding: 10px;
+.container{
+  width: 85%;
+  max-width: 850px;
+  margin: 0 auto;
+}
+.image-logo {
+  max-width: 65px;
+  margin-right: 10px;
+}
+.header{
+  background-color: #4e109f;
+  color: white;
+  padding: 1rem 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+}
+  .header a{
+    color:white;
     text-decoration: none;
-    color: #333;
-    border-radius: 20px;
-    transition: background-color 0.3s;
   }
-  
-  nav ul li:not(.crisol):hover > a {
-    background-color: #002d85;
-    color: white;
-  }
-  
-  .submenu {
-    display: none;
-    position: absolute;
-    background-color: #ffffff;
-    padding: 30px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 10px;
-    width: 1000px;
-    text-align: center;
-    list-style: none;
-  }
-  
-  .submenu-group {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
-  
-  .submenu-list {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .dropdown {
-    position: relative;
-  }
-  
-  .dropdown:hover .submenu {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-    top: 100%;
-  }
-  
-  .login {
-    margin-left: 480px;
-  }
-  
-  /*
-  Carrito
-  */
-  .cart {
-    display: none;
-  }
-  .show {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    z-index: 1;
-    position: absolute;
-    background-color: white;
-    border-radius: 0.5rem;
-    border: 1px solid #cc1414;
-    right: 0px;
-    min-width: 40%;
-  }
-  .show app-cart {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  
-  
-  
-  /* Estilos responsivos */
-  @media only screen and (max-width: 768px) {
-    nav ul li {
-      display: block;
-      margin-bottom: 10px;
-    }
-  
-    .dropdown:hover .submenu {
-      display: block;
-      position: static;
-      width: 100%;
-      margin-top: 10px;
-    }
-  
-    .submenu-group,
-    .submenu-list {
-      margin-bottom: 20px;
-    }
-  
-    .login {
-      margin-left: 0;
-      margin-top: 10px;
-    }
+
+.logo-nav-container{
+  margin-left: 280px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.logo{
+  letter-spacing: 0.2px;
+  font-size: 1.4em;
+  align-items: self-start;
+}
+
+.navigation ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+  .navigation ul li {
+    display: inline-block;
   } 
+    .navigation ul li a {
+      display: block;
+      padding: 0.5rem 1rem;
+      transition: all 0.4s linear;
+      border-radius: 5px;
+    }
+      .navigation ul li a:hover{
+        background: #845abd;
+      }
+
+.cart {
+  display: none;
+}
+.show {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+  position: absolute;
+  background-color: #e4daf0;
+  border-radius: 0.5rem;
+  right: 5px;
+  min-width: 30%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.show app-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media(max-width: 767px){
+
+  .menu-icon{
+    display: block;
+    cursor: pointer;
+  }
+  .navigation{
+    width: 100%;
+    margin-top:1rem ;
+  }
+    .navigation ul{
+      display:none;
+    }
+    .navigation ul.show{
+      display: block;
+    }
+
+    .navigation ul li {
+      display: block;
+    } 
+      .navigation ul li a {
+        display: block;
+        padding: 0.5rem 0;
+        transition: all 0.4s linear;
+        border-radius: 5px;
+      }
+        .navigation ul li a:hover{
+          background: #845abd;
+        }
+
+}

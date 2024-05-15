@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { BookCart } from 'src/app/clases/book-cart/book-cart';
+import { Book } from 'src/app/clases/book/book';
 @Injectable({
   providedIn: 'root'
 })
@@ -94,8 +95,15 @@ export class CartProductsService {
     this.myList = [];
   }
 
-
-
-
-
+  //Convertir objeto "Book" a "CartBook"
+  convertCartBook(p:Book):BookCart{
+    const productCart : BookCart = {
+      book_id : p.book_id,
+      book_name : p.book_name,
+      book_price: p.book_price,
+      book_quantity :1,
+      book_img: p.book_img
+    }
+    return productCart
+  }
 }
