@@ -1,1 +1,36 @@
-<p>car works!</p>
+<div class="cart-container" *ngIf="(myCart$ | async)?.length === 0">
+    <div class="empty-cart">
+        <h4>Aquí aparecerán tus productos</h4>
+        <img class="empty-image" src="https://i.gifer.com/origin/a5/a55b0d1e8dbb607c2a205b092ad18bc7_w200.gif">
+    </div>
+</div>
+
+<div class="cart-container" *ngIf="(myCart$ | async)?.length !== 0">
+    <div class="cart-items">
+        <article class="cart-item" *ngFor="let product of myCart$ | async">
+            <div class="cart-item-details">
+                <p class="cart-item-name">{{ product.book_name }}</p>
+                <div class="cart-item-info">
+                    <p class="cart-item-price">S/. {{ product.book_price }}</p>
+                    <p class="cart-item-divider">|</p>
+                    <p class="cart-item-quantity">{{ product.book_quantity }} unidad(es)</p>
+                </div>
+            </div>
+            <div class="cart-item-total">
+                <p class="cart-item-price">S/. {{ totalProductos(product.book_price, product.book_quantity) }}</p>
+            </div>
+            <div class="cart-item-buttons">
+                <div class="cart-item-quantity-controls">
+                    <i class="fa-solid fa-minus" (click)="actUnidades('minus', product.book_id)"></i>
+                    <span>{{ product.book_quantity }}</span>
+                    <i class="fa-solid fa-plus" (click)="actUnidades('add', product.book_id)"></i>
+                </div>
+                <i class="fa-solid fa-trash" (click)="eliminarProducto(product.book_id)"></i>
+            </div>
+        </article>
+    </div>
+    <div class="cart-total">
+        <p class="cart-total-amount">Total: S/. {{ totalCart() }}</p>
+    </div>
+    <button class="cart-checkout-btn" [routerLink]="['/mundo-literario/continuar-compra']">Continuar con la compra</button>
+</div>

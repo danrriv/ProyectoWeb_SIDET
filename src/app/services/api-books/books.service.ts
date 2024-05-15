@@ -41,6 +41,12 @@ export class BooksService {
     );
   }
 
+  listRandom():Observable<Book[]>{
+    return this.httpClient.get<Book[]>(this.baseUrl+"/random").pipe(
+      map(response => response as Book[])
+    );
+  }
+
   //Métodos CRUD
   saveBook(book: Book, subgenre_id: number, author_id: number): Observable<Book> {
     return this.searchSubgenre(subgenre_id).pipe(
@@ -79,6 +85,29 @@ export class BooksService {
     return this.httpClient.get<Book>(`${this.baseUrl}/findIdM/${book_id}`);
   }
 
+  findSimilarNameBook(book_name: string): Observable<Book[]>{
+    return this.httpClient.get<Book[]>(this.baseUrl+"/findSimilarName/"+book_name).pipe(
+      map(response => response as Book[])
+    )
+  }
+
+  findNameBook(book_name: string): Observable<Book>{
+    return this.httpClient.get<Book>(this.baseUrl+"/findName/"+book_name);
+  }
+
+  findGenreId(id: number): Observable<Book[]>{
+    return this.httpClient.get<Book[]>(this.baseUrl+"/findGenreId/"+id).pipe(
+      map(response => response as Book[])
+    )
+  }
+
+  findSubgenreId(id: number): Observable<Book[]>{
+    return this.httpClient.get<Book[]>(this.baseUrl+"/findSubgenreId/"+id).pipe(
+      map(response => response as Book[])
+    )
+  }
+
+  //Métodos útiles
   searchSubgenre(subgenre_id: number): Observable<Subgenre> {
     return this.httpClient.get<Subgenre>(`${this.urlSubgenre}findId/${subgenre_id}`);
   }
@@ -87,9 +116,5 @@ export class BooksService {
     return this.httpClient.get<Author>(`${this.urlAuthor}findId/${author_id}`);
   }
 
-  findNameBook(book_name: string): Observable<Book[]>{
-    return this.httpClient.get<Book[]>(this.baseUrl+"/findSimilarName/"+book_name).pipe(
-      map(response => response as Book[])
-    )
-  }
+
 }

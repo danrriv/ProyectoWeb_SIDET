@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,7 +34,9 @@ import { UserComponent } from './admin/users/user/user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { LoginUsersComponent } from './admin/users/login-users/login-users.component';
-
+import { ProductsMainComponent } from './customers/products-main/products-main.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ProductsDetailsComponent } from './customers/products-details/products-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +67,8 @@ import { LoginUsersComponent } from './admin/users/login-users/login-users.compo
     UserFormComponent,
     UserComponent,
     LoginUsersComponent,
+    ProductsMainComponent,
+    ProductsDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +77,8 @@ import { LoginUsersComponent } from './admin/users/login-users/login-users.compo
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

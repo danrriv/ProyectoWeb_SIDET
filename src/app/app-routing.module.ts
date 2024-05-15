@@ -18,6 +18,13 @@ import { UserFormComponent } from './admin/users/user-form/user-form.component';
 import { UserComponent } from './admin/users/user/user.component';
 import { LoginUsersComponent } from './admin/users/login-users/login-users.component';
 import { AuthGuard } from './auth/auth.guard';
+import { CustomersPurchasesComponent } from './customers/customers-purchases/customers-purchases.component';
+import { SaleConfirmationComponent } from './customers/sales/sale-confirmation/sale-confirmation.component';
+import { ProductsDetailsComponent } from './customers/products-details/products-details.component';
+import { AuthorFormComponent } from './admin/authors/author-form/author-form.component';
+import { AuthorComponent } from './admin/authors/author/author.component';
+import { ProductFormComponent } from './admin/books/product-form/product-form.component';
+import { ProductComponent } from './admin/books/product/product.component';
 
 const routes: Routes = [
   {
@@ -31,7 +38,10 @@ const routes: Routes = [
   {path: 'mundo-literario/register', component: RegisterComponent},
   {path: 'mundo-literario/login',component: LoginComponent},
   {path: 'mundo-literario/confirmation',component: ConfirmationComponent},
-  { path: 'mundo-literario/reset-password',component: ResetpasswordComponent },
+  {path: 'mundo-literario/reset-password',component: ResetpasswordComponent },
+  {path: 'mundo-literario/libros/:id',component:ProductsDetailsComponent},
+  {path:'mundo-literario/compras', component:CustomersPurchasesComponent},
+  {path: 'mundo-literario/continuar-compra',component:SaleConfirmationComponent},
 
   //Usuario - login
   {path: 'mundo-literario/admin/login',component: LoginUsersComponent},
@@ -61,6 +71,14 @@ const routes: Routes = [
   { path: 'mantenimiento-usuarios',component: UserComponent},
   {path: 'form-usuarios', component: UserFormComponent},
   {path: 'form-usuarios/:id', component: UserFormComponent},
+  //Productos - Libros
+  {path: 'mantenimiento-libros', component:ProductComponent},
+  {path: 'form-libros', component:ProductFormComponent},
+  {path: 'form-libros/:id', component:ProductFormComponent},
+    //Autores
+  {path: 'mantenimiento-autores', component:AuthorComponent},
+  {path: 'form-autor', component:AuthorFormComponent},
+  {path: 'form-autor/:id', component:AuthorFormComponent},
 
   ]}
   

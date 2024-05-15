@@ -1,31 +1,107 @@
-.top-menu {
-    background-color: #5b13b9;
-    padding: 10px 0;
+.container{
+  width: 85%;
+  max-width: 850px;
+  margin: 0 auto;
 }
-
-.top-menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.image-logo {
+  max-width: 65px;
+  margin-right: 10px;
 }
-
-.top-menu ul li {
-    display: inline;
+.header{
+  background-color: #4e109f;
+  color: white;
+  padding: 1rem 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 1000;
 }
-
-.top-menu ul li a {
-    color: white;
+  .header a{
+    color:white;
     text-decoration: none;
-    padding: 10px;
+  }
+
+.logo-nav-container{
+  margin-left: 280px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.logo{
+  letter-spacing: 0.2px;
+  font-size: 1.4em;
+  align-items: self-start;
 }
 
-.top-menu ul li a:hover {
-    font-size: 18px;
-    font-weight: 600;
+.navigation ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+  .navigation ul li {
+    display: inline-block;
+  } 
+    .navigation ul li a {
+      display: block;
+      padding: 0.5rem 1rem;
+      transition: all 0.4s linear;
+      border-radius: 5px;
+    }
+      .navigation ul li a:hover{
+        background: #845abd;
+      }
+
+.cart {
+  display: none;
+}
+.show {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+  position: absolute;
+  background-color: #e4daf0;
+  border-radius: 0.5rem;
+  right: 5px;
+  min-width: 30%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.show app-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.top-menu ul li.mundo-literario a {
-    color: #f0bf4c;
-    font-size: 18px;
-    font-weight: bold;
+@media(max-width: 767px){
+
+  .menu-icon{
+    display: block;
+    cursor: pointer;
+  }
+  .navigation{
+    width: 100%;
+    margin-top:1rem ;
+  }
+    .navigation ul{
+      display:none;
+    }
+    .navigation ul.show{
+      display: block;
+    }
+
+    .navigation ul li {
+      display: block;
+    } 
+      .navigation ul li a {
+        display: block;
+        padding: 0.5rem 0;
+        transition: all 0.4s linear;
+        border-radius: 5px;
+      }
+        .navigation ul li a:hover{
+          background: #845abd;
+        }
+
 }

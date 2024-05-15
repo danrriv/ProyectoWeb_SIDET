@@ -32,6 +32,7 @@ export class SaleConfirmationComponent implements OnInit {
   ngOnInit(): void {
     const storedId = localStorage.getItem('id');
     this.customerId = storedId ? parseInt(storedId) : null;
+    //localStorage.setItem('sale?',":)")
   }
 
   saleRegister(): void {
@@ -39,7 +40,6 @@ export class SaleConfirmationComponent implements OnInit {
 
     // Array para almacenar los detalles de venta
     const saleDetails: SaleDetails[] = [];
-
     // Recorre el array de productos del carrito y crea los detalles de venta
     cartProducts.forEach(product => {
       const data: SaleDetails = {
@@ -76,39 +76,11 @@ export class SaleConfirmationComponent implements OnInit {
       }
     );
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  //Total carrito
+  totalCart(){
+    const r = this.cartService.totalCart();
+    return r
+  }
   //Asignar items
   getItemsList(): any[] {
     const items: any[] = [];

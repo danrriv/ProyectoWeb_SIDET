@@ -21,6 +21,10 @@ export class ProductFormComponent implements OnInit {
   author: Author[];
   selectedAuthor: number;
 
+  //Imagen
+  //imageBytes: number[];
+
+  //
   public book: Book = new Book()
   constructor(private bookService: BooksService, 
     private activatedRoute: ActivatedRoute, 
@@ -33,8 +37,31 @@ export class ProductFormComponent implements OnInit {
     this.loadProduct();
     this.book.book_status = true;
     this.book.book_notification_status = false;
-
   }
+
+  //Imagen
+  /*
+  convertBytesToDataURL(bytes: number[]): string {
+    const base64String = btoa(String.fromCharCode(...bytes));
+    return `data:image/jpeg;base64,${base64String}`;
+  }
+  
+
+  fileToByteArray(file: File): Promise<Uint8Array> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const arrayBuffer = reader.result as ArrayBuffer;
+        const byteArray = new Uint8Array(arrayBuffer);
+        resolve(byteArray);
+      };
+      reader.onerror = () => {
+        reject(reader.error);
+      };
+      reader.readAsArrayBuffer(file);
+    });
+  }
+  */
 
   //Cargar datos
   loadSubgenre():void{
@@ -67,6 +94,7 @@ export class ProductFormComponent implements OnInit {
             this.book = book;
             this.selectedSubgenre = book.subgenre?.subgenre_id || 0;
             this.selectedAuthor = book.author?.author_id ||0;
+            //this.imageBytes = book.book_image;
           },
           (error) => {
             console.error(error);

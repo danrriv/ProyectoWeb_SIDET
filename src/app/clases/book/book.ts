@@ -16,6 +16,7 @@ export class Book {
 	  book_synopsis:string;
 	  book_status:boolean;
 	  book_img:string;
+	  //book_image: number[];
 	  book_notification_status:boolean;
       subgenre: Subgenre;
 	  author: Author

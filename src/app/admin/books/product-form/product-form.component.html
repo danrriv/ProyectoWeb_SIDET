@@ -2,6 +2,7 @@
     <h1 class="text-center p-3">
         {{ book.book_id ? 'Editar libro' : 'Registrar libro' }}
     </h1>
+    <h1>{{book.book_name}}</h1>
     <form>
         <div class="row">
             <div class="col-md-6">
@@ -89,7 +90,7 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -118,30 +119,38 @@
                 </div>
             </div>
         </div>
+        <div class="form-group">
+            <label for="book_synopsis">URL Imagen:</label>
+            <textarea class="form-control" id="book_synopsis" [(ngModel)]="book.book_img" name="book_img"
+                rows="1"></textarea>
+        </div>
 
 
         <div class="form-group">
             <label for="book_synopsis">Sinopsis:</label>
             <textarea class="form-control" id="book_synopsis" [(ngModel)]="book.book_synopsis" name="book_synopsis"
-                rows="3"></textarea>
+                rows="4"></textarea>
         </div>
 
 
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" name="book_notification_status" id="flexSwitchCheckChecked" [(ngModel)]="book.book_notification_status" (change)="onCheckboxChange($event)" >
+            <input class="form-check-input" type="checkbox" name="book_notification_status" id="flexSwitchCheckChecked"
+                [(ngModel)]="book.book_notification_status" (change)="onCheckboxChange($event)">
             <label class="form-check-label" for="flexSwitchCheckChecked">Notificaciones</label>
         </div>
-        <!--
-        <div class="form-group">
-            <label>Link de la imagen : </label>
-            <input type="text" class="form-control" id="img" [(ngModel)]="producto.img" 
-                name="img" required
-                placeholder="URL de la imagen" #img="ngModel">
-                <div *ngIf="producto.img === ''" class="error-message">
-                    Campo requerido*
-                  </div>
+
+        <!-----
+        <div class="mb-3">
+            <label for="formFileSm" class="form-label">Small file input example</label>
+            <input class="form-control form-control-sm" id="formFileSm" type="file" accept=".jpg, .png, .jpeg, .webp">
         </div>
-                -->
+
+
+        
+        <div *ngIf="imageBytes">
+            <img [src]="convertBytesToDataURL(imageBytes)" alt="Imagen del libro">
+        </div>
+          ---->
         <br>
 
         <div class="text-center">
