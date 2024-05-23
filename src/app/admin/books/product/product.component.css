@@ -1,0 +1,30 @@
+.title{
+    text-align: center !important;
+    font-size: 35px;
+    margin-bottom: 30px;
+  }
+  
+  mat-card{
+    border: none !important;
+    padding: 20px;
+  }
+  
+  mat-card-header {
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+  
+  mat-table{
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  
+  
+  .icon-btn{
+    margin-right: 12px;
+  }
+  
+  .cancel-btn{
+    background-color: #f0bf4c !important;
+  }
+  

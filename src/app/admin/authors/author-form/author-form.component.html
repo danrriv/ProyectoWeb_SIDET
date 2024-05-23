@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title class="title">{{ isNewAuthor ? 'Registro de autor' : 'Edición de autor' }}</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content>
+  <form [formGroup]="authorForm" (ngSubmit)="saveAuthor()">
+    <mat-form-field appearance="fill"  class="form-field">
+      <mat-label>Autor</mat-label>
+      <input matInput formControlName="author_name" required>
+      <mat-error *ngIf="authorForm.get('author_name')?.hasError('required')">Campo requerido</mat-error>
+    </mat-form-field>
+    <div class="button-group">
+      <button mat-raised-button color="primary" type="submit">
+        <mat-icon matPrefix class="material-icons icon-btn">
+          {{ isNewAuthor ? 'check_circle' : 'edit' }}
+        </mat-icon> 
+        {{ isNewAuthor ? 'Crear' : 'Editar' }}
+      </button>
+      <button mat-raised-button class="btn-cancel" type="button" [routerLink]="['/mundo-literario/admin/mantenimiento-autores']">
+        <mat-icon matPrefix class="material-icons icon-btn">cancel</mat-icon>
+        Cancelar
+      </button>
+    </div>
+  </form>
+  </mat-card-content>
+  </mat-card>
