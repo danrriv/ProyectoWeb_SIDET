@@ -4,7 +4,7 @@
   </mat-card-header>
 
   <mat-card-content>
-    <form (ngSubmit)="genre.genre_id ? createGenre() : updateGenre()" [formGroup]="genreForm">
+    <form (ngSubmit)="onSubmit()" [formGroup]="genreForm">
       <div class="input-container">
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Género</mat-label>

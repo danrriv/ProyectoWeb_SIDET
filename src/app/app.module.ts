@@ -37,6 +37,12 @@ import { LoginUsersComponent } from './admin/users/login-users/login-users.compo
 import { ProductsMainComponent } from './customers/products-main/products-main.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ProductsDetailsComponent } from './customers/products-details/products-details.component';
+import { ResetuserpasswordComponent } from './admin/users/resetuserpassword/resetuserpassword.component';
+import { CustomersComponent } from './admin/customers/customers.component';
+import { ProfileFormComponent } from './customers/profile/profile-form/profile-form.component';
+import { ProfileComponent } from './customers/profile/profile/profile.component';
+import { ProfileUserformComponent } from './admin/users/profile/profile-userform/profile-userform.component';
+import { ProfileUserComponent } from './admin/users/profile/profile-user/profile-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +74,13 @@ import { ProductsDetailsComponent } from './customers/products-details/products-
     UserComponent,
     LoginUsersComponent,
     ProductsMainComponent,
-    ProductsDetailsComponent
+    ProductsDetailsComponent,
+    ResetuserpasswordComponent,
+    CustomersComponent,
+    ProfileFormComponent,
+    ProfileComponent,
+    ProfileUserformComponent,
+    ProfileUserComponent
   ],
   imports: [
     BrowserModule,

@@ -1,68 +1,69 @@
 <mat-card>
-    <mat-card-header>
-      <mat-card-title class="title">Usuarios</mat-card-title>
-    </mat-card-header>
-  
-    <mat-card-content>
-        
-        <div class="d-flex justify-content-between mb-3 align-items-center">
-            <div class="col-md-5 p-0">
-              <input type="text" class="form-control custom-input"[(ngModel)]="searchInput" (keyup)="applyFilter()" placeholder="Buscar" />
-            </div>
-            <button mat-raised-button color="primary"  type="button"  [routerLink]="['/mundo-literario/admin/form-usuarios']">
-                <mat-icon matPrefix class="material-icons icon-btn">add_circle</mat-icon> Agregar Usuario</button>
-          </div>
-        <mat-table [dataSource]="dataSource">
-            <!-- Columnas de la tabla -->
-            <ng-container matColumnDef="user_id">
-                <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-                <mat-cell *matCellDef="let user">{{ user.user_id }}</mat-cell>
-            </ng-container>
+  <mat-card-header>
+    <mat-card-title class="title">Usuarios</mat-card-title>
+  </mat-card-header>
 
-            <ng-container matColumnDef="user_dni">
-            <mat-header-cell *matHeaderCellDef>DNI</mat-header-cell>
-            <mat-cell *matCellDef="let user">{{ user.user_dni }}</mat-cell>
-            </ng-container>
-        
-            <ng-container matColumnDef="user_surnames">
-            <mat-header-cell *matHeaderCellDef>Apellidos</mat-header-cell>
-            <mat-cell *matCellDef="let user">{{ user.user_surnames }}</mat-cell>
-            </ng-container>
-        
-            <ng-container matColumnDef="user_names">
-            <mat-header-cell *matHeaderCellDef>Nombres</mat-header-cell>
-            <mat-cell *matCellDef="let user">{{ user.user_names }}</mat-cell>
-            </ng-container>
-        
-            <ng-container matColumnDef="user_phone_number">
-            <mat-header-cell *matHeaderCellDef>Teléfono</mat-header-cell>
-            <mat-cell *matCellDef="let user">{{ user.user_phone_number }}</mat-cell>
-            </ng-container>
-        
-            <ng-container matColumnDef="user_status">
-            <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
-            <mat-cell *matCellDef="let user">{{ user.user_status }}</mat-cell>
-            </ng-container>
-        
-            <ng-container matColumnDef="role">
-            <mat-header-cell *matHeaderCellDef>Rol</mat-header-cell>
-            <mat-cell *matCellDef="let user">{{ user.role.role_name }}</mat-cell>
-            </ng-container>
+  <mat-card-content>
+    <div class="d-flex justify-content-between mb-3 align-items-center search-and-button">
+      <div class="col-md-5 p-0">
+        <input type="text" class="form-control custom-input" [(ngModel)]="searchInput" (keyup)="applyFilter()" placeholder="Buscar" />
+      </div>
+      <button mat-raised-button color="primary" type="button" [routerLink]="['/mundo-literario/admin/form-usuarios']">
+        <mat-icon matPrefix class="material-icons icon-btn">add_circle</mat-icon> Agregar Usuario
+      </button>
+    </div>
+    <div class="table-responsive">
+      <mat-table [dataSource]="dataSource">
+        <!-- Columnas de la tabla -->
+        <ng-container matColumnDef="user_id">
+          <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ user.user_id }}</mat-cell>
+        </ng-container>
 
-            <ng-container matColumnDef="actions">
-              <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
-              <mat-cell *matCellDef="let user">
-                <button class="edit-btn" mat-raised-button [routerLink]="['/mundo-literario/admin/form-usuarios', user.user_id]">
-                  <mat-icon matPrefix class="material-icons icon-btn">edit</mat-icon>
-                  Editar
-                </button>
-              </mat-cell>
-            </ng-container>
-      
-        
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
-    </mat-card-content>
+        <ng-container matColumnDef="user_dni">
+          <mat-header-cell *matHeaderCellDef>DNI</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ user.user_dni }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="user_surnames">
+          <mat-header-cell *matHeaderCellDef>Apellidos</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ user.user_surnames }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="user_names">
+          <mat-header-cell *matHeaderCellDef>Nombres</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ user.user_names }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="user_phone_number">
+          <mat-header-cell *matHeaderCellDef>Teléfono</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ user.user_phone_number }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="user_status">
+          <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ user.user_status }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+          <mat-header-cell *matHeaderCellDef>Rol</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ user.role.role_name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+          <mat-cell *matCellDef="let user">
+            <button class="edit-btn" mat-raised-button [routerLink]="['/mundo-literario/admin/form-usuarios', user.user_id]">
+              <mat-icon matPrefix class="material-icons icon-btn">edit</mat-icon>
+              Editar
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+  </mat-card-content>
 </mat-card>

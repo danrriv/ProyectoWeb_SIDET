@@ -5,6 +5,26 @@
 
   <mat-card-content>
     <form (ngSubmit)="isNewUser ? createUser() : updateUser()" [formGroup]="userForm">
+      <div class="form-row-2">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Estado</mat-label>
+          <mat-select id="status" name="status" formControlName="user_status" [disabled]="!isNewUser">
+            <mat-option value="ACTIVO">Activo</mat-option>
+            <mat-option value="INACTIVO">Inactivo</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Rol</mat-label>
+          <mat-select id="role" name="role" formControlName="roleSelect" [disabled]="!isNewUser">
+            <mat-option *ngFor="let role of roles" [value]="role.role_id">{{role.role_name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="userForm.controls['user_surnames'].hasError('required')">
+            Campo requerido.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      
       <div class="form-row">
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>DNI</mat-label>
@@ -62,27 +82,7 @@
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Teléfono</mat-label>
           <mat-icon matPrefix class="material-icons icon">phone</mat-icon>
-          <input matInput type="tel" id="phone" name="phone" formControlName="user_phone_number" maxlength="9" (keydown)="validarNumerico($event)" [readonly]="!isNewUser">
-        </mat-form-field>
-      </div>
-
-      <div class="form-row">
-        <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Estado</mat-label>
-          <mat-select id="status" name="status" formControlName="user_status" [disabled]="!isNewUser">
-            <mat-option value="ACTIVO">Activo</mat-option>
-            <mat-option value="INACTIVO">Inactivo</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Rol</mat-label>
-          <mat-select id="role" name="role" formControlName="roleSelect" [disabled]="!isNewUser">
-            <mat-option *ngFor="let role of roles" [value]="role.role_id">{{role.role_name}}</mat-option>
-          </mat-select>
-          <mat-error *ngIf="userForm.controls['user_surnames'].hasError('required')">
-            Campo requerido.
-          </mat-error>
+          <input matInput type="tel" id="phone" name="phone" formControlName="user_phone_number" maxlength="9" (keydown)="validarNumerico($event)">
         </mat-form-field>
       </div>
 

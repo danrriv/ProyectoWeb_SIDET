@@ -1,12 +1,18 @@
+<div class="sidebar-toggle" (click)="toggleSidenav()">
+    <button mat-icon-button class="toggle-button">
+        <mat-icon matPrefix class="material-icons icon">{{ isOpened ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+    </button>
+</div>
 <mat-sidenav-container class="menu-wrapper">
-    <mat-sidenav #sidenav mode="side" class="sidebar" opened="true">
+    <mat-sidenav #sidenav mode="side" class="sidebar" [(opened)]="isOpened">
         <div class="sidebar-header">
-            <div class="menu-header">
-                <h2 class="title"><a routerLink="/mundo-literario/admin">Mundo Literario</a></h2>
+            <div class="menu-header" routerLink="/mundo-literario/admin">
+                <h2 class="title">Mundo Literario</h2>
+                <img class="image-logo" src="assets/images/LogoBlancoSLetras.png">
             </div>
             <mat-nav-list>
                 <mat-list-item>
-                    <div matLine class="account">
+                    <div matLine class="account" routerLink="/mundo-literario/admin/perfil">
                         <mat-icon matPrefix class="material-icons icon">account_circle</mat-icon>
                         <div>
                             <span class="name">{{ nameUser }} {{ surnameUser }}</span>
@@ -21,18 +27,30 @@
                         <mat-icon class="material-icons icon-arrow" [ngClass]="{'arrow-rotated': isSubMenuOpen}">keyboard_arrow_down</mat-icon>
                     </div>
                 </mat-list-item>
-                <div *ngIf="isSubMenuOpen">
-                    <mat-nav-list>
-                        <a class="sub-options" mat-list-item routerLink="/mundo-literario/admin/mantenimiento-categorias">Categorías</a>
-                        <a class="sub-options" mat-list-item routerLink="/mundo-literario/admin/mantenimiento-generos">Géneros</a>
-                        <a class="sub-options" mat-list-item routerLink="/mundo-literario/admin/mantenimiento-subgeneros">Subgéneros</a>
-                        <a class="sub-options" mat-list-item routerLink="/mundo-literario/admin/mantenimiento-generos-subgeneros">Género-Subgénero</a>
-                    </mat-nav-list>
-                </div>
+                <div *ngIf="isSubMenuOpen" class="sub-menu">
+                    <a class="sub-options" routerLink="/mundo-literario/admin/mantenimiento-libros">
+                        <mat-icon matPrefix class="material-icons icon">book</mat-icon>Productos</a>
+                    <a class="sub-options" routerLink="/mundo-literario/admin/mantenimiento-autores">
+                        <mat-icon matPrefix class="material-icons icon">switch_account</mat-icon>Autores</a>
+                    <a class="sub-options" routerLink="/mundo-literario/admin/mantenimiento-categorias">
+                        <mat-icon matPrefix class="material-icons icon">category</mat-icon>Categorías</a>
+                    <a class="sub-options" routerLink="/mundo-literario/admin/mantenimiento-generos">
+                        <mat-icon matPrefix class="material-icons icon">workspaces</mat-icon>Géneros</a>
+                    <a class="sub-options" routerLink="/mundo-literario/admin/mantenimiento-subgeneros">
+                        <mat-icon matPrefix class="material-icons icon">workspaces</mat-icon>Subgéneros</a>
+                    <a class="sub-options" routerLink="/mundo-literario/admin/mantenimiento-generos-subgeneros">
+                        <mat-icon matPrefix class="material-icons icon">workspaces</mat-icon>Género-Subgénero</a>
+                  </div>
                 <mat-list-item *ngIf="roleUser === 'Administrador'">
                     <div matLine class="item" routerLink="/mundo-literario/admin/mantenimiento-usuarios">
                         <mat-icon matPrefix class="material-icons icon">group</mat-icon>
                         <span class="texto" >Usuarios</span>
+                    </div>
+                </mat-list-item>
+                <mat-list-item *ngIf="roleUser === 'Administrador'">
+                    <div matLine class="item" routerLink="/mundo-literario/admin/clientes">
+                        <mat-icon matPrefix class="material-icons icon">groups</mat-icon>
+                        <span class="texto" >Clientes</span>
                     </div>
                 </mat-list-item>
                 <mat-list-item>

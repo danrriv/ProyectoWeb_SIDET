@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div class="app-container">
+  <mat-card class="profile-card">
+      <mat-card-header>
+          <mat-card-title class="profile-title">Perfil</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+          <div class="profile-content">
+              <div class="profile-details">
+                  <div class="profile-field">
+                      <label>DNI:</label>
+                      <p> {{ customer.customer_dni }}</p>
+                  </div>
+                  <div class="profile-field">
+                      <label>Nombres:</label>
+                      <p> {{ customer.customer_names }}</p>
+                  </div>
+                  <div class="profile-field">
+                      <label>Apellidos:</label>
+                      <p> {{ customer.customer_surnames }}</p>
+                  </div>
+                  <div class="profile-field">
+                      <label>Email:</label>
+                      <p> {{ customer.customer_email }}</p>
+                  </div>
+                  <div class="profile-field">
+                      <label>Teléfono:</label>
+                      <p> {{ customer.customer_phone_number }}</p>
+                  </div>
+              </div>
+              <div class="profile-image-container">
+                  <img src="https://account.pomfort.com/static/images/icon-account-g.png" alt="Avatar" class="avatar">
+                  <div class="button-container">
+                      <button mat-raised-button color="primary" (click)="navigateToEditProfile()">Editar Perfil</button>
+                  </div>
+              </div>
+          </div>
+      </mat-card-content>
+  </mat-card>
+</div>

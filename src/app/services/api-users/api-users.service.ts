@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, switchMap, tap } from 'rxjs';
-import { Login } from 'src/app/clases/login';
+import { Login } from 'src/app/clases/login/login';
 import { Role } from 'src/app/clases/role/role';
 import { User } from 'src/app/clases/user/user';
 
@@ -109,6 +109,19 @@ export class ApiUsersService {
         'Content-Type': 'application/json' // Si no hay token disponible, solo incluir el encabezado Content-Type
       });
     }
+  }
+
+  sendResetCode(email: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/user/sendResetCode`, email, { headers: this.getHeaders() });
+  }
+
+  resetPassword(resetCode: string, newPassword: string, email: string): Observable<any> {
+    const requestData = { resetCode, newPassword, email };
+    return this.http.post(`${this.baseUrl}/user/resetPassword`, requestData, { headers: this.getHeaders() });
+  }
+
+  obtainProfile(token: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/user/findUserByToken/${token}`, { headers: this.getHeaders() });
   }
 
 }

@@ -1,0 +1,64 @@
+<div class="app-container">
+  <mat-card class="profile-card">
+    <mat-card-header>
+      <mat-card-title class="profile-title">Perfil</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form (ngSubmit)="updateUser()" [formGroup]="userForm">
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>DNI</mat-label>
+            <mat-icon matPrefix class="material-icons icon" >badge</mat-icon>
+            <input matInput type="text" id="dni" name="dni" formControlName="user_dni" maxlength="8" (keydown)="validarNumerico($event)">
+            <mat-error *ngIf="userForm.controls['user_dni'].hasError('required')">Campo requerido.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Nombres</mat-label>
+            <mat-icon matPrefix class="material-icons icon">person</mat-icon>
+            <input matInput type="text" id="names" name="names" formControlName="user_names" (keydown)="validarNoNumerico($event)" required>
+            <mat-error *ngIf="userForm.controls['user_names'].hasError('required')">Campo requerido.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Apellidos</mat-label>
+            <mat-icon matPrefix class="material-icons icon">person</mat-icon>
+            <input matInput type="text" id="surnames" name="surnames" formControlName="user_surnames" (keydown)="validarNoNumerico($event)" required>
+            <mat-error *ngIf="userForm.controls['user_surnames'].hasError('required')">Campo requerido.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Email</mat-label>
+            <mat-icon matPrefix class="material-icons icon">email</mat-icon>
+            <input matInput type="email" id="email" name="email" formControlName="user_email" readonly>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Teléfono</mat-label>
+            <mat-icon matPrefix class="material-icons icon">phone</mat-icon>
+            <input matInput type="tel" id="phone" name="phone" formControlName="user_phone_number" maxlength="9" (keydown)="validarNumerico($event)">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Rol</mat-label>
+            <mat-select id="role" name="role" formControlName="roleSelect">
+              <mat-option *ngFor="let role of roles" [value]="role.role_id">{{role.role_name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="button-container">
+          <button mat-raised-button class="edit-btn" type="submit">
+            <mat-icon matPrefix class="material-icons icon">check_circle</mat-icon>Actualizar
+          </button>
+          <button mat-raised-button class="btn-cancel" type="button" [routerLink]="['/mundo-literario/admin/perfil']">
+            <mat-icon matPrefix class="material-icons icon">cancel</mat-icon>Cancelar
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

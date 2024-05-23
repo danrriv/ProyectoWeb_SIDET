@@ -25,6 +25,12 @@ import { AuthorFormComponent } from './admin/authors/author-form/author-form.com
 import { AuthorComponent } from './admin/authors/author/author.component';
 import { ProductFormComponent } from './admin/books/product-form/product-form.component';
 import { ProductComponent } from './admin/books/product/product.component';
+import { ResetuserpasswordComponent } from './admin/users/resetuserpassword/resetuserpassword.component';
+import { CustomersComponent } from './admin/customers/customers.component';
+import { ProfileFormComponent } from './customers/profile/profile-form/profile-form.component';
+import { ProfileComponent } from './customers/profile/profile/profile.component';
+import { ProfileUserformComponent } from './admin/users/profile/profile-userform/profile-userform.component';
+import { ProfileUserComponent } from './admin/users/profile/profile-user/profile-user.component';
 
 const routes: Routes = [
   {
@@ -38,6 +44,14 @@ const routes: Routes = [
   {path: 'mundo-literario/register', component: RegisterComponent},
   {path: 'mundo-literario/login',component: LoginComponent},
   {path: 'mundo-literario/confirmation',component: ConfirmationComponent},
+  {
+    path: 'mundo-literario/perfil',
+    canActivate: [AuthGuard], // Protege todas las rutas de perfil
+    children: [
+      { path: 'ajustes', component: ProfileFormComponent },
+      { path: '', component: ProfileComponent },
+    ]
+  },
   {path: 'mundo-literario/reset-password',component: ResetpasswordComponent },
   {path: 'mundo-literario/libros/:id',component:ProductsDetailsComponent},
   {path:'mundo-literario/compras', component:CustomersPurchasesComponent},
@@ -45,7 +59,7 @@ const routes: Routes = [
 
   //Usuario - login
   {path: 'mundo-literario/admin/login',component: LoginUsersComponent},
-
+  {path: 'mundo-literario/admin/reset-password', component: ResetuserpasswordComponent},
   {
     path:'mundo-literario/admin',
     component:MenuComponent,
@@ -71,6 +85,8 @@ const routes: Routes = [
   { path: 'mantenimiento-usuarios',component: UserComponent},
   {path: 'form-usuarios', component: UserFormComponent},
   {path: 'form-usuarios/:id', component: UserFormComponent},
+  { path: 'perfil/ajustes',component: ProfileUserformComponent},
+  { path: 'perfil',component: ProfileUserComponent},
   //Productos - Libros
   {path: 'mantenimiento-libros', component:ProductComponent},
   {path: 'form-libros', component:ProductFormComponent},
@@ -79,7 +95,8 @@ const routes: Routes = [
   {path: 'mantenimiento-autores', component:AuthorComponent},
   {path: 'form-autor', component:AuthorFormComponent},
   {path: 'form-autor/:id', component:AuthorFormComponent},
-
+  //Clientes
+  {path: 'clientes', component:CustomersComponent},
   ]}
   
 

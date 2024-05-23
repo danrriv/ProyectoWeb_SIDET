@@ -27,7 +27,7 @@ export class UserComponent {
   loadUsers(): void {
     this.userService.getUsers().subscribe(
       (response: User[]) => {
-        this.users = response;
+        this.users = response.filter(user => user.user_id !== 1);
         this.dataSource = new MatTableDataSource<User>(this.users);
         this.dataSource.paginator = this.paginator;
       },

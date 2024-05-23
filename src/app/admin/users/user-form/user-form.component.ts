@@ -148,8 +148,9 @@ export class UserFormComponent implements OnInit {
     const key = event.key;
     const isLetterWithAccents = /^[a-zA-ZáéíóúÁÉÍÓÚüÜ]$/u.test(key);
     const isBackspaceOrDelete = ['Backspace', 'Delete'].includes(key);
+    const isSpace = key === ' ';
     
-    if (!isLetterWithAccents && !isBackspaceOrDelete) {
+    if (!isLetterWithAccents && !isBackspaceOrDelete && !isSpace) {
       event.preventDefault();
     }
   }

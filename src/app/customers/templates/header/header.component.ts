@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.token = localStorage.getItem('tokenCustomer');
-    console.log(this.token)
     if (this.token != null) {
       this.islogged = true;
       this.customerName = localStorage.getItem('name') || 'error';

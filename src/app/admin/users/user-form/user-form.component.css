@@ -31,6 +31,23 @@
     color: white !important;
   }
 
+  .form-row-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    width: 100%;
+  }
+  
+  .form-row-2 .form-field {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .form-row-2 .form-field:last-child {
+    margin-right: 0;
+  }
+
   @media (max-width: 768px) {
     .form-field {
       flex: 0 0 100%;
