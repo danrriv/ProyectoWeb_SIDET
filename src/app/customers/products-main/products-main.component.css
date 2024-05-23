@@ -4,7 +4,7 @@
 .card {
   margin: 0 0.5em;
   border: none;
-  background: #e4daf0;
+  background: #fdfcf9;
   align-items: center;
   text-align: center;
 }
@@ -21,7 +21,7 @@
     width: 140px; /* Tamaño fijo deseado */
     height: 220px; /* Tamaño fijo deseado */
     display: flex; 
-    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+    box-shadow: 4px 8px 10px 0 rgba(22, 22, 26, 0.18);
 }
 
 .card img {

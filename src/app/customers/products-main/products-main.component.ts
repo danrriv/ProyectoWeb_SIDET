@@ -76,6 +76,7 @@ listProductsGenre():void{
     dots:false,
     navSpeed:200,
     nav: true,
+    autoplay: true,
     responsive: {
       0: {
         items: 1,

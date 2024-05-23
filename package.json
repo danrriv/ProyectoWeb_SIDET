@@ -23,7 +23,6 @@
     "@fortawesome/angular-fontawesome": "^0.12.1",
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",
-    "mercadopago": "^2.0.9",
     "ngx-owl-carousel-o": "^15.0.1",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.10.8",

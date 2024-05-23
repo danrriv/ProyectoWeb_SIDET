@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { Customer } from 'src/app/clases/customer';
-import { Login } from 'src/app/clases/login';
 import { Router } from '@angular/router';
+import { Customer } from 'src/app/clases/customer/customer';
+import { Login } from 'src/app/clases/login/login';
 
 @Injectable({
   providedIn: 'root'

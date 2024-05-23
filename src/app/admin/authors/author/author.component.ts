@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Author } from 'src/app/clases/author/author';
 import { AuthorsService } from 'src/app/services/api-authors/authors.service';
 
@@ -10,9 +12,9 @@ import { AuthorsService } from 'src/app/services/api-authors/authors.service';
 export class AuthorComponent implements OnInit {
 
   authors: Author[]=[];
+  dataSource: MatTableDataSource<Author>;
   search: string = '';
-  errorStatus: boolean = false;
-  errorMsj: any = "";
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private authorService:AuthorsService){}
 
@@ -23,7 +25,13 @@ ngOnInit(): void {
   loadAuthors(){
     this.authorService.listAuthor().subscribe((data) =>{
       this.authors = data;
+      this.dataSource = new MatTableDataSource<Author>(this.authors);
+      this.dataSource.paginator = this.paginator;
     });
+  }
+
+  applyFilter(): void {
+    this.dataSource.filter = this.search.trim().toLowerCase(); // Aplica el filtro
   }
 
 }

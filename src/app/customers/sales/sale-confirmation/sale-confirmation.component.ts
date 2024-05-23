@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { BookCart } from 'src/app/clases/book-cart/book-cart';
 import { SalesService } from 'src/app/services/api-sales/sales.service';
 import { CartProductsService } from 'src/app/services/cart-products/cart-products.service';
-import { MercadoPagoConfig, Preference } from 'mercadopago';
 import { environment } from 'src/app/clases/sales/mercadoPago';
 import { SaleDetails } from 'src/app/clases/sales/saleDetails/sale-details';
 import { Sale } from 'src/app/clases/sales/sale/sale';
@@ -21,7 +20,8 @@ export class SaleConfirmationComponent implements OnInit {
 
   myCart$ = this.cartService.myCart$;
 
-  client = new MercadoPagoConfig({ accessToken: environment.KEY });
+
+  //client = new MercadoPagoConfig({ accessToken: environment.KEY });
 
   constructor(private cartService: CartProductsService,
     private saleService: SalesService,
@@ -100,6 +100,7 @@ export class SaleConfirmationComponent implements OnInit {
   }
 
   //Inicializando MercadoPago "servidor"
+  /*
   createPreference(): any{
   const preference = new Preference(this.client);
   const result = preference.create({ 
@@ -116,6 +117,7 @@ export class SaleConfirmationComponent implements OnInit {
   })
   localStorage.setItem('preference', JSON.stringify(result))
   }
+  */
 
 
 

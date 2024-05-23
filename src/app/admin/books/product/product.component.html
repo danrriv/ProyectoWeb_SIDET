@@ -1,56 +1,79 @@
-<div class="jumbotron text-white">
-    <h1 class="display-4">Libros</h1>
-</div>
-<div class="container-fluid">
-    <div class="row justify-content-center mt-3">
-        <div class="col-lg-10">
-            <div class="d-flex justify-content-between mb-3">
-                <div class="col-md-5 p-0">
-                    <input type="text" class="form-control" [(ngModel)]="search" (input)="findByName(search)" placeholder="Buscar por nombre" />
-                </div>
-                <div class="d-flex justify-content-end">
-                    <button class="btn btn-primary mr-4" [routerLink]="['/mundo-literario/admin/form-libros']">Registrar Libro</button>
-                    <button (click)="exportExcel()" class="btn btn-success mr-4"><i class="fa-solid fa-file-excel fa-lg" style="color: #ffffff;"></i></button>
-                 <!--   <button (click)="exportPdf()" class="btn btn-danger"><i class="fa-solid fa-file-pdf fa-lg" style="color: #fafafa;"></i></button> -->
-                </div>
-            </div>
-           
-            <div class="table-responsive">
-                <table class="table table-hover table-striped custom-table mt-3">
-                    <thead class="bg-secondary table-light">
-                        <tr>
-                            <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Editorial</th>
-                            <th>Publicación</th>
-                            <th>Precio</th>
-                            <th>Stock</th>
-                            <th>Estado</th>
-                            <th>Autor</th>
-                            <th>Subgenero</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let a of books">
-                            <td>{{a.book_id}}</td>
-                            <td>{{a.book_name}}</td>
-                            <td>{{a.book_editorial}}</td>
-                            <td>{{a.book_year | date: 'dd/MM/yyyy'}}</td>
-                            <td>S/ {{a.book_price}}</td>
-                            <td>{{a.book_stock}}</td>
-                            <td>{{a.book_status === true ? 'Activo':(a.book_status === false ? 'Inactivo': '') }}</td>
-                            <td>{{a.author}}</td>
-                            <td>{{a.subgenre}}</td>
-                            <td>
-                                <button type="button" name="button"  [routerLink]="['/mundo-literario/admin/form-libros',a.book_id]"
-                                class="btn btn-warning btn-sm"> <i class="fa-solid fa-pen"></i> </button>
-                                <!--- <button class="btn btn-danger">Eliminar</button> -->
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+<mat-card>
+    <mat-card-header>
+      <mat-card-title class="title">Libros</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <div class="d-flex justify-content-between mb-3 align-items-center">
+        <div class="col-md-5 p-0">
+          <input type="text" class="form-control custom-input" [(ngModel)]="search" (keyup)="applyFilter()" placeholder="Buscar" />
         </div>
-    </div>
-</div>
+        <button mat-raised-button color="primary" class="custom-btn-create" [routerLink]="['/mundo-literario/admin/form-libros']">
+          <mat-icon matPrefix class="material-icons icon-btn">add_circle</mat-icon>Registrar
+        </button>
+      </div>
+
+      <mat-table [dataSource]="dataSource">
+        <!-- Columnas de la tabla -->
+        <ng-container matColumnDef="book_id">
+          <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+          <mat-cell *matCellDef="let books">{{ books.book_id }}</mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="book_name">
+          <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+          <mat-cell *matCellDef="let books">{{ books.book_name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="book_editorial">
+            <mat-header-cell *matHeaderCellDef>Editorial</mat-header-cell>
+            <mat-cell *matCellDef="let books">{{ books.book_editorial }}</mat-cell>
+        </ng-container>
+
+          <ng-container matColumnDef="book_year">
+            <mat-header-cell *matHeaderCellDef>Publicación</mat-header-cell>
+            <mat-cell *matCellDef="let books">{{ books.book_year }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="book_price">
+            <mat-header-cell *matHeaderCellDef>Precio</mat-header-cell>
+            <mat-cell *matCellDef="let books">{{ books.book_price }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="book_stock">
+            <mat-header-cell *matHeaderCellDef>Stock</mat-header-cell>
+            <mat-cell *matCellDef="let books">{{ books.book_stock }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="book_status">
+            <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+            <mat-cell *matCellDef="let books">{{ books.book_status }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="author">
+            <mat-header-cell *matHeaderCellDef>Autor</mat-header-cell>
+            <mat-cell *matCellDef="let books">{{ books.author }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="subgenre">
+            <mat-header-cell *matHeaderCellDef>Subgénero</mat-header-cell>
+            <mat-cell *matCellDef="let books">{{ books.subgenre }}</mat-cell>
+          </ng-container>
+  
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+          <mat-cell *matCellDef="let books">
+            <button class="cancel-btn" mat-raised-button [routerLink]="['/mundo-literario/admin/form-libros', books.book_id]">
+              <mat-icon matPrefix class="material-icons icon-btn">edit</mat-icon>
+              Editar
+            </button>
+          </mat-cell>
+        </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="['book_id', 'book_name', 'book_editorial', 'book_year', 'book_price', 'book_stock', 'book_status', 'author', 'subgenre', 'actions']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['book_id', 'book_name', 'book_editorial', 'book_year', 'book_price', 'book_stock', 'book_status', 'author', 'subgenre', 'actions'];"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+

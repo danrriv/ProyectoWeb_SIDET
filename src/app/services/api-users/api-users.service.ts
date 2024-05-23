@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, switchMap, tap } from 'rxjs';
-import { Login } from 'src/app/clases/login';
+import { Login } from 'src/app/clases/login/login';
 import { Role } from 'src/app/clases/role/role';
 import { User } from 'src/app/clases/user/user';
 

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Book } from 'src/app/clases/book/book';
 import * as XLSX from 'xlsx';
 import { BooksService } from 'src/app/services/api-books/books.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-product',
@@ -11,9 +13,9 @@ import { BooksService } from 'src/app/services/api-books/books.service';
 export class ProductComponent implements OnInit {
 
   books: Book[];
+  dataSource: MatTableDataSource<Book>;
   search: string = '';
-  errorStatus: boolean = false;
-  errorMsj: any = "";
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor (private bookService:BooksService){
   }
@@ -24,7 +26,10 @@ export class ProductComponent implements OnInit {
 
   getBooks(){
     this.bookService.listBook().subscribe((data) =>{
-      return this.books = data;
+      this.books = data;
+      this.dataSource = new MatTableDataSource<Book>(this.books);
+      this.dataSource.paginator = this.paginator;
+
     });
   }
 
@@ -47,34 +52,7 @@ export class ProductComponent implements OnInit {
       );
     }
   }
-  
-
-  exportExcel(): void {
-    let ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.books);
-
-    let wb: XLSX.WorkBook = XLSX.utils.book_new();
-
-    XLSX.utils.book_append_sheet(wb, ws, 'Libros');
-
-    XLSX.writeFile(wb, 'reporte_libros.xlsx');
-}
-
-/*
-exportPdf(): void {
-  const doc = new jsPDF();
-
-  var col = ["ID", "Nombre", "Editorial", "Autor", "Subgénero", "Stock", "Precio"];
-  let rows : any[][] = [];
-
-  this.productos.forEach(product => {
-      let temp = [product.id_libro, product.nombre, product.editorial, product.nombre_autor, product.subgenero, product.stock, product.precio];
-      rows.push(temp);
-  });
-
-  doc.text('Reporte de productos', 75, 16);
-  
-  autoTable(doc, {head: [col], body: rows, startY: 20 }); 
-
-  doc.save('reporte_productos.pdf');
-}*/
+  applyFilter(): void {
+    this.dataSource.filter = this.search.trim().toLowerCase(); // Aplica el filtro
+  }
 }

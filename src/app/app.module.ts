@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CarComponent } from './customers/sales/car/car.component';
-import { ProductsComponent } from './customers/sales/products/products.component';
 import { MenuComponent } from './admin/menu/menu.component';
 import { ProductComponent } from './admin/books/product/product.component';
 import { RegisterComponent } from './customers/register/register.component';
@@ -41,7 +40,6 @@ import { ProductsDetailsComponent } from './customers/products-details/products-
   declarations: [
     AppComponent,
     CarComponent,
-    ProductsComponent,
     MenuComponent,
     ProductComponent,
     RegisterComponent,
