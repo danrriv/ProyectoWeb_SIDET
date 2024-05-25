@@ -19,6 +19,12 @@ mat-table{
   padding-top: 30px;
   padding-bottom: 30px;
 }
+
+.custom-input{
+  border-color: #7d2ae8;
+}
+
+
 .icon-btn{
   margin-right: 12px;
 }
