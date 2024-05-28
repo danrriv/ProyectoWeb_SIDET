@@ -1,0 +1,135 @@
+.title {
+  text-align: center !important;
+  font-size: 35px;
+  margin-bottom: 30px;
+}
+
+mat-card-header {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+mat-card {
+  border: none !important;
+  padding: 20px;
+  height: 100vh;
+}
+
+mat-table {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.custom-input{
+  border-color: #7d2ae8;
+}
+
+
+.icon-btn {
+  margin-right: 12px;
+}
+
+.edit-btn {
+  background-color: #f0bf4c !important;
+  padding: 15px;
+}
+
+.mat-column-customer_email {
+  flex: 2 2 200px;
+}
+
+.search-and-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.button-group {
+  display: flex;
+}
+
+.btn-danger{
+  margin-left: 10px;
+}
+
+@media (max-width: 1200px) {
+  mat-card {
+    height: auto;
+  }
+  
+  mat-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-and-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .button-group {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+
+  .btn {
+    width: auto;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .mat-header-cell, .mat-cell {
+    padding: 8px 16px;
+  }
+
+  .mat-column-customer_email {
+    min-width: 150px;
+  }
+  
+  .mat-column-customer_id, 
+  .mat-column-customer_dni, 
+  .mat-column-customer_surnames, 
+  .mat-column-customer_names, 
+  .mat-column-customer_phone_number, 
+  .mat-column-customer_email {
+    display: block;
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 576px) {
+  .d-flex {
+    flex-direction: column;
+  }
+  
+  .col-md-5 {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .search-and-buttons {
+    flex-direction: column;
+  }
+
+  .button-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .button-group .btn {
+    margin-bottom: 10px;
+  }
+}

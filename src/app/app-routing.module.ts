@@ -28,6 +28,12 @@ import { ProductComponent } from './admin/books/product/product.component';
 import { BooksReportComponent } from './admin/reports/books-report/books-report.component';
 import { SalesReportComponent } from './admin/reports/sales-report/sales-report.component';
 import { SaleDetailsReportComponent } from './admin/reports/sale-details-report/sale-details-report.component';
+import { ResetuserpasswordComponent } from './admin/users/resetuserpassword/resetuserpassword.component';
+import { CustomersComponent } from './admin/customers/customers.component';
+import { ProfileFormComponent } from './customers/profile/profile-form/profile-form.component';
+import { ProfileComponent } from './customers/profile/profile/profile.component';
+import { ProfileUserformComponent } from './admin/users/profile/profile-userform/profile-userform.component';
+import { ProfileUserComponent } from './admin/users/profile/profile-user/profile-user.component';
 
 const routes: Routes = [
   {
@@ -41,6 +47,14 @@ const routes: Routes = [
   {path: 'mundo-literario/register', component: RegisterComponent},
   {path: 'mundo-literario/login',component: LoginComponent},
   {path: 'mundo-literario/confirmation',component: ConfirmationComponent},
+  {
+    path: 'mundo-literario/perfil',
+    canActivate: [AuthGuard], // Protege todas las rutas de perfil
+    children: [
+      { path: 'ajustes', component: ProfileFormComponent },
+      { path: '', component: ProfileComponent },
+    ]
+  },
   {path: 'mundo-literario/reset-password',component: ResetpasswordComponent },
   {path: 'mundo-literario/libros/:id',component:ProductsDetailsComponent},
   {path:'mundo-literario/compras', component:CustomersPurchasesComponent},
@@ -48,7 +62,7 @@ const routes: Routes = [
 
   //Usuario - login
   {path: 'mundo-literario/admin/login',component: LoginUsersComponent},
-
+  {path: 'mundo-literario/admin/reset-password', component: ResetuserpasswordComponent},
   {
     path:'mundo-literario/admin',
     component:MenuComponent,
@@ -74,6 +88,8 @@ const routes: Routes = [
   { path: 'mantenimiento-usuarios',component: UserComponent},
   {path: 'form-usuarios', component: UserFormComponent},
   {path: 'form-usuarios/:id', component: UserFormComponent},
+  { path: 'perfil/ajustes',component: ProfileUserformComponent},
+  { path: 'perfil',component: ProfileUserComponent},
   //Productos - Libros
   {path: 'mantenimiento-libros', component:ProductComponent},
   {path: 'form-libros', component:ProductFormComponent},
@@ -86,6 +102,8 @@ const routes: Routes = [
   {path: 'reporte-libros', component:BooksReportComponent},
   {path: 'reporte-ventas', component:SalesReportComponent},
   {path: 'reporte-detalle-venta/:id', component:SaleDetailsReportComponent},
+  //Clientes
+  {path: 'clientes', component:CustomersComponent},
   ]}
   
 

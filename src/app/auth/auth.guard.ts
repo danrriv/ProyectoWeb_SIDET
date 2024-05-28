@@ -18,25 +18,30 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (route.data && route.data['requiresLogin'] === false) {
-        return true;
-      }
-
-  // Verificar si el usuario administrador está autenticado
-    if(this.userService.isAuthenticated() && state.url.includes('/admin')){
-      //permite el acceso a rutas admin
+       // Verificar si la ruta no requiere autenticación
+    if (route.data && route.data['requiresLogin'] === false) {
       return true;
-    } else if(this.customerService.isAuthenticated() && state.url.includes('/account')){
-      //permite el acceso a rutas account
+    }
+
+    // Verificar si el usuario administrador está autenticado y quiere acceder a rutas de admin
+    if (this.userService.isAuthenticated() && state.url.includes('/admin')) {
+      return true;
+    } 
+
+    // Verificar si el cliente está autenticado y quiere acceder a rutas de perfil
+    if (this.customerService.isAuthenticated() && state.url.includes('/perfil')) {
       return true;
     }
 
     // Redirigir al formulario de inicio de sesión correspondiente
     if (state.url.includes('/admin/')) {
       this.router.navigate(['/mundo-literario/admin/login']);
-    } else if (state.url.includes('/account/')) {
+    } else if (state.url.includes('/perfil/')) {
       this.router.navigate(['/mundo-literario/login']);
-    } 
+    } else {
+      // Redirigir al login 
+      this.router.navigate(['/mundo-literario/login']);
+    }
 
     return false;
   }

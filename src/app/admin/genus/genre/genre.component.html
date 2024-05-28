@@ -9,7 +9,7 @@
           <div class="col-md-5 p-0">
             <input type="text" class="form-control custom-input"[(ngModel)]="searchInput" (keyup)="applyFilter()" placeholder="Buscar" />
           </div>
-          <button mat-raised-button color="primary"  type="button"  [routerLink]="['/mundo-literario/admin/form-genero']">
+          <button mat-raised-button color="primary"  class="custom-btn-create" [routerLink]="['/mundo-literario/admin/form-genero']">
               <mat-icon matPrefix class="material-icons icon-btn">add_circle</mat-icon>Registrar</button>
         </div>
       <mat-table [dataSource]="dataSource">

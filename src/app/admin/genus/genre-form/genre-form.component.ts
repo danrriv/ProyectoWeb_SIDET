@@ -51,9 +51,9 @@ export class GenreFormComponent implements OnInit {
 
       if (id) {
         this.isNewGenre = false;
-        this.genre.genre_id= id;
         this.genreService.findGenreId(id).subscribe(
           (data) => {
+            this.genre.genre_id= data.genre_id;
             this.genreForm.patchValue({
               genre_name: data.genre_name,
               selectedCategory: data.category?.category_id
@@ -111,6 +111,14 @@ export class GenreFormComponent implements OnInit {
           console.error(error);
         }
       );
+    }
+  }
+
+  public onSubmit(): void {
+    if (this.isNewGenre) {
+      this.createGenre();
+    } else {
+      this.updateGenre();
     }
   }
 

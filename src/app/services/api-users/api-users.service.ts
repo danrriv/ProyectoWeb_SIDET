@@ -111,4 +111,17 @@ export class ApiUsersService {
     }
   }
 
+  sendResetCode(email: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/user/sendResetCode`, email, { headers: this.getHeaders() });
+  }
+
+  resetPassword(resetCode: string, newPassword: string, email: string): Observable<any> {
+    const requestData = { resetCode, newPassword, email };
+    return this.http.post(`${this.baseUrl}/user/resetPassword`, requestData, { headers: this.getHeaders() });
+  }
+
+  obtainProfile(token: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/user/findUserByToken/${token}`, { headers: this.getHeaders() });
+  }
+
 }

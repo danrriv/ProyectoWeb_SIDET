@@ -30,16 +30,16 @@ export class ApiCustomersService {
     return this.http.post(`${this.baseUrl}/customer/register`, customerData);
   }
 
-  updateCustomer(customerId: number, customerData: Customer): Observable<any> {
-    return this.http.put(`${this.baseUrl}/auth/customer/update/${customerId}`, customerData, { headers: this.httpHeaders });
+  updateCustomer(customerData: Customer): Observable<any> {
+    return this.http.put(`${this.baseUrl}/customer/update/${customerData.customer_id}`, customerData, { headers: this.httpHeaders });
   }
 
   getCustomer(customerId: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/auth/customer/findId/${customerId}`);
+    return this.http.get(`${this.baseUrl}/customer/findId/${customerId}`);
   }
 
   getCustomers(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/auth/customer/list`);
+    return this.http.get(`${this.baseUrl}/customer/list`);
   }
 
   confirmAccount(token: string): Observable<any> {
@@ -55,8 +55,9 @@ export class ApiCustomersService {
     return this.http.post(`${this.baseUrl}/customer/resetPassword`, requestData, { headers: this.httpHeaders });
   }
   
-  isAuthenticated():boolean {
-    return this.customerlogged;
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem(this.tokenkey);
+    return token !== null;
   }
 
   logout(): void {
@@ -84,4 +85,9 @@ export class ApiCustomersService {
   obtainLoginData(customerEmail: String):Observable<any>{
     return this.http.get(`${this.baseUrl}/customer/nameId/${customerEmail}`);
   }
+
+  obtainProfile(token: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/customer/findCustomerByToken/${token}`, { headers: this.httpHeaders });
+  }
+
 }

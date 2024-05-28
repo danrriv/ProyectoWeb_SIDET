@@ -1,28 +1,119 @@
-  .title{
-    text-align: center !important;
-    font-size: 35px;
-    margin-bottom: 30px;
-  }
+.title {
+  text-align: center !important;
+  font-size: 35px;
+  margin-bottom: 30px;
+}
 
-  mat-card-header {
-    display: flex !important;
-    justify-content: space-between !important;
-  }
+mat-card-header {
+  display: flex !important;
+  justify-content: space-between !important;
+}
 
-  mat-card{
-    border: none !important;
-    padding: 20px;
-  }
+mat-card {
+  border: none !important;
+  padding: 20px;
+  height: 100vh;
+}
 
-  mat-table{
-    padding-top: 30px;
-    padding-bottom: 30px;
+mat-table {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.custom-input{
+  border-color: #7d2ae8;
+}
+
+.icon-btn {
+  margin-right: 12px;
+}
+
+.edit-btn {
+  background-color: #f0bf4c !important;
+  padding: 15px;
+}
+
+.mat-column-actions {
+  flex: 1 1 150px;
+}
+
+.search-and-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+@media (max-width: 1200px) {
+  mat-card {
+    height: auto;
   }
   
-  .icon-btn{
-    margin-right: 12px;
+  mat-card-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .edit-btn{
-    background-color: #f0bf4c !important;
+  .search-and-button {
+    flex-direction: column;
+    align-items: stretch;
   }
+
+  .search-and-button .col-md-5 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .search-and-button button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .mat-header-cell, .mat-cell {
+    padding: 8px 16px;
+  }
+
+  .mat-column-actions {
+    min-width: 150px;
+  }
+
+  .mat-column-user_id,
+  .mat-column-user_dni,
+  .mat-column-user_surnames,
+  .mat-column-user_names,
+  .mat-column-user_phone_number,
+  .mat-column-user_status,
+  .mat-column-role,
+  .mat-column-actions {
+    display: block;
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 576px) {
+  .search-and-button {
+    flex-direction: column;
+  }
+
+  .search-and-button .col-md-5 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .search-and-button button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

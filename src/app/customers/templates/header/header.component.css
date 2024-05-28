@@ -53,7 +53,7 @@
         background: #845abd;
       }
 
-.cart {
+.cart, .menu-icon{
   display: none;
 }
 .show {

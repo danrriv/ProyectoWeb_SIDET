@@ -39,6 +39,12 @@ import { ProductsDetailsComponent } from './customers/products-details/products-
 import { BooksReportComponent } from './admin/reports/books-report/books-report.component';
 import { SaleDetailsReportComponent } from './admin/reports/sale-details-report/sale-details-report.component';
 import { SalesReportComponent } from './admin/reports/sales-report/sales-report.component';
+import { ResetuserpasswordComponent } from './admin/users/resetuserpassword/resetuserpassword.component';
+import { CustomersComponent } from './admin/customers/customers.component';
+import { ProfileFormComponent } from './customers/profile/profile-form/profile-form.component';
+import { ProfileComponent } from './customers/profile/profile/profile.component';
+import { ProfileUserformComponent } from './admin/users/profile/profile-userform/profile-userform.component';
+import { ProfileUserComponent } from './admin/users/profile/profile-user/profile-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +78,13 @@ import { SalesReportComponent } from './admin/reports/sales-report/sales-report.
     ProductsDetailsComponent,
     BooksReportComponent,
     SaleDetailsReportComponent,
-    SalesReportComponent
+    SalesReportComponent,
+    ResetuserpasswordComponent,
+    CustomersComponent,
+    ProfileFormComponent,
+    ProfileComponent,
+    ProfileUserformComponent,
+    ProfileUserComponent
   ],
   imports: [
     BrowserModule,

@@ -12,16 +12,78 @@ mat-card-header {
 mat-card{
   border: none !important;
   padding: 20px;
+  height: 100vh;
 }
 
 mat-table{
   padding-top: 30px;
   padding-bottom: 30px;
 }
+
+.custom-input{
+  border-color: #7d2ae8;
+}
+
 .icon-btn{
   margin-right: 12px;
 }
 
 .cancel-btn{
   background-color: #f0bf4c !important;
+}
+
+.mat-paginator-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-paginator-range-label,
+.mat-paginator-navigation {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.mat-paginator-page-size,
+.mat-paginator-page-size-label {
+  flex: 0 1 auto;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .mat-paginator-page-size,
+  .mat-paginator-page-size-label {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .title {
+    font-size: 28px;
+  }
+
+  mat-card {
+    padding: 10px;
+  }
+
+  mat-table {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .d-flex {
+    flex-wrap: wrap;
+  }
+
+  .col-md-5 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .custom-btn-create {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
