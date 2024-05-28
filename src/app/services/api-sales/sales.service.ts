@@ -20,39 +20,32 @@ export class SalesService {
 
   registerSale(dto:SaleDto): Observable<SaleDto>{
     return this.httpClient.post<SaleDto>(`${this.baseUrl}save`,dto,{headers:this.httpHeaders})
-
   }
 
   findSaleCustomer(id:number): Observable<SaleL[]>{
-    return this.httpClient.get<SaleL[]>(`${this.baseUrl}clientes/${id}`).pipe(
+    return this.httpClient.get<SaleL[]>(`${this.baseUrl}customer/${id}`).pipe(
       map(response => response as SaleL[])
     );
   }
 
-  buscarDetalles(id:number): Observable<SaleDetailsL[]>{
-    return this.httpClient.get<SaleDetailsL[]>(`${this.baseUrl}detalles/${id}`).pipe(
+  findDetails(id:number): Observable<SaleDetailsL[]>{
+    return this.httpClient.get<SaleDetailsL[]>(`${this.baseUrl}details/${id}`).pipe(
       map(response => response as SaleDetailsL[])
     );
   }
 
-  buscarVenta(id:number): Observable<SaleL>{
-    return this.httpClient.get<SaleL>(`${this.baseUrl}buscar/${id}`);
+  findSale(id:number): Observable<SaleL>{
+    return this.httpClient.get<SaleL>(`${this.baseUrl}find/${id}`);
   }
 
-  obtenerVentas(): Observable<SaleL[]> {
+  listAllSales(): Observable<SaleL[]> {
     return this.httpClient.get<SaleL[]>(`${this.baseUrl}listar`).pipe(
       map(response => response as SaleL[])
     );
   }
 
-  obtenerVentasPendientesDomicilio(): Observable<SaleL[]> {
-    return this.httpClient.get<SaleL[]>(`${this.baseUrl}listarpendientes`).pipe(
-      map(response => response as SaleL[])
-    );
-  }
-
-  obtenerVentasConfirmar(): Observable<SaleL[]> {
-    return this.httpClient.get<SaleL[]>(`${this.baseUrl}listarconfirmar`).pipe(
+  listPending(): Observable<SaleL[]> {
+    return this.httpClient.get<SaleL[]>(`${this.baseUrl}listPending`).pipe(
       map(response => response as SaleL[])
     );
   }

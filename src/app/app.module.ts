@@ -36,6 +36,9 @@ import { LoginUsersComponent } from './admin/users/login-users/login-users.compo
 import { ProductsMainComponent } from './customers/products-main/products-main.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ProductsDetailsComponent } from './customers/products-details/products-details.component';
+import { BooksReportComponent } from './admin/reports/books-report/books-report.component';
+import { SaleDetailsReportComponent } from './admin/reports/sale-details-report/sale-details-report.component';
+import { SalesReportComponent } from './admin/reports/sales-report/sales-report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +69,10 @@ import { ProductsDetailsComponent } from './customers/products-details/products-
     UserComponent,
     LoginUsersComponent,
     ProductsMainComponent,
-    ProductsDetailsComponent
+    ProductsDetailsComponent,
+    BooksReportComponent,
+    SaleDetailsReportComponent,
+    SalesReportComponent
   ],
   imports: [
     BrowserModule,

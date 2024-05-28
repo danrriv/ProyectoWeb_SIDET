@@ -59,13 +59,13 @@ export class AuthorFormComponent implements OnInit {
       const authorData = this.authorForm.value;
       const author: Author = {
         author_id: this.authorId,
-        author_name: authorData.authot_name
+        author_name: authorData.author_name
       };
 
       if (this.isNewAuthor) {
         this.authorService.saveAuthor(author).subscribe(
           () => {
-            this.router.navigate(['/mundo-literario/admin/mantenimiento-categorias']);
+            this.router.navigate(['/mundo-literario/admin/mantenimiento-autores']);
             Swal.fire('Éxito!', 'Autor registrado correctamente', 'success');
           },
           (error) => {
@@ -75,7 +75,7 @@ export class AuthorFormComponent implements OnInit {
       } else {
         this.authorService.updateAuthor(author).subscribe(
           () => {
-            this.router.navigate(['/mundo-literario/admin/mantenimiento-categorias']);
+            this.router.navigate(['/mundo-literario/admin/mantenimiento-autores']);
             Swal.fire('Éxito!', 'Autor actualizado correctamente', 'success');
           },
           (error) => {

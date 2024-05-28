@@ -7,6 +7,8 @@ import { environment } from 'src/app/clases/sales/mercadoPago';
 import { SaleDetails } from 'src/app/clases/sales/saleDetails/sale-details';
 import { Sale } from 'src/app/clases/sales/sale/sale';
 import { SaleDto } from 'src/app/clases/sales/saleDto/sale-dto';
+import { PrefenceService } from 'src/app/services/preferences/prefence.service';
+import { loadMercadoPago } from "@mercadopago/sdk-js";
 @Component({
   selector: 'app-sale-confirmation',
   templateUrl: './sale-confirmation.component.html',
@@ -25,13 +27,15 @@ export class SaleConfirmationComponent implements OnInit {
 
   constructor(private cartService: CartProductsService,
     private saleService: SalesService,
-    private router: Router
-    ) { }
+    private router: Router,
+    private preserv: PrefenceService
+  ) { }
 
 
   ngOnInit(): void {
     const storedId = localStorage.getItem('id');
     this.customerId = storedId ? parseInt(storedId) : null;
+
     //localStorage.setItem('sale?',":)")
   }
 
@@ -77,7 +81,7 @@ export class SaleConfirmationComponent implements OnInit {
     );
   }
   //Total carrito
-  totalCart(){
+  totalCart() {
     const r = this.cartService.totalCart();
     return r
   }
@@ -88,6 +92,7 @@ export class SaleConfirmationComponent implements OnInit {
     this.myCart$.subscribe((productos: BookCart[]) => {
       productos.forEach((it: BookCart) => {
         item = {
+          id: it.book_id,
           currency_id: 'PEN',
           title: it.book_name,
           quantity: it.book_quantity,
@@ -100,24 +105,30 @@ export class SaleConfirmationComponent implements OnInit {
   }
 
   //Inicializando MercadoPago "servidor"
-  /*
-  createPreference(): any{
-  const preference = new Preference(this.client);
-  const result = preference.create({ 
-    body: {
-      items: this.getItemsList()
-      ,
-      back_urls: {
-        success: "",
-        failure: "",
-        pending: "",
-      },
-      auto_return: "approved",
-    }
-  })
-  localStorage.setItem('preference', JSON.stringify(result))
+
+  createPreference(): any {
+    const preference = this.preserv.createPrefence(this.getItemsList());
+
+    console.log(this.getItemsList());
+    preference.subscribe(async pr => {
+      await loadMercadoPago();
+      //localStorage.setItem('preference', JSON.stringify(pr));
+      //console.log("Con fe");
+      console.log(pr)
+
+      const mp = new (window as Window & typeof globalThis & { MercadoPago: any }).MercadoPago('TEST-8fe7da1d-b4b3-48dd-b6f8-71a7eddb91a7', {
+        locale: 'es-PE'
+      });
+      const brickBuilder = mp.bricks();
+
+        await brickBuilder.create("wallet", "wallet_container", {
+          initialization: {
+            preferenceId: (pr as { id: string, [key: string]: any }).id,
+          },
+        });
+    })
   }
-  */
+
 
 
 

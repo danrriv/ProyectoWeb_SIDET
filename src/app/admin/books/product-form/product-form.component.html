@@ -1,169 +1,122 @@
-<div class="col-md-6 offset-md-3">
-    <h1 class="text-center p-3">
-        {{ book.book_id ? 'Editar libro' : 'Registrar libro' }}
-    </h1>
-    <h1>{{book.book_name}}</h1>
-    <form>
-        <div class="row">
+<mat-card>
+    <mat-card-header>
+      <mat-card-title class="title">{{ isNewBook ? 'Registro de Libro' : 'Edición de Libro' }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="createProduct()" [formGroup]="bookForm">
+        <div class="input-container">
+          <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
-                    <label>Nombre : </label>
-                    <input type="text" class="form-control" id="nombre" [(ngModel)]="book.book_name" name="nombre"
-                        required placeholder="Mi libro..">
-                    <div *ngIf="book.book_name === ''" class="error-message">
-                        Campo requerido*
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Editorial : </label>
-                    <input type="text" class="form-control" id="editorial" [(ngModel)]="book.book_editorial" required
-                        name="editorial">
-                    <div *ngIf="book.book_editorial === ''" class="error-message">
-                        Campo requerido*
-                    </div>
-                </div>
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Nombre:</mat-label>
+                <input matInput formControlName="book_name" required>
+                <mat-error *ngIf="bookForm.get('book_name')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Editorial:</mat-label>
+                <input matInput formControlName="book_editorial" required>
+                <mat-error *ngIf="bookForm.get('book_editorial')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Peso:</mat-label>
+                <input matInput formControlName="book_weight" required>
+                <mat-error *ngIf="bookForm.get('book_weight')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
             </div>
+  
             <div class="col-md-6">
-
-                <div class="form-group">
-                    <label>Peso : </label>
-                    <input type="text" class="form-control" id="peso" [(ngModel)]="book.book_weight" name="peso"
-                        required placeholder="kg" #book_weight="ngModel" (keydown)="validarNumerico($event)">
-                </div>
-
-                <div class="form-group">
-                    <label>Alto : </label>
-                    <input type="text" class="form-control" id="alto" [(ngModel)]="book.book_heigth" name="alto"
-                        required placeholder="cm" #book_heigth="ngModel" (keydown)="validarNumerico($event)">
-                </div>
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Alto:</mat-label>
+                <input matInput formControlName="book_heigth" required>
+                <mat-error *ngIf="bookForm.get('book_heigth')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Ancho:</mat-label>
+                <input matInput formControlName="book_width" required>
+                <mat-error *ngIf="bookForm.get('book_width')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Stock:</mat-label>
+                <input matInput formControlName="book_stock" required>
+                <mat-error *ngIf="bookForm.get('book_stock')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
             </div>
-        </div>
-        <div class="row">
+          </div>
+  
+          <div class="row">
             <div class="col-md-6">
-
-                <div class="form-group">
-                    <label>Ancho : </label>
-                    <input type="text" class="form-control" id="ancho" [(ngModel)]="book.book_width" name="ancho"
-                        required placeholder="cm" #book_width="ngModel" (keydown)="validarNumerico($event)">
-                </div>
-
-                <div class="form-group">
-                    <label>Stock : </label>
-                    <input type="text" class="form-control" id="stock" [(ngModel)]="book.book_stock" name="stock"
-                        required placeholder="Stock" #book_stock="ngModel" (keydown)="validarNumerico($event)">
-                </div>
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Precio:</mat-label>
+                <input matInput formControlName="book_price" required>
+                <mat-error *ngIf="bookForm.get('book_price')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Año de Publicación:</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="book_year" required>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="bookForm.get('book_year')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Nº Páginas:</mat-label>
+                <input matInput formControlName="book_npages" required>
+                <mat-error *ngIf="bookForm.get('book_npages')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
             </div>
+  
             <div class="col-md-6">
-
-                <div class="form-group">
-                    <label>Precio : </label>
-                    <input type="text" class="form-control" id="precio" [(ngModel)]="book.book_price" name="precio"
-                        required placeholder="S/." #book_price="ngModel" (keydown)="validarNumerico($event)">
-                </div>
-
-                <div class="form-group">
-                    <label>Año Publicación:</label>
-                    <input type="date" class="form-control" id="aedicion" [(ngModel)]="book.book_year" name="aedicion"
-                        required>
-                    <div *ngIf="book.book_year === ''" class="error-message">
-                        Campo requerido*
-                    </div>
-                </div>
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>URL Imagen:</mat-label>
+                <input matInput formControlName="book_img" required>
+                <mat-error *ngIf="bookForm.get('book_img')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Sinopsis:</mat-label>
+                <input matInput formControlName="book_synopsis" required>
+                <mat-error *ngIf="bookForm.get('book_synopsis')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Autor:</mat-label>
+                <mat-select id="selectedAuthor" name="selectedAuthor" formControlName="selectedAuthor" [(ngModel)]="selectedAuthor">
+                  <mat-option *ngFor="let a of author" [value]="a.author_id">{{ a.author_name }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="bookForm.controls['selectedAuthor'].hasError('required')">Campo requerido.</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Subgénero</mat-label>
+                <mat-select id="selectedSubgenre" name="selectedSubgenre" formControlName="selectedSubgenre">
+                  <mat-option *ngFor="let s of subgenre" [value]="s.subgenre_id">{{ s.subgenre_name }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="bookForm.controls['selectedSubgenre'].hasError('required')">Campo requerido.</mat-error>
+              </mat-form-field>
             </div>
+          </div>
+  
+          <div class="button-container">
+
+            <button mat-raised-button color="primary" type="submit">
+                <mat-icon matPrefix class="material-icons icon-btn">
+                  {{ isNewBook ? 'check_circle' : 'edit' }}
+                </mat-icon> 
+                {{ isNewBook ? 'Crear' : 'Editar' }}
+              </button>
+
+            <button mat-raised-button class="btn-cancel" type="button" [routerLink]="['/mundo-literario/admin/mantenimiento-libros']">
+              <mat-icon matPrefix class="material-icons icon-btn">cancel</mat-icon>Cancelar
+            </button>
+          </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>NºPáginas : </label>
-                    <input type="text" class="form-control" id="npaginas" [(ngModel)]="book.book_npages" name="npaginas"
-                        required #npaginas="ngModel" (keydown)="validarNum($event)">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="book_status">Estado:</label>
-                    <select [(ngModel)]="book.book_status" name="book_status" class="form-select form-control">
-                        <option [ngValue]="true">Activo</option>
-                        <option [ngValue]="false">Inactivo</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="subgenero">Subgénero:</label>
-                    <select [(ngModel)]="selectedSubgenre" name="subgenre_id" class="form-select form-control">
-                        <option value="" disabled="disabled">Seleccionar Subgenero</option>
-                        <option *ngFor="let subg of subgenre" [value]="subg.subgenre_id">{{ subg.subgenre_name }}
-                        </option>
-                    </select>
-                    <div *ngIf="selectedSubgenre === 0" class="error-message">
-                        Seleccione un Subgenero.
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="author">Autor</label>
-                    <select [(ngModel)]="selectedAuthor" name="author_id" class="form-select form-control">
-                        <option value="" disabled="disabled">Seleccionar Autor</option>
-                        <option *ngFor="let aut of author" [value]="aut.author_id">{{ aut.author_name }}</option>
-                    </select>
-                    <div *ngIf="selectedAuthor === 0" class="error-message">
-                        Seleccione un Autor.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="book_synopsis">URL Imagen:</label>
-            <textarea class="form-control" id="book_synopsis" [(ngModel)]="book.book_img" name="book_img"
-                rows="1"></textarea>
-        </div>
-
-
-        <div class="form-group">
-            <label for="book_synopsis">Sinopsis:</label>
-            <textarea class="form-control" id="book_synopsis" [(ngModel)]="book.book_synopsis" name="book_synopsis"
-                rows="4"></textarea>
-        </div>
-
-
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" name="book_notification_status" id="flexSwitchCheckChecked"
-                [(ngModel)]="book.book_notification_status" (change)="onCheckboxChange($event)">
-            <label class="form-check-label" for="flexSwitchCheckChecked">Notificaciones</label>
-        </div>
-
-        <!-----
-        <div class="mb-3">
-            <label for="formFileSm" class="form-label">Small file input example</label>
-            <input class="form-control form-control-sm" id="formFileSm" type="file" accept=".jpg, .png, .jpeg, .webp">
-        </div>
-
-
-        
-        <div *ngIf="imageBytes">
-            <img [src]="convertBytesToDataURL(imageBytes)" alt="Imagen del libro">
-        </div>
-          ---->
-        <br>
-
-        <div class="text-center">
-            <button class="btn btn-success" role="button" (click)='saveProduct()'
-                *ngIf="!book.book_id else elseBlock">Crear</button>
-            <span>&nbsp;</span>
-            <button role="button" [routerLink]="['/mundo-literario/admin/mantenimiento-libros']"
-                class="btn btn-secondary">Cancelar</button>
-            <ng-template #elseBlock>
-                <button class="btn btn-success" role="button" (click)='editProduct()'>Editar</button>
-            </ng-template>
-                    
-        </div>
-          
-    </form>
-</div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  

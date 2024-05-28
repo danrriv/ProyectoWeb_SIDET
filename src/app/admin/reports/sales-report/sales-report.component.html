@@ -1,1 +1,52 @@
-<p>sales-report works!</p>
+<mat-card>
+    <mat-card-header>
+      <mat-card-title class="title">Ventas</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <div class="d-flex justify-content-between mb-3 align-items-center">
+        <div class="col-md-5 p-0">
+          <input type="text" class="form-control custom-input" [(ngModel)]="search" (keyup)="applyFilter()" placeholder="Buscar" />
+        </div>
+      </div>
+
+      <mat-table [dataSource]="dataSource">
+        <!-- Columnas de la tabla -->
+        <ng-container matColumnDef="sale_id">
+          <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+          <mat-cell *matCellDef="let books">{{ books.book_id }}</mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="sale_total">
+          <mat-header-cell *matHeaderCellDef>Total</mat-header-cell>
+          <mat-cell *matCellDef="let books">{{ books.book_name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="sale_total_products">
+            <mat-header-cell *matHeaderCellDef>Nº Productos</mat-header-cell>
+            <mat-cell *matCellDef="let books">{{ books.book_editorial }}</mat-cell>
+        </ng-container>
+
+          <ng-container matColumnDef="sale_date">
+            <mat-header-cell *matHeaderCellDef>Fecha</mat-header-cell>
+            <mat-cell *matCellDef="let books">{{ books.book_year }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="customer">
+            <mat-header-cell *matHeaderCellDef>Cliente</mat-header-cell>
+            <mat-cell *matCellDef="let books">{{ books.book_price }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="sale_status">
+            <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+            <mat-cell *matCellDef="let books">{{ books.book_status }}</mat-cell>
+          </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="['sale_id', 'sale_total', 'sale_total_products', 'sale_date', 'customer', 'sale_status']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['sale_id', 'sale_total', 'sale_total_products', 'sale_date', 'customer', 'sale_status'];"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+
+

@@ -11,6 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -29,6 +31,8 @@ import {MatListModule} from '@angular/material/list';
     MatPaginatorModule,
     MatSidenavModule,
     MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule
    ]
 })
 export class MaterialModule { }

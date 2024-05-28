@@ -11,12 +11,14 @@
       <mat-error *ngIf="authorForm.get('author_name')?.hasError('required')">Campo requerido</mat-error>
     </mat-form-field>
     <div class="button-group">
+
       <button mat-raised-button color="primary" type="submit">
         <mat-icon matPrefix class="material-icons icon-btn">
           {{ isNewAuthor ? 'check_circle' : 'edit' }}
         </mat-icon> 
         {{ isNewAuthor ? 'Crear' : 'Editar' }}
       </button>
+      
       <button mat-raised-button class="btn-cancel" type="button" [routerLink]="['/mundo-literario/admin/mantenimiento-autores']">
         <mat-icon matPrefix class="material-icons icon-btn">cancel</mat-icon>
         Cancelar

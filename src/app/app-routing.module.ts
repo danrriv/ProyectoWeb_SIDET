@@ -25,6 +25,9 @@ import { AuthorFormComponent } from './admin/authors/author-form/author-form.com
 import { AuthorComponent } from './admin/authors/author/author.component';
 import { ProductFormComponent } from './admin/books/product-form/product-form.component';
 import { ProductComponent } from './admin/books/product/product.component';
+import { BooksReportComponent } from './admin/reports/books-report/books-report.component';
+import { SalesReportComponent } from './admin/reports/sales-report/sales-report.component';
+import { SaleDetailsReportComponent } from './admin/reports/sale-details-report/sale-details-report.component';
 
 const routes: Routes = [
   {
@@ -79,7 +82,10 @@ const routes: Routes = [
   {path: 'mantenimiento-autores', component:AuthorComponent},
   {path: 'form-autor', component:AuthorFormComponent},
   {path: 'form-autor/:id', component:AuthorFormComponent},
-
+  //Reportes
+  {path: 'reporte-libros', component:BooksReportComponent},
+  {path: 'reporte-ventas', component:SalesReportComponent},
+  {path: 'reporte-detalle-venta/:id', component:SaleDetailsReportComponent},
   ]}
   
 
