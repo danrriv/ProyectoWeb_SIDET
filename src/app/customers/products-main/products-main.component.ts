@@ -42,7 +42,7 @@ listProductsGenre():void{
   this.bookService.findGenreId(2).subscribe((data) =>{
     return this.InfantilesProducts = data;
   })
-  this.bookService.findGenreId(3).subscribe((data) =>{
+  this.bookService.findGenreId(4).subscribe((data) =>{
     return this.DramasAdultosProducts = data;
   })
 }

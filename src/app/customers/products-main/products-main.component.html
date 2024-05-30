@@ -21,7 +21,6 @@
     
     <h2 class = "product-title">Dramas</h2>
     <owl-carousel-o [options]="customOptions">
-  
       <ng-container *ngFor="let p of DramasAdultosProducts">
         <ng-template class="slide" carouselSlide [id]="p.book_name">
           <div class="card">
@@ -55,6 +54,26 @@
                 <h5 class="card-title">{{p.book_name}}</h5>
                 <h5 class="card-autor">{{p.author}}</h5>
                 <a class="btn btn-primary" (click)="addToCart(p)">Agregar al carrito</a>
+            </div>
+        </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+
+    <h2 class = "product-title">Para los más pequeños de la casa</h2>
+    <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let p of InfantilesProducts">
+        <ng-template class="slide" carouselSlide [id]="p.book_name">
+          <div class="card">
+            <a [routerLink]="['/mundo-literario/libros', p.book_name]">
+              <div class="img-wrapper">
+                <img [src]="p.book_img" class="d-block w-100" alt="...">
+              </div>
+            </a>
+            <div class="card-body">
+                <h5 class="card-title">{{p.book_name}}</h5>
+                <h5 class="card-autor">{{p.author}}</h5>
+                <a class="btn btn-warning" (click)="addToCart(p)">Agregar al carrito</a>
             </div>
         </div>
         </ng-template>

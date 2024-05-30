@@ -39,6 +39,7 @@ body{
     font-weight: 700;
     position: relative;
     color: #12263a;
+    line-height: 3.5rem;
     margin: 1rem 0;
 }
 .product-title::after{
@@ -150,12 +151,16 @@ body{
     }
 }
 
-.container {
-    flex: 1 0 auto;
-    padding-left: 15rem;
-    padding-bottom: 5rem;
-    padding-top: 5rem;
-  }
+.container-gg {
+    width: min(100%, 1350px);
+    margin: 0 auto;
+    padding: 5rem 0;
+
+}
+
+.products__title {
+    margin: 1rem 0 !important;
+}
 
   .container-products {
     flex-direction: row;
@@ -167,7 +172,13 @@ body{
     border: none;
     background: #e4daf0;
     align-items: center;
+    
     text-align: center;
+  }
+  .card-carrousel > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .card-carrousel .img-wrapper {
@@ -188,5 +199,12 @@ body{
       color: #5ba38d;
   }
     
+.card-body-carrousel {
+    padding: 1rem 0;
+}
+
+.card-body-carrousel > a{ 
+    padding: 0.25rem;
+}
   
     

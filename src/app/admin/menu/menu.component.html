@@ -24,23 +24,10 @@
                     <div matLine class="item">
                         <mat-icon matPrefix class="material-icons icon">shopping_cart</mat-icon>
                         <span class="texto">Producto</span>
-                        <mat-icon class="material-icons icon-arrow" [ngClass]="{'arrow-rotated': isSubMenuOpen}">keyboard_arrow_down</mat-icon>
+                        <mat-icon class="material-icons icon-arrow"
+                            [ngClass]="{'arrow-rotated': isSubMenuOpen}">keyboard_arrow_down</mat-icon>
                     </div>
                 </mat-list-item>
-<<<<<<< HEAD
-                <div *ngIf="isSubMenuOpen">
-                    <mat-nav-list>
-                        <a class="sub-options" mat-list-item routerLink="/mundo-literario/admin/mantenimiento-categorias">Categorías</a>
-                        <a class="sub-options" mat-list-item routerLink="/mundo-literario/admin/mantenimiento-generos">Géneros</a>
-                        <a class="sub-options" mat-list-item routerLink="/mundo-literario/admin/mantenimiento-subgeneros">Subgéneros</a>
-                        <a class="sub-options" mat-list-item routerLink="/mundo-literario/admin/mantenimiento-generos-subgeneros">Género-Subgénero</a>
-                        <a class="sub-options" mat-list-item routerLink="/mundo-literario/admin/mantenimiento-libros">Libros</a>
-                        <a class="sub-options" mat-list-item routerLink="/mundo-literario/admin/mantenimiento-autores">Autores</a>
-                        <a class="sub-options" mat-list-item routerLink="/mundo-literario/admin/reporte-libros">Reporte de Libros</a>
-                        <a class="sub-options" mat-list-item routerLink="/mundo-literario/admin/reporte-ventas">Reporte de Ventas</a>
-                    </mat-nav-list>
-                </div>
-=======
                 <div *ngIf="isSubMenuOpen" class="sub-menu">
                     <a class="sub-options" routerLink="/mundo-literario/admin/mantenimiento-libros">
                         <mat-icon matPrefix class="material-icons icon">book</mat-icon>Productos</a>
@@ -54,24 +41,44 @@
                         <mat-icon matPrefix class="material-icons icon">workspaces</mat-icon>Subgéneros</a>
                     <a class="sub-options" routerLink="/mundo-literario/admin/mantenimiento-generos-subgeneros">
                         <mat-icon matPrefix class="material-icons icon">workspaces</mat-icon>Género-Subgénero</a>
-                  </div>
->>>>>>> test
+                </div>
+
+                <mat-list-item (click)="toggleSubMenuReports()">
+                    <div matLine class="item">
+                        <mat-icon matPrefix class="material-icons icon">file_open</mat-icon>
+                        <span class="texto">Reportes</span>
+                        <mat-icon class="material-icons icon-arrow"
+                            [ngClass]="{'arrow-rotated': isSubMenuOpenReports}">keyboard_arrow_down</mat-icon>
+                    </div>
+                </mat-list-item>
+                <div *ngIf="isSubMenuOpenReports" class="sub-menu">
+                    <a class="sub-options" routerLink="/mundo-literario/admin/reporte-libros">
+                        <mat-icon matPrefix class="material-icons icon">book</mat-icon>Reporte de Productos</a>
+                    <a class="sub-options" routerLink="/mundo-literario/admin/reporte-ventas">
+                        <mat-icon matPrefix class="material-icons icon">point_of_sale</mat-icon>Reporte de Ventas</a>
+                    <a class="sub-options" routerLink="/mundo-literario/admin/clientes">
+                        <mat-icon matPrefix class="material-icons icon">category</mat-icon>Reporte de Clientes</a>
+                </div>
+
+
+
+
                 <mat-list-item *ngIf="roleUser === 'Administrador'">
                     <div matLine class="item" routerLink="/mundo-literario/admin/mantenimiento-usuarios">
                         <mat-icon matPrefix class="material-icons icon">group</mat-icon>
-                        <span class="texto" >Usuarios</span>
+                        <span class="texto">Usuarios</span>
                     </div>
                 </mat-list-item>
                 <mat-list-item *ngIf="roleUser === 'Administrador'">
                     <div matLine class="item" routerLink="/mundo-literario/admin/clientes">
                         <mat-icon matPrefix class="material-icons icon">groups</mat-icon>
-                        <span class="texto" >Clientes</span>
+                        <span class="texto">Clientes</span>
                     </div>
                 </mat-list-item>
                 <mat-list-item>
                     <div matLine class="item" (click)="logout()">
                         <mat-icon matPrefix class="material-icons icon">logout</mat-icon>
-                        <span class="texto" >Cerrar Sesión</span>
+                        <span class="texto">Cerrar Sesión</span>
                     </div>
                 </mat-list-item>
             </mat-nav-list>

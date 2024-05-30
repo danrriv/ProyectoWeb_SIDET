@@ -5,6 +5,7 @@ import { SalesService } from 'src/app/services/api-sales/sales.service';
 import Swal from 'sweetalert2';
 import { ApiCategoriesService } from 'src/app/services/api-categories/api-categories.service';
 import { MenuData } from 'src/app/clases/menuData/menu-data';
+import { Customer } from 'src/app/clases/customer/customer';
 
 @Component({
   selector: 'app-header',
@@ -15,9 +16,13 @@ export class HeaderComponent implements OnInit {
 
   menuData: any[] = [];
   categories: any = {};
+
   customerName: string;
+
   showMenu: boolean = false;
   showSubMenu: boolean = false;
+
+  customer:Customer = new Customer();
   viewCart: boolean = false;
   islogged: boolean = false;
   token: string | null = null;
@@ -33,7 +38,7 @@ export class HeaderComponent implements OnInit {
     this.token = localStorage.getItem('tokenCustomer');
     if (this.token != null) {
       this.islogged = true;
-      this.customerName = localStorage.getItem('name') || 'error';
+      this.setCustomerData();
     }
     this.categoryService.menu().subscribe((data: MenuData[]) => {
       this.menuData = data;
@@ -60,14 +65,31 @@ export class HeaderComponent implements OnInit {
         }
       }
 
+      console.log(groupedData)
       // Convierte el objeto en un array
       this.menuData = Object.values(groupedData).map((category: any) => {
         return {
           ...category,
           genre: Object.values(category.genre)
         };
-      });
+      });+
+
+      console.log(this.menuData);
     });
+  }
+
+  setCustomerData(){
+    if(this.token){
+      this.customerService.obtainProfile(this.token).subscribe(
+        (data) => {
+         this.customer = data;
+         localStorage.setItem('idCustomer',this.customer.customer_id);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
   }
 
 logout() {

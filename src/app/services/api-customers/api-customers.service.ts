@@ -17,11 +17,11 @@ export class ApiCustomersService {
   constructor(private http: HttpClient, private router:Router) { }
 
   login(loginData: Login): Observable<string> {
-    this.customerlogged = true;
     return this.http.post(`${this.baseUrl}/customer/login`, loginData, { responseType: 'text' })
     .pipe(
       tap((tokenCustomer: string) => {
-        localStorage.setItem(this.tokenkey, tokenCustomer); // Guarda el token en el localStorage
+        localStorage.setItem(this.tokenkey, tokenCustomer);
+        this.customerlogged = true; // Guarda el token en el localStorage
       })
     )
   }
@@ -72,9 +72,6 @@ export class ApiCustomersService {
     }, 800);
       });
     }
-    localStorage.removeItem('id');
-    localStorage.removeItem('name');
-    localStorage.removeItem('logged')
   }
 
   logoutCustomer(token: string): Observable<any> {
