@@ -40,35 +40,7 @@
         </div>
         <p>Total:S/. {{ totalCart() }}</p>
       </div>
-      <button (click)="createPreference()" id="miBoton">Comprar</button>
-      <div id="wallet_container"></div>
+      <button (click)="saleRegister()">Comprar</button>
     </div>
   </div>
 </div>
-
-<script>
-const ejecutarConBoton = () => {
-    const preference = JSON.parse(localStorage.getItem('preference'));
-    createCheckoutButton(preference.id);
-  };
-
-  document.getElementById('miBoton').addEventListener('click', ejecutarConBoton);
-
-  const createCheckoutButton = (preferenceId) => {
-    const mp = new MercadoPago('****', {
-      locale: 'es-PE'
-    });
-    const brickBuilder = mp.bricks();
-
-    const renderComponent = async () => {
-      await brickBuilder.create("wallet", "wallet_container", {
-        initialization: {
-          preferenceId: preferenceId,
-        },
-      });
-    };
-
-    renderComponent();
-  };
-
-</script>

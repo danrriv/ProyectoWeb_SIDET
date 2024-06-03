@@ -18,7 +18,9 @@ export class ProductFormComponent implements OnInit {
 
   bookForm: FormGroup;
   isNewBook: boolean = true;
+
   bookId:number;
+
   //Subgéneros
   subgenre: Subgenre[];
   selectedSubgenre: number;
@@ -107,8 +109,9 @@ export class ProductFormComponent implements OnInit {
               book_img: data.book_img,
               book_notification_status: true,
               book_status: true,
-              book_synopsis: data.book_synopsis
-
+              book_synopsis: data.book_synopsis,
+              selectedAuthor: data.author?.author_id,
+              selectedSubgenre: data.subgenre?.subgenre_id
             })
             //this.imageBytes = book.book_image;
           },

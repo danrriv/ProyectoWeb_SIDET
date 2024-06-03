@@ -8,14 +8,11 @@ import { Book } from 'src/app/clases/book/book';
 })
 export class CartProductsService {
 
-  saleUrl: string = ''
-  bookUrl: string = ''
-
   private myList: BookCart[] = [];
   private myCart = new BehaviorSubject<BookCart[]>([]);
   myCart$ = this.myCart.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   //Lógica del carrito
   addProduct(product: BookCart) {

@@ -10,7 +10,7 @@ import { SaleDto } from 'src/app/clases/sales/saleDto/sale-dto';
 })
 export class SalesService {
 
-  private baseUrl: string ='http://localhost:8090/mundoliterario/sale/'
+  private baseUrl: string ='http://localhost:8090/mundo-literario/sale/'
 
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'})
 
@@ -19,7 +19,7 @@ export class SalesService {
 
 
   registerSale(dto:SaleDto): Observable<SaleDto>{
-    return this.httpClient.post<SaleDto>(`${this.baseUrl}save`,dto,{headers:this.httpHeaders})
+    return this.httpClient.post<SaleDto>(`${this.baseUrl}save`,dto,{withCredentials: true})
   }
 
   findSaleCustomer(id:number): Observable<SaleL[]>{
@@ -39,7 +39,7 @@ export class SalesService {
   }
 
   listAllSales(): Observable<SaleL[]> {
-    return this.httpClient.get<SaleL[]>(`${this.baseUrl}listar`).pipe(
+    return this.httpClient.get<SaleL[]>(`${this.baseUrl}list`).pipe(
       map(response => response as SaleL[])
     );
   }
@@ -50,8 +50,8 @@ export class SalesService {
     );
   }
   
-  confirmarVenta(saleId:number):Observable<SaleL>{
-    return this.httpClient.put<SaleL>(`${this.baseUrl}confirmar/${saleId}`,{ headers: this.httpHeaders });
+  confirmarVenta(id:number):Observable<SaleL>{
+    return this.httpClient.put<SaleL>(`${this.baseUrl}confirm/${id}`,{ headers: this.httpHeaders });
 
   }
 }
