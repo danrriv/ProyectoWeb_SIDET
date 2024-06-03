@@ -36,15 +36,14 @@ export class ApiCategoriesService {
     return this.http.get<Category[]>(`${this.baseUrl}/category/findCategory/${name}`);
   }
 
-  menu(): Observable<MenuData[]>{
+  menu(): Observable<MenuData[]> {
     return this.http.get<MenuData[]>(this.baseUrl + "/category/menu").pipe(
-      tap(data => console.log('Datos del menú:', data)),
       catchError(error => {
         console.error('Error al obtener datos del menú:', error);
         return throwError(error);
       })
     );
-
   }
+  
 
 }

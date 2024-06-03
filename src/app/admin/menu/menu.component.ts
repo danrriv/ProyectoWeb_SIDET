@@ -14,6 +14,7 @@ export class MenuComponent implements OnInit {
   surnameUser: string | null = null;
 
   isSubMenuOpen: boolean = false;
+  isSubMenuOpenReports: boolean = false;
   isOpened = true;
   selectedSubOption: string = '';
 
@@ -48,6 +49,10 @@ export class MenuComponent implements OnInit {
 
   toggleSubMenu() {
     this.isSubMenuOpen = !this.isSubMenuOpen;
+  }
+
+  toggleSubMenuReports() {
+    this.isSubMenuOpenReports = !this.isSubMenuOpenReports;
   }
 
   logout() {

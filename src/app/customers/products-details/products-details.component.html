@@ -32,7 +32,7 @@
         </div>
 
         <div class="purchase-info">
-          <button type="button" class="btn">
+          <button type="button" (click)="addToCart(book)" class="btn">
             Agregar al carrito <i class="fas fa-shopping-cart"></i>
           </button>
         </div>
@@ -40,9 +40,9 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container-gg">
     <div class="container-products">
-      <h2 class="product-title">Libros Relacionados</h2>
+      <h2 class="product-title products__title">Libros Relacionados</h2>
       <owl-carousel-o [options]="customOptions">
 
         <ng-container *ngFor="let p of relatedBooks">
@@ -57,7 +57,7 @@
               <div class="card-body-carrousel">
                 <h5 class="card-title-carrousel">{{p.book_name}}</h5>
                 <h5 class="card-autor-carrousel">{{p.author}}</h5>
-                <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                <a  class="btn btn-primary" (click)="addToCart(p)">Agregar al carrito</a>
               </div>
             </div>
           </ng-template>

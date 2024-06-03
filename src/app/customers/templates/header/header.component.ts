@@ -6,7 +6,6 @@ import Swal from 'sweetalert2';
 import { ApiCategoriesService } from 'src/app/services/api-categories/api-categories.service';
 import { MenuData } from 'src/app/clases/menuData/menu-data';
 import { Customer } from 'src/app/clases/customer/customer';
- 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -16,12 +15,12 @@ export class HeaderComponent implements OnInit {
  
   menuData: any[] = [];
   categories: any = {};
- 
+
   customerName: string;
- 
+
   showMenu: boolean = false;
   showSubMenu: boolean = false;
- 
+
   customer:Customer = new Customer();
   viewCart: boolean = false;
   islogged: boolean = false;
@@ -72,12 +71,12 @@ export class HeaderComponent implements OnInit {
           ...category,
           genre: Object.values(category.genre)
         };
-      });+
- 
+      });
+
       console.log(this.menuData);
     });
   }
- 
+
   setCustomerData(){
     if(this.token){
       this.customerService.obtainProfile(this.token).subscribe(
@@ -91,7 +90,6 @@ export class HeaderComponent implements OnInit {
       );
     }
   }
- 
 logout() {
   Swal.fire({
     title: '¿Estás seguro?',
