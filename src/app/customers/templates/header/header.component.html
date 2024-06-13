@@ -4,7 +4,7 @@
     <img class="image-logo" src="assets/images/LogoBlancoSLetras.png">
     Mundo Literario
     </a>
-    <span class="menu-icon">Ver menú</span>
+    <span class="menu-icon"><i class="fa-solid fa-bars"></i></span>
       <nav class="navigation">
         <ul class="menu">
           <!-- Repite este bloque por cada categoría -->
@@ -12,10 +12,10 @@
             <a class="menu__title">{{category.name}}</a>
             <ul class="submenu">
               <li *ngFor="let genre of category.genre" class="submenu-group">
-                <h4>{{genre.name}}</h4>
+                <h4 class="genre_title">{{genre.name}}</h4>
                 <ul class="submenu-list">
                   <li *ngFor="let subgenre of genre.subgenre">
-                    <a class="submenu__link" [routerLink]="['/']" [queryParams]="{subgenre: subgenre}">{{subgenre}}</a>
+                    <a class="submenu__link" [routerLink]="['/mundo-literario']" [queryParams]="{subgenre: subgenre}">{{subgenre}}</a>
                   </li>
                 </ul>
               </li>

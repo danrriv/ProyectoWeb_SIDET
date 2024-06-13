@@ -1,5 +1,6 @@
 .menu-wrapper {
-  height: 100vh;
+  position: relative;
+  z-index: 998;
 }
 
 .menu-header {
@@ -17,10 +18,13 @@
 .sidebar {
   width: 300px;
   background-color: #4d109c;
+  z-index: 999;
+  margin-top: 60px; /* Ajusta el margen superior según la altura de la barra horizontal */
+  height: calc(100vh - 60px);
 }
 
 .sidebar-header {
-  padding: 20px;
+  margin-top: 50px;
   border-bottom: 0;
 }
 
@@ -131,13 +135,82 @@ a.sub-options:hover {
 }
 .toggle-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  left: 10px;
+  top: 5px;
   z-index: 1000;
   background-color: #4d109c;
   color: white;
 }
 
+.logo-content {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.logo-content .image-logo {
+  width: 50px; 
+  height: auto;
+}
+
+.content-data {
+  position: relative;
+  height: 100%;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+.logo-in-content {
+  width: 200px;
+  height: auto;
+}
+
+.content{
+  margin-top: 60px;
+  height: calc(100vh - 60px);
+}
+
+.app-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #f0bf4c; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Línea suave debajo de la barra horizontal */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo img {
+  height: 60px;
+  margin-right: 10px;
+}
+
+.logo .title {
+  margin-top: 15px;
+  font-size: 1.5rem; 
+  color: #fff; 
+}
 
 @media (max-width: 768px) {
   .sidebar {

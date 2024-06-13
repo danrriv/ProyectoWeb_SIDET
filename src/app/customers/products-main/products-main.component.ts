@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Book } from 'src/app/clases/book/book';
 import { BooksService } from 'src/app/services/api-books/books.service';
@@ -18,15 +19,33 @@ export class ProductsMainComponent implements OnInit {
   InfantilesProducts:Book[];
   DramasAdultosProducts:Book[];
 
+  books: Book[] = [];
+
+  subgenre: string | null;
 
   constructor(private bookService:BooksService,
-  private cartService:CartProductsService){}
+  private cartService:CartProductsService,
+  private route: ActivatedRoute,){}
 
 
-ngOnInit(): void {
-    this.listProductsRandom();
-    this.listProductsGenre();
-}
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.subgenre = params['subgenre'];
+      this.books = [];  // Limpiar la lista de libros antes de la búsqueda
+      if (this.subgenre && this.subgenre.trim().length > 0) {
+        this.bookService.searchBySubgenre(this.subgenre).subscribe(
+          books => this.books = books,
+          error => {
+            console.error(error);
+            this.books = []; 
+          }
+        );
+      } else {
+        this.listProductsRandom();
+        this.listProductsGenre();
+      }
+    });
+  }
 
 
 listProductsRandom():void{

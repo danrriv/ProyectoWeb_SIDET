@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { ApiUsersService } from 'src/app/services/api-users/api-users.service';
 import Swal from 'sweetalert2';
 
@@ -18,7 +19,11 @@ export class MenuComponent implements OnInit {
   isOpened = true;
   selectedSubOption: string = '';
 
-  constructor(private userService: ApiUsersService){}
+  showLogo = false;
+
+  constructor(private userService: ApiUsersService,
+    private router: Router
+  ){}
 
   ngOnInit(): void {
     if (this.userService.isAuthenticated()) {
@@ -27,6 +32,11 @@ export class MenuComponent implements OnInit {
       this.surnameUser = localStorage.getItem('surnames');
     }
     this.adjustSidenavMode(window.innerWidth);
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.showLogo = event.urlAfterRedirects === '/mundo-literario/admin';
+      }
+    });
   }
 
   @HostListener('window:resize', ['$event'])

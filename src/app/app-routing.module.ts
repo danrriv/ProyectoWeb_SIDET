@@ -43,6 +43,7 @@ const routes: Routes = [
   { path:'mundo-literario',
     component:MainComponent
   },
+  
   //Clientes
   {path: 'mundo-literario/register', component: RegisterComponent},
   {path: 'mundo-literario/login',component: LoginComponent},

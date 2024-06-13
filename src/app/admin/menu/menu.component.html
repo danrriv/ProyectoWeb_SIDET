@@ -1,3 +1,9 @@
+<div class="app-header">
+    <div class="logo"  routerLink="/mundo-literario/admin">
+        <img class="image-logo" src="assets/images/LogoBlancoSLetras.png">
+        <h2 class="title">Mundo Literario</h2>
+    </div>
+</div>
 <div class="sidebar-toggle" (click)="toggleSidenav()">
     <button mat-icon-button class="toggle-button">
         <mat-icon matPrefix class="material-icons icon">{{ isOpened ? 'chevron_left' : 'chevron_right' }}</mat-icon>
@@ -6,10 +12,6 @@
 <mat-sidenav-container class="menu-wrapper">
     <mat-sidenav #sidenav mode="side" class="sidebar" [(opened)]="isOpened">
         <div class="sidebar-header">
-            <div class="menu-header" routerLink="/mundo-literario/admin">
-                <h2 class="title">Mundo Literario</h2>
-                <img class="image-logo" src="assets/images/LogoBlancoSLetras.png">
-            </div>
             <mat-nav-list>
                 <mat-list-item>
                     <div matLine class="account" routerLink="/mundo-literario/admin/perfil">
@@ -56,8 +58,6 @@
                         <mat-icon matPrefix class="material-icons icon">book</mat-icon>Reporte de Productos</a>
                     <a class="sub-options" routerLink="/mundo-literario/admin/reporte-ventas">
                         <mat-icon matPrefix class="material-icons icon">point_of_sale</mat-icon>Reporte de Ventas</a>
-                    <a class="sub-options" routerLink="/mundo-literario/admin/clientes">
-                        <mat-icon matPrefix class="material-icons icon">category</mat-icon>Reporte de Clientes</a>
                 </div>
 
 
@@ -85,7 +85,8 @@
         </div>
     </mat-sidenav>
     <mat-sidenav-content class="content">
-        <div class="content-data">
+        <div class="content-data" [ngClass]="{ 'center-content': showLogo }">
+            <img *ngIf="showLogo" class="logo-in-content" src="assets/images/logo2.png">
             <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>

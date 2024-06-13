@@ -1,5 +1,33 @@
 <div class="wrapper">
-  <h3 class = "product-title">Te podrían interesar</h3>
+  <div *ngIf="subgenre; else noSubgenre">
+    <h2 class="product-title">{{ subgenre }}</h2>
+    <div *ngIf="books.length > 0; else noBooks">
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let p of books">
+          <ng-template class="slide" carouselSlide [id]="p.book_name">
+            <div class="card">
+              <a [routerLink]="['/mundo-literario/libros', p.book_name]">
+                <div class="img-wrapper">
+                  <img [src]="p.book_img" class="d-block w-100" alt="...">
+                </div>
+              </a>
+              <div class="card-body">
+                <h5 class="card-title">{{ p.book_name }}</h5>
+                <h5 class="card-autor">{{ p.author.author_name }}</h5>
+                <a class="btn btn-primary" (click)="addToCart(p)">Agregar al carrito</a>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+    <ng-template #noBooks>
+      <p>No se encontraron libros de "{{ subgenre }}".</p>
+    </ng-template>
+  </div>
+
+  <ng-template #noSubgenre>
+    <h3 class="product-title">Te podrían interesar</h3>
     <owl-carousel-o [options]="customOptions">
       <ng-container *ngFor="let p of Randomproducts">
         <ng-template class="slide" carouselSlide [id]="p.book_name">
@@ -10,16 +38,16 @@
               </div>
             </a>
             <div class="card-body">
-                <h5 class="card-title">{{p.book_name}}</h5>
-                <h5 class="card-autor">{{p.author}}</h5>
-                <a class="btn btn-primary" (click)="addToCart(p)">Agregar al carrito</a>
+              <h5 class="card-title">{{ p.book_name }}</h5>
+              <h5 class="card-autor">{{ p.author }}</h5>
+              <a class="btn btn-primary" (click)="addToCart(p)">Agregar al carrito</a>
             </div>
-        </div>
+          </div>
         </ng-template>
       </ng-container>
     </owl-carousel-o>
-    
-    <h2 class = "product-title">Dramas</h2>
+
+    <h2 class="product-title">Dramas</h2>
     <owl-carousel-o [options]="customOptions">
       <ng-container *ngFor="let p of DramasAdultosProducts">
         <ng-template class="slide" carouselSlide [id]="p.book_name">
@@ -30,18 +58,17 @@
               </div>
             </a>
             <div class="card-body">
-                <h5 class="card-title">{{p.book_name}}</h5>
-                <h5 class="card-autor">{{p.author}}</h5>
-                <a class="btn btn-warning" (click)="addToCart(p)">Agregar al carrito</a>
+              <h5 class="card-title">{{ p.book_name }}</h5>
+              <h5 class="card-autor">{{ p.author }}</h5>
+              <a class="btn btn-warning" (click)="addToCart(p)">Agregar al carrito</a>
             </div>
-        </div>
+          </div>
         </ng-template>
       </ng-container>
     </owl-carousel-o>
 
-    <h2 class = "product-title">Cómics</h2>
+    <h2 class="product-title">Cómics</h2>
     <owl-carousel-o [options]="customOptions">
-  
       <ng-container *ngFor="let p of ComicsProducts">
         <ng-template class="slide" carouselSlide [id]="p.book_name">
           <div class="card">
@@ -51,13 +78,13 @@
               </div>
             </a>
             <div class="card-body">
-                <h5 class="card-title">{{p.book_name}}</h5>
-                <h5 class="card-autor">{{p.author}}</h5>
-                <a class="btn btn-primary" (click)="addToCart(p)">Agregar al carrito</a>
+              <h5 class="card-title">{{ p.book_name }}</h5>
+              <h5 class="card-autor">{{ p.author }}</h5>
+              <a class="btn btn-primary" (click)="addToCart(p)">Agregar al carrito</a>
             </div>
-        </div>
+          </div>
         </ng-template>
       </ng-container>
     </owl-carousel-o>
-  </div>
-  
+  </ng-template>
+</div>

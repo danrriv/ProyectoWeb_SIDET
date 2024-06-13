@@ -1,27 +1,28 @@
 <header class="header">
   <div class="container logo-nav-container">
     <a href="/" class="logo">
-      <img class="image-logo" src="assets/images/LogoBlancoSLetras.png">
+      <img class="image-logo" src="assets/images/LogoBlancoSLetras.png" alt="Mundo Literario Logo">
       Mundo Literario
     </a>
   </div>
 </header>
+
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-6">
       <div class="scroll-container">
         <div class="product-list">
-          <h4>Tus productos</h4>
-          <hr>
+          <h4 class="section-title">Tus productos</h4>
+          <hr class="divider">
           <article class="productCart" *ngFor="let product of myCart$ | async">
             <div class="productCart-body">
               <div class="product-info">
-                <p>{{product.book_name}}</p>
-                <img class="product-image" [src]="product.book_img">
+                <p class="product-name">{{product.book_name}}</p>
+                <img class="product-image" [src]="product.book_img" alt="{{product.book_name}} Image">
               </div>
               <div class="productCart-body-info">
-                <p>S/.{{product.book_price}}</p>
-                <p>{{product.book_quantity}} unidad(es)</p>
+                <p class="product-price">S/.{{product.book_price}}</p>
+                <p class="product-quantity">{{product.book_quantity}} unidad(es)</p>
               </div>
             </div>
           </article>
@@ -31,16 +32,16 @@
 
     <div class="col-md-6">
       <div class="totals">
-        <h4>Total</h4>
-        <hr>
-        <!-- Aquí puedes mostrar el total y subtotal por producto -->
-        <!-- Ejemplo -->
+        <h4 class="section-title">Total</h4>
+        <hr class="divider">
         <div *ngFor="let product of myCart$ | async">
-          <p>{{ product.book_name }} - S/. {{ product.book_price * product.book_quantity }}</p>
+          <p class="product-total">{{ product.book_name }} - S/. {{ product.book_price * product.book_quantity }}</p>
         </div>
-        <p>Total:S/. {{ totalCart() }}</p>
+        <p class="total">Total: S/. {{ totalCart() }}</p>
       </div>
-      <button (click)="saleRegister()">Comprar</button>
+      <button color="primary" mat-raised-button (click)="saleRegister()">
+       Comprar
+      </button>
     </div>
   </div>
 </div>

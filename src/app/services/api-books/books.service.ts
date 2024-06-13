@@ -116,5 +116,9 @@ export class BooksService {
     return this.httpClient.get<Author>(`${this.urlAuthor}findId/${author_id}`);
   }
 
+  searchBySubgenre(subgenre: string): Observable<Book[]> {
+    const url = `${this.baseUrl}/searchBySubgenre/${subgenre}`;
+    return this.httpClient.get<Book[]>(url);
+  }
 
 }

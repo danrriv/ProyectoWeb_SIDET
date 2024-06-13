@@ -14,32 +14,32 @@
         <!-- Columnas de la tabla -->
         <ng-container matColumnDef="sale_id">
           <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-          <mat-cell *matCellDef="let books">{{ books.book_id }}</mat-cell>
+          <mat-cell *matCellDef="let sale">{{ sale.sale_id }}</mat-cell>
         </ng-container>
   
         <ng-container matColumnDef="sale_total">
           <mat-header-cell *matHeaderCellDef>Total</mat-header-cell>
-          <mat-cell *matCellDef="let books">{{ books.book_name }}</mat-cell>
+          <mat-cell *matCellDef="let sale">{{ sale.sale_total }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="sale_total_products">
             <mat-header-cell *matHeaderCellDef>Nº Productos</mat-header-cell>
-            <mat-cell *matCellDef="let books">{{ books.book_editorial }}</mat-cell>
+            <mat-cell *matCellDef="let sale">{{ sale.sale_total_products }}</mat-cell>
         </ng-container>
 
           <ng-container matColumnDef="sale_date">
             <mat-header-cell *matHeaderCellDef>Fecha</mat-header-cell>
-            <mat-cell *matCellDef="let books">{{ books.book_year }}</mat-cell>
+            <mat-cell *matCellDef="let sale">{{ sale.sale_date }}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="customer">
             <mat-header-cell *matHeaderCellDef>Cliente</mat-header-cell>
-            <mat-cell *matCellDef="let books">{{ books.book_price }}</mat-cell>
+            <mat-cell *matCellDef="let sale">{{ sale.customer}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="sale_status">
             <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
-            <mat-cell *matCellDef="let books">{{ books.book_status }}</mat-cell>
+            <mat-cell *matCellDef="let sale">{{ sale.sale_status }}</mat-cell>
           </ng-container>
   
         <mat-header-row *matHeaderRowDef="['sale_id', 'sale_total', 'sale_total_products', 'sale_date', 'customer', 'sale_status']"></mat-header-row>
