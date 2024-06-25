@@ -16,13 +16,13 @@
           <hr class="divider">
           <article class="productCart" *ngFor="let product of myCart$ | async">
             <div class="productCart-body">
+              <img class="product-image" [src]="product.book_img" alt="{{product.book_name}} Image">
               <div class="product-info">
                 <p class="product-name">{{product.book_name}}</p>
-                <img class="product-image" [src]="product.book_img" alt="{{product.book_name}} Image">
-              </div>
-              <div class="productCart-body-info">
-                <p class="product-price">S/.{{product.book_price}}</p>
-                <p class="product-quantity">{{product.book_quantity}} unidad(es)</p>
+                <div class="productCart-body-info">
+                  <p class="product-price">S/.{{product.book_price}}</p>
+                  <p class="product-quantity">{{product.book_quantity}} unidad(es)</p>
+                </div>
               </div>
             </div>
           </article>
@@ -34,14 +34,16 @@
       <div class="totals">
         <h4 class="section-title">Total</h4>
         <hr class="divider">
-        <div *ngFor="let product of myCart$ | async">
-          <p class="product-total">{{ product.book_name }} - S/. {{ product.book_price * product.book_quantity }}</p>
+        <div *ngFor="let product of myCart$ | async" class="product-total-container">
+          <span class="product-name">{{ product.book_name }}</span>
+          <span class="price">S/. {{ product.book_price * product.book_quantity }}</span>
         </div>
-        <p class="total">Total: S/. {{ totalCart() }}</p>
+        <div class="total-container">
+          <p class="total">Total: S/. {{ totalCart() }}</p>
+        </div>
+        <button class="btn" mat-raised-button color="primary" (click)="saleRegister()">
+          Comprar
+        </button>
       </div>
-      <button color="primary" mat-raised-button (click)="saleRegister()">
-       Comprar
-      </button>
     </div>
-  </div>
 </div>
