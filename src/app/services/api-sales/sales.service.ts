@@ -50,7 +50,7 @@ export class SalesService {
     );
   }
   
-  confirmarVenta(id:number):Observable<SaleL>{
+  confirmSale(id:number):Observable<SaleL>{
     return this.httpClient.put<SaleL>(`${this.baseUrl}confirm/${id}`,{ headers: this.httpHeaders });
 
   }

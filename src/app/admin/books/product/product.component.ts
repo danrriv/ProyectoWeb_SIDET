@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { Book } from 'src/app/clases/book/book';
 import * as XLSX from 'xlsx';
 import { BooksService } from 'src/app/services/api-books/books.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product',
@@ -55,4 +56,11 @@ export class ProductComponent implements OnInit {
   applyFilter(): void {
     this.dataSource.filter = this.search.trim().toLowerCase(); // Aplica el filtro
   }
+
+  openDialog(){
+    this.bookService.openDialog();
+  }
 }
+
+
+

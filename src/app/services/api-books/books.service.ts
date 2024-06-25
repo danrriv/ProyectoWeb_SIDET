@@ -4,13 +4,17 @@ import { Book } from 'src/app/clases/book/book';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Subgenre } from 'src/app/clases/subgenre/subgenre';
 import { Author } from 'src/app/clases/author/author';
+import { BookDto } from 'src/app/clases/book/BookDto';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductsMainComponent } from 'src/app/customers/products-main/products-main.component';
+import { StockDialogComponent } from 'src/app/admin/books/stock-dialog/stock-dialog.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private MatDialog: MatDialog) { }
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' })
 
 
@@ -75,8 +79,13 @@ export class BooksService {
       })
     );
   }
-  //Buscar por algún parámetro
 
+  //Actualizar stock
+  updateStock(id:number, stock:BookDto):Observable<Book>{
+    return this.httpClient.put<Book>(`${this.baseUrl}/updateStock/${id}`,stock,{ headers: this.httpHeaders });
+  }
+
+  //Buscar por algún parámetro
   findIdBook(book_id: number): Observable<Book> {
     return this.httpClient.get<Book>(`${this.baseUrl}/findId/${book_id}`);
   }
@@ -119,6 +128,11 @@ export class BooksService {
   searchBySubgenre(subgenre: string): Observable<Book[]> {
     const url = `${this.baseUrl}/searchBySubgenre/${subgenre}`;
     return this.httpClient.get<Book[]>(url);
+  }
+
+  //Abrir modal
+  openDialog(){
+    this.MatDialog.open(StockDialogComponent)
   }
 
 }

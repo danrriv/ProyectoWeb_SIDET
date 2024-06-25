@@ -34,6 +34,7 @@ import { ProfileFormComponent } from './customers/profile/profile-form/profile-f
 import { ProfileComponent } from './customers/profile/profile/profile.component';
 import { ProfileUserformComponent } from './admin/users/profile/profile-userform/profile-userform.component';
 import { ProfileUserComponent } from './admin/users/profile/profile-user/profile-user.component';
+import { ConfirmSaleComponent } from './admin/confirm-sale/confirm-sale.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,7 @@ const routes: Routes = [
   {path: 'mundo-literario/register', component: RegisterComponent},
   {path: 'mundo-literario/login',component: LoginComponent},
   {path: 'mundo-literario/confirmation',component: ConfirmationComponent},
+  {path: 'mundo-literario/compras', component:CustomersPurchasesComponent},
   {
     path: 'mundo-literario/perfil',
     canActivate: [AuthGuard], // Protege todas las rutas de perfil
@@ -105,6 +107,8 @@ const routes: Routes = [
   {path: 'reporte-detalle-venta/:id', component:SaleDetailsReportComponent},
   //Clientes
   {path: 'clientes', component:CustomersComponent},
+  //Ventas en curso
+  {path: 'ventas-curso', component:ConfirmSaleComponent}
   ]}
   
 

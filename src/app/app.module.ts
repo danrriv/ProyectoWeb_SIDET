@@ -45,6 +45,8 @@ import { ProfileFormComponent } from './customers/profile/profile-form/profile-f
 import { ProfileComponent } from './customers/profile/profile/profile.component';
 import { ProfileUserformComponent } from './admin/users/profile/profile-userform/profile-userform.component';
 import { ProfileUserComponent } from './admin/users/profile/profile-user/profile-user.component';
+import { ConfirmSaleComponent } from './admin/confirm-sale/confirm-sale.component';
+import { StockDialogComponent } from './admin/books/stock-dialog/stock-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +73,7 @@ import { ProfileUserComponent } from './admin/users/profile/profile-user/profile
     HeaderComponent,
     FooterComponent,
     SaleConfirmationComponent,
+    ConfirmSaleComponent,
     UserFormComponent,
     UserComponent,
     LoginUsersComponent,
@@ -84,7 +87,8 @@ import { ProfileUserComponent } from './admin/users/profile/profile-user/profile
     ProfileFormComponent,
     ProfileComponent,
     ProfileUserformComponent,
-    ProfileUserComponent
+    ProfileUserComponent,
+    StockDialogComponent
   ],
   imports: [
     BrowserModule,

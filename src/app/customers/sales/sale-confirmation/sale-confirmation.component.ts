@@ -9,6 +9,8 @@ import { Sale } from 'src/app/clases/sales/sale/sale';
 import { SaleDto } from 'src/app/clases/sales/saleDto/sale-dto';
 import { PrefenceService } from 'src/app/services/preferences/prefence.service';
 import { loadMercadoPago } from "@mercadopago/sdk-js";
+import { BooksService } from 'src/app/services/api-books/books.service';
+import { BookDto } from 'src/app/clases/book/BookDto';
 @Component({
   selector: 'app-sale-confirmation',
   templateUrl: './sale-confirmation.component.html',
@@ -24,8 +26,8 @@ export class SaleConfirmationComponent implements OnInit {
 
   constructor(private cartService: CartProductsService,
     private saleService: SalesService,
-    private router: Router,
-    private preserv: PrefenceService
+    private preserv: PrefenceService,
+    private bookService: BooksService
   ) { }
 
 
@@ -36,7 +38,6 @@ export class SaleConfirmationComponent implements OnInit {
 
   saleRegister(): void {
     const cartProducts = this.cartService.getCart();
-
     // Array para almacenar los detalles de venta
     // Recorre el array de productos del carrito y crea los detalles de venta
     const saleDetails: SaleDetails[] = cartProducts.map(product => {
@@ -50,7 +51,6 @@ export class SaleConfirmationComponent implements OnInit {
       };
       return data;
     });
-
     // Datos de la venta
     const sale: Sale = {
       sale_total: this.cartService.totalCart(),
@@ -59,7 +59,6 @@ export class SaleConfirmationComponent implements OnInit {
         customer_id: localStorage.getItem('idCustomer')
       }
     };
-
     const saleDto: SaleDto = {
       sale: sale,
       details: saleDetails
@@ -67,7 +66,18 @@ export class SaleConfirmationComponent implements OnInit {
     // Llamar al servicio de registro de ventas para enviar los datos al servidor
     this.saleService.registerSale(saleDto).subscribe(
       response => {
-        console.log('Venta registrada con éxito:', response);
+        console.log('Venta registrada con éxito:', response);     
+                cartProducts.forEach(product => {
+                  const stockDto: BookDto = { stock: -product.book_quantity }; 
+                  this.bookService.updateStock(product.book_id, stockDto).subscribe(
+                    bookResponse => {
+                      console.log(`Stock actualizado para el libro ID ${product.book_id}`, bookResponse);
+                    },
+                    stockError => {
+                      console.error(`Error al actualizar el stock para el libro ID ${product.book_id}`, stockError);
+                    }
+                  );
+                });
       },
       error => {
         console.error('Error al registrar la venta:', error);
@@ -100,48 +110,12 @@ export class SaleConfirmationComponent implements OnInit {
     return items;
   }
 
-  //Inicializando MercadoPago "servidor"
-
   createPreference(): any {
     const preference = this.preserv.createPrefence(this.getItemsList());
 
     preference.subscribe(pr => {
       const { sandbox_init_point } = pr as ({ [key: string]: string, sandbox_init_point: string });
-      
       location.href = sandbox_init_point;
-
-      // const a = document.createElement("a");
-      
-      // a.appendChild()
     })
   }
-
-
-
-
-  //Lógica para la pasarela
-  /*
-  totalCart() {
-    const r = this.tiendaService.totalCart();
-    return r;
-  }
-
-  getItemsList(): any[] {
-
-    const items: any[] = [];
-    let item = {};
-
-    this.myCart$.subscribe((productos: Productos[]) => {
-      productos.forEach((it: Productos) => {
-        item = {
-          name: it.nombre,
-          quantity: it.stock,
-          unit_amount: { value: it.precio, currency_code: 'USD' }
-        };
-        items.push(item);
-      });
-    });
-    return items;
-  }
-  */
 }
