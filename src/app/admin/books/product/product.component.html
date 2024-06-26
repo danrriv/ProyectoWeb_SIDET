@@ -4,7 +4,7 @@
   </mat-card-header>
 
   <mat-card-content>
-    <div class="d-flex justify-content-between mb-3 align-items-center search-and-button">
+    <div class="d-flex justify-content-between mb-3 align-items-center">
       <div class="col-md-5 p-0">
         <input type="text" class="form-control custom-input" [(ngModel)]="search" (keyup)="applyFilter()"
           placeholder="Buscar" />
@@ -14,7 +14,6 @@
         <mat-icon matPrefix class="material-icons icon-btn">add_circle</mat-icon>Registrar
       </button>
     </div>
-    <div class="table-responsive">
       <mat-table [dataSource]="dataSource">
         <!-- Columnas de la tabla -->
         <ng-container matColumnDef="book_id">
@@ -73,7 +72,7 @@
               <mat-icon matPrefix class="material-icons icon-btn">edit</mat-icon>
               Editar            
             </button>
-            <button class="add-btn" mat-raised-button (click)="openDialog()">
+            <button *ngIf="roleUser === 'Administrador'" class="add-btn" mat-raised-button (click)="openDialog()">
 
               <mat-icon matPrefix class="material-icons icon-btn">add</mat-icon>
             </button>
@@ -86,6 +85,5 @@
           *matRowDef="let row; columns: ['book_id', 'book_name', 'book_editorial', 'book_year', 'book_price', 'book_stock', 'book_status', 'author', 'subgenre', 'actions'];"></mat-row>
       </mat-table>
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
-    </div>
   </mat-card-content>
 </mat-card>

@@ -4,16 +4,15 @@
   </mat-card-header>
 
   <mat-card-content>
-    <div class="d-flex justify-content-between mb-3 align-items-center search-and-button">
+    <div class="d-flex justify-content-between mb-3 align-items-center">
       <div class="col-md-5 p-0">
         <input type="text" class="form-control custom-input" [(ngModel)]="searchInput" (keyup)="applyFilter()" placeholder="Buscar" />
       </div>
-      <button mat-raised-button color="primary" type="button" [routerLink]="['/mundo-literario/admin/form-usuarios']">
+      <button mat-raised-button color="primary" class="custom-btn-create" type="button" [routerLink]="['/mundo-literario/admin/form-usuarios']">
         <mat-icon matPrefix class="material-icons icon-btn">add_circle</mat-icon> Agregar Usuario
       </button>
     </div>
-    <div class="table-responsive">
-      <mat-table [dataSource]="dataSource">
+    <mat-table [dataSource]="dataSource">
         <!-- Columnas de la tabla -->
         <ng-container matColumnDef="user_id">
           <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
@@ -64,6 +63,5 @@
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
-    </div>
   </mat-card-content>
 </mat-card>

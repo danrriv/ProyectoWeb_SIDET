@@ -43,7 +43,6 @@ mat-table {
 .search-and-buttons {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -53,6 +52,26 @@ mat-table {
 
 .btn-danger{
   margin-left: 10px;
+}
+
+.mat-paginator-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-paginator-range-label,
+.mat-paginator-navigation {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.mat-paginator-page-size,
+.mat-paginator-page-size-label {
+  flex: 0 1 auto;
+  margin-top: 10px;
 }
 
 @media (max-width: 1200px) {
@@ -104,6 +123,16 @@ mat-table {
     display: block;
     min-width: 120px;
   }
+  .search-and-buttons {
+    flex-direction: column;
+  }
+
+  .mat-paginator-page-size,
+  .mat-paginator-page-size-label {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
 }
 
 @media (max-width: 576px) {
@@ -129,7 +158,4 @@ mat-table {
     width: 100%;
   }
 
-  .button-group .btn {
-    margin-bottom: 10px;
-  }
 }
