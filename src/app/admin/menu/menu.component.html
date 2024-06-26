@@ -56,11 +56,11 @@
                 <div *ngIf="isSubMenuOpenReports" class="sub-menu">
                     <a class="sub-options" routerLink="/mundo-literario/admin/reporte-libros">
                         <mat-icon matPrefix class="material-icons icon">book</mat-icon>Reporte de Productos</a>
-                    <a class="sub-options" routerLink="/mundo-literario/admin/reporte-ventas">
+                    <a *ngIf="roleUser === 'Administrador'" class="sub-options" routerLink="/mundo-literario/admin/reporte-ventas">
                         <mat-icon matPrefix class="material-icons icon">point_of_sale</mat-icon>Reporte de Ventas</a>
                 </div>
 
-                <mat-list-item>
+                <mat-list-item *ngIf="roleUser === 'Administrador'">
                     <div matLine class="account" routerLink="/mundo-literario/admin/ventas-curso">
                         <mat-icon matPrefix class="material-icons icon">bolt</mat-icon>
                         <div>

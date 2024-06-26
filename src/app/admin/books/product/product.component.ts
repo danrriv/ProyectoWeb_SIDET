@@ -17,12 +17,14 @@ export class ProductComponent implements OnInit {
   dataSource: MatTableDataSource<Book>;
   search: string = '';
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  roleUser: string | null = null;
 
   constructor (private bookService:BooksService){
   }
 
   ngOnInit(): void{
     this.getBooks();
+    this.roleUser = localStorage.getItem('role');
   }
 
   getBooks(){

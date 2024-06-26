@@ -17,8 +17,7 @@
         </button>
       </div>
     </div>
-    <div class="table-responsive">
-      <mat-table [dataSource]="dataSource">
+    <mat-table [dataSource]="dataSource">
         <!-- Columnas de la tabla -->
         <ng-container matColumnDef="customer_id">
           <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
@@ -54,6 +53,5 @@
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
-    </div>
   </mat-card-content>
 </mat-card>
