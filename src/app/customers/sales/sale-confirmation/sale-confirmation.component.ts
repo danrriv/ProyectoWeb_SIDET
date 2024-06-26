@@ -71,10 +71,10 @@ export class SaleConfirmationComponent implements OnInit {
                   const stockDto: BookDto = { stock: -product.book_quantity }; 
                   this.bookService.updateStock(product.book_id, stockDto).subscribe(
                     bookResponse => {
-                      console.log(`Stock actualizado para el libro ID ${product.book_id}`, bookResponse);
+                      console.log(`Stock actualizado`, bookResponse);
                     },
                     stockError => {
-                      console.error(`Error al actualizar el stock para el libro ID ${product.book_id}`, stockError);
+                      console.error(`Error al actualizar el stock`, stockError);
                     }
                   );
                 });

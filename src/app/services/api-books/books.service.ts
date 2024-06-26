@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Subgenre } from 'src/app/clases/subgenre/subgenre';
 import { Author } from 'src/app/clases/author/author';
 import { BookDto } from 'src/app/clases/book/BookDto';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductsMainComponent } from 'src/app/customers/products-main/products-main.component';
 import { StockDialogComponent } from 'src/app/admin/books/stock-dialog/stock-dialog.component';
 
@@ -14,7 +14,7 @@ import { StockDialogComponent } from 'src/app/admin/books/stock-dialog/stock-dia
 })
 export class BooksService {
 
-  constructor(private httpClient: HttpClient, private MatDialog: MatDialog) { }
+  constructor(private httpClient: HttpClient, private dialog: MatDialog) { }
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' })
 
 
@@ -27,26 +27,26 @@ export class BooksService {
 
   //Listados generales
   listSubgenre(): Observable<Subgenre[]> {
-    return this.httpClient.get<Subgenre[]>(this.urlSubgenre +"list").pipe(
+    return this.httpClient.get<Subgenre[]>(this.urlSubgenre + "list").pipe(
       map(response => response as Subgenre[])
     )
   }
 
-  listAuthor(): Observable<Author[]>{
-    return this.httpClient.get<Author[]>(this.urlAuthor+"list").pipe(
+  listAuthor(): Observable<Author[]> {
+    return this.httpClient.get<Author[]>(this.urlAuthor + "list").pipe(
       map(response => response as Author[])
     )
   }
 
 
   listBook(): Observable<Book[]> {
-    return this.httpClient.get<Book[]>(this.baseUrl+"/list").pipe(
+    return this.httpClient.get<Book[]>(this.baseUrl + "/list").pipe(
       map(response => response as Book[])
     );
   }
 
-  listRandom():Observable<Book[]>{
-    return this.httpClient.get<Book[]>(this.baseUrl+"/random").pipe(
+  listRandom(): Observable<Book[]> {
+    return this.httpClient.get<Book[]>(this.baseUrl + "/random").pipe(
       map(response => response as Book[])
     );
   }
@@ -81,8 +81,8 @@ export class BooksService {
   }
 
   //Actualizar stock
-  updateStock(id:number, stock:BookDto):Observable<Book>{
-    return this.httpClient.put<Book>(`${this.baseUrl}/updateStock/${id}`,stock,{ headers: this.httpHeaders });
+  updateStock(id: number, stock: BookDto): Observable<Book> {
+    return this.httpClient.put<Book>(`${this.baseUrl}/updateStock/${id}`, stock, { headers: this.httpHeaders });
   }
 
   //Buscar por algún parámetro
@@ -94,24 +94,24 @@ export class BooksService {
     return this.httpClient.get<Book>(`${this.baseUrl}/findIdM/${book_id}`);
   }
 
-  findSimilarNameBook(book_name: string): Observable<Book[]>{
-    return this.httpClient.get<Book[]>(this.baseUrl+"/findSimilarName/"+book_name).pipe(
+  findSimilarNameBook(book_name: string): Observable<Book[]> {
+    return this.httpClient.get<Book[]>(this.baseUrl + "/findSimilarName/" + book_name).pipe(
       map(response => response as Book[])
     )
   }
 
-  findNameBook(book_name: string): Observable<Book>{
-    return this.httpClient.get<Book>(this.baseUrl+"/findName/"+book_name);
+  findNameBook(book_name: string): Observable<Book> {
+    return this.httpClient.get<Book>(this.baseUrl + "/findName/" + book_name);
   }
 
-  findGenreId(id: number): Observable<Book[]>{
-    return this.httpClient.get<Book[]>(this.baseUrl+"/findGenreId/"+id).pipe(
+  findGenreId(id: number): Observable<Book[]> {
+    return this.httpClient.get<Book[]>(this.baseUrl + "/findGenreId/" + id).pipe(
       map(response => response as Book[])
     )
   }
 
-  findSubgenreId(id: number): Observable<Book[]>{
-    return this.httpClient.get<Book[]>(this.baseUrl+"/findSubgenreId/"+id).pipe(
+  findSubgenreId(id: number): Observable<Book[]> {
+    return this.httpClient.get<Book[]>(this.baseUrl + "/findSubgenreId/" + id).pipe(
       map(response => response as Book[])
     )
   }
@@ -130,9 +130,14 @@ export class BooksService {
     return this.httpClient.get<Book[]>(url);
   }
 
-  //Abrir modal
-  openDialog(){
-    this.MatDialog.open(StockDialogComponent)
+  openDialog(id: number): MatDialogRef<StockDialogComponent> {
+    return this.dialog.open(StockDialogComponent, {
+      data: { id: id }
+    });
   }
 
-}
+  closeDialog():void{
+    return this.dialog.closeAll();
+  }
+
+  }

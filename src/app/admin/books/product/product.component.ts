@@ -57,10 +57,14 @@ export class ProductComponent implements OnInit {
     this.dataSource.filter = this.search.trim().toLowerCase(); // Aplica el filtro
   }
 
-  openDialog(){
-    this.bookService.openDialog();
+  openDialog(id: number): void {
+    const dialogRef = this.bookService.openDialog(id);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getBooks();
+      }
+    });
   }
+  
 }
-
-
-
