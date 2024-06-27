@@ -68,27 +68,30 @@ search(name:string){
   this.bookService.findSimilarNameBook(name).subscribe((data) =>{
     return this.books = data;
   })
-
 }
 
 
-  async addToCart(product:Book){
-    if(product.book_stock< 1){
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top',
-        background: '#8e4346',
-        iconColor: '#4e109f',
-        showConfirmButton: false,
-        timer: 1000,
-        timerProgressBar: false,
-      });
-      await Toast.fire({
-        icon: 'warning',
-        title: 'Alcanzaste el límite de stock',
-        color: '#090101'
-      });
-    }else{
+
+
+async addToCart(product: Book) {
+  const currentCartProduct = this.cartService.getCartProduct(product.book_id);
+  const currentQuantity = currentCartProduct ? currentCartProduct.book_quantity : 0;
+  if (currentQuantity + 1 > product.book_stock) {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      background: '#da2626',
+      iconColor: '#ffffff',
+      showConfirmButton: false,
+      timer: 1000,
+      timerProgressBar: false,
+    });
+    await Toast.fire({
+      icon: 'warning',
+      title: 'Alcanzaste el límite de stock',
+      color: '#f9f1f1'
+    });
+  } else {
     this.cartService.addProduct(this.cartService.convertCartBook(product));
     const Toast = Swal.mixin({
       toast: true,
@@ -104,7 +107,10 @@ search(name:string){
       title: 'Producto agregado al carrito'
     });
   }
-  }
+}
+
+
+
 
 //Configuración del carrusel
   customOptions: OwlOptions = {

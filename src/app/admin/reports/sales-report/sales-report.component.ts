@@ -40,19 +40,25 @@ export class SalesReportComponent  {
   }
 
   exportExcel():void{
-    let ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.sales);
+    const filteredCustomers = this.sales.map(s => ({
+      sale_id:s.sale_id,
+      sale_total: s.sale_total,
+      sale_total_products: s.sale_total_products,
+      sale_date: s.sale_date,
+      sale_status: s.sale_status,
+      customer: s.customer
+    }));
 
-    let wb: XLSX.WorkBook = XLSX.utils.book_new();
-
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(filteredCustomers);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Ventas');
-
     XLSX.writeFile(wb, 'reporte_ventas.xlsx');
   }
 
   exportPdf(): void {
     const doc = new jsPDF();
   
-    var col = ["ID", "Total", "NºLibros", "Estado", "Fecha","Cliente"];
+    var col = ["ID", "Total S/.", "NºLibros", "Estado", "Fecha","Cliente"];
     let rows : any[][] = [];
   
     this.sales.forEach(sale => {
