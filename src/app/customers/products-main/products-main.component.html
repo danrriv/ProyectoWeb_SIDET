@@ -1,4 +1,13 @@
 <div class="wrapper">
+  <div class="mb-3">
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Realizar búsqueda"
+    [(ngModel)]="search"
+    >
+    <button class="btn btn-outline-success" type="submit">Search</button>
+    <div id="emailHelp" class="form-text">:)</div>
+  </div>
+
+
   <div *ngIf="subgenre; else noSubgenre">
     <h2 class="product-title">{{ subgenre }}</h2>
     <div *ngIf="books.length > 0; else noBooks">

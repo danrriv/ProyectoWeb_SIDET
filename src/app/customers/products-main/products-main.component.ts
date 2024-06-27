@@ -19,6 +19,7 @@ export class ProductsMainComponent implements OnInit {
   InfantilesProducts:Book[];
   DramasAdultosProducts:Book[];
 
+  search:string;
   books: Book[] = [];
 
   subgenre: string | null;
