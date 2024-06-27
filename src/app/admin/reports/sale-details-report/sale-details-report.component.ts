@@ -67,7 +67,10 @@ export class SaleDetailsReportComponent implements OnInit {
       book: s.book
     }));
 
-    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(filteredCustomers);
+    // Crear una nueva hoja de trabajo y agregar la fecha en la primera fila
+    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet([['Fecha de reporte:', new Date().toLocaleDateString()]]);
+    
+    XLSX.utils.sheet_add_json(ws, filteredCustomers, { origin: 'A3', skipHeader: false });
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'DetalleVenta');
     XLSX.writeFile(wb, 'reporte_dventas.xlsx');
@@ -89,9 +92,11 @@ export class SaleDetailsReportComponent implements OnInit {
       rows.push(temp);
     });
 
-    doc.text('Reporte de Clientes', 75, 16);
-    autoTable(doc, { head: [col], body: rows, startY: 20 });
-    doc.save('reporte_clientes.pdf');
+    const currentDate = new Date().toLocaleDateString();
+    doc.text('Reporte de Detalle de Venta', 75, 16);
+    doc.text(`Fecha de reporte: ${currentDate}`, 75, 23);
+    autoTable(doc, { head: [col], body: rows, startY: 30 });
+    doc.save('reporte_dventas.pdf');
   }
 
 
