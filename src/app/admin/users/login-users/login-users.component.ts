@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class LoginUsersComponent implements OnInit{
 
   loginForm! : FormGroup;
-  
+  isLoading: boolean = false;
 
   constructor(
     private userService: ApiUsersService,
@@ -37,6 +37,7 @@ export class LoginUsersComponent implements OnInit{
   
     this.userService.login(this.loginForm.value).subscribe(
       data => {
+        this.isLoading=true;
         setTimeout(() => {
           this.router.navigate(['/mundo-literario/admin']);
           Swal.fire(
