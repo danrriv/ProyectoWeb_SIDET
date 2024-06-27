@@ -8,11 +8,11 @@
         <div class="col-md-5 p-0">
           <input type="text" class="form-control custom-input" [(ngModel)]="search" (keyup)="applyFilter()" placeholder="Buscar" />
         </div>
-        <button mat-raised-button color="primary" class="btn-excel" [routerLink]="['/mundo-literario/admin/form-libros']">
+        <button mat-raised-button color="primary" class="btn-excel" >
           <mat-icon matPrefix class="material-icons icon-btn">description</mat-icon>EXCEL
         </button>
 
-        <button mat-raised-button color="primary" class="btn-pdf" [routerLink]="['/mundo-literario/admin/form-libros']">
+        <button mat-raised-button color="primary" class="btn-pdf">
           <mat-icon matPrefix class="material-icons icon-btn">description</mat-icon>PDF
         </button>
       </div>
@@ -64,18 +64,8 @@
             <mat-cell *matCellDef="let books">{{ books.subgenre }}</mat-cell>
           </ng-container>
   
-        <ng-container matColumnDef="actions">
-          <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
-          <mat-cell *matCellDef="let books">
-            <button class="cancel-btn" mat-raised-button [routerLink]="['/mundo-literario/admin/form-libros', books.book_id]">
-              <mat-icon matPrefix class="material-icons icon-btn">edit</mat-icon>
-              Editar
-            </button>
-          </mat-cell>
-        </ng-container>
-  
-        <mat-header-row *matHeaderRowDef="['book_id', 'book_name', 'book_editorial', 'book_year', 'book_price', 'book_stock', 'book_status', 'author', 'subgenre', 'actions']"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: ['book_id', 'book_name', 'book_editorial', 'book_year', 'book_price', 'book_stock', 'book_status', 'author', 'subgenre', 'actions'];"></mat-row>
+        <mat-header-row *matHeaderRowDef="['book_id', 'book_name', 'book_editorial', 'book_year', 'book_price', 'book_stock', 'book_status', 'author', 'subgenre']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['book_id', 'book_name', 'book_editorial', 'book_year', 'book_price', 'book_stock', 'book_status', 'author', 'subgenre'];"></mat-row>
       </mat-table>
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
     </mat-card-content>

@@ -14,7 +14,9 @@
         <!-- Columnas de la tabla -->
         <ng-container matColumnDef="sale_id">
           <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-          <mat-cell *matCellDef="let sale">{{ sale.sale_id }}</mat-cell>
+          <mat-cell *matCellDef="let sale">
+            <a [routerLink]="['/mundo-literario/admin/reporte-detalle-venta', sale.sale_id]" class="link-label">{{ sale.sale_id }}</a>
+          </mat-cell>
         </ng-container>
   
         <ng-container matColumnDef="sale_total">
