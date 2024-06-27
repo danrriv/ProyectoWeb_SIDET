@@ -103,4 +103,15 @@ export class CartProductsService {
     }
     return productCart
   }
+
+  getCartProduct(productId: number): BookCart | undefined {
+    return this.myList.find(item => item.book_id === productId);
+  }
+
+  puedeAgregarProducto(productId: number, stock: number): boolean {
+    const currentCartProduct = this.getCartProduct(productId);
+    const currentQuantity = currentCartProduct ? currentCartProduct.book_quantity : 0;
+    return currentQuantity + 1 <= stock;
+  }
+ 
 }

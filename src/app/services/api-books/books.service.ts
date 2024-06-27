@@ -6,7 +6,6 @@ import { Subgenre } from 'src/app/clases/subgenre/subgenre';
 import { Author } from 'src/app/clases/author/author';
 import { BookDto } from 'src/app/clases/book/BookDto';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ProductsMainComponent } from 'src/app/customers/products-main/products-main.component';
 import { StockDialogComponent } from 'src/app/admin/books/stock-dialog/stock-dialog.component';
 
 @Injectable({
@@ -114,6 +113,10 @@ export class BooksService {
     return this.httpClient.get<Book[]>(this.baseUrl + "/findSubgenreId/" + id).pipe(
       map(response => response as Book[])
     )
+  }
+  //Obtener stock
+  findStock(id:number): Observable<BookDto>{
+    return this.httpClient.get<BookDto>(`${this.baseUrl}/findStock/${id}`);
   }
 
   //Métodos útiles

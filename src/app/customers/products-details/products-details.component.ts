@@ -55,24 +55,40 @@ export class ProductsDetailsComponent implements OnInit {
   }
 
   //Carrito
-  async addToCart(product:Book){
-    this.cartService.addProduct(this.cartService.convertCartBook(product));
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top',
-      background: '#a5dc86',
-      iconColor: 'white',
-      showConfirmButton: false,
-      timer: 1000,
-      timerProgressBar: false,
-      customClass: {
-        title: 'white-title' // Utiliza la clase personalizada aquí para el título
-      }
-    });
-    await Toast.fire({
-      icon: 'success',
-      title: 'Producto agregado al carrito'
-    });
+  async addToCart(product: Book) {
+    const currentCartProduct = this.cartService.getCartProduct(product.book_id);
+    const currentQuantity = currentCartProduct ? currentCartProduct.book_quantity : 0;
+    if (currentQuantity + 1 > product.book_stock) {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        background: '#da2626',
+        iconColor: '#ffffff',
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: false,
+      });
+      await Toast.fire({
+        icon: 'warning',
+        title: 'Alcanzaste el límite de stock',
+        color: '#f9f1f1'
+      });
+    } else {
+      this.cartService.addProduct(this.cartService.convertCartBook(product));
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        background: '#F4D06F',
+        iconColor: '#4e109f',
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: false,
+      });
+      await Toast.fire({
+        icon: 'success',
+        title: 'Producto agregado al carrito'
+      });
+    }
   }
 
   //Configuración del carrusel
