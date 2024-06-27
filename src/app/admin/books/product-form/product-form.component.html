@@ -41,7 +41,7 @@
   
               <mat-form-field appearance="fill" class="form-field">
                 <mat-label>Stock:</mat-label>
-                <input matInput formControlName="book_stock" required>
+                <input  matInput formControlName="book_stock" required [readonly]="isReadOnly">
                 <mat-error *ngIf="bookForm.get('book_stock')?.hasError('required')">Campo requerido</mat-error>
               </mat-form-field>
             </div>

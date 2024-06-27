@@ -49,9 +49,13 @@
             <mat-cell *matCellDef="let books">{{ books.book_stock }}</mat-cell>
           </ng-container>
 
+
           <ng-container matColumnDef="book_status">
             <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
-            <mat-cell *matCellDef="let books">{{ books.book_status }}</mat-cell>
+            <mat-cell *matCellDef="let books">
+              <ng-container *ngIf="books.book_status; else inactive">Activo</ng-container>
+              <ng-template #inactive>Inactivo</ng-template>
+            </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="author">

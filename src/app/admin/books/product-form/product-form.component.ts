@@ -15,7 +15,8 @@ import swal from 'sweetalert2';
 })
 export class ProductFormComponent implements OnInit {
 
-
+  roleUser: string | null = null;
+  isReadOnly: boolean = false;
   bookForm: FormGroup;
   isNewBook: boolean = true;
 
@@ -39,6 +40,10 @@ export class ProductFormComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.roleUser = localStorage.getItem('role');
+    if(this.roleUser =="Almacén"){
+      this.isReadOnly = true;
+    }
     this.initForm();
     this.loadSubgenre();
     this.loadAuthor();
@@ -119,6 +124,10 @@ export class ProductFormComponent implements OnInit {
             console.error(error);
           }
         );
+      }else{
+        this.bookForm.patchValue({
+          book_stock:0
+        });
       }
     });
   }
