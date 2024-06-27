@@ -1,13 +1,14 @@
 <div class="wrapper">
   <div class="mb-3">
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Don Quijote de la Mancha..."
-    [(ngModel)]="name"
-    >
-    <button mat-icon-button aria-label="Example icon-button with a menu" (click)="search(name)">
-      <mat-icon>search</mat-icon>
-    </button>
     <div id="emailHelp" class="form-text">¡Puedes realizar tus búsquedas aquí!</div>
-  </div>
+    <div class="search-container">
+        <input type="email" class="form-control" id="search" placeholder="Don Quijote de la Mancha..."
+        [(ngModel)]="name">
+        <button class="btn-search" mat-icon-button (click)="search(name)">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+</div>
 
   <div *ngIf="subgenre || name; else noSubgenre">
     <h2 class="product-title">Resultados para "{{ subgenre ? subgenre : name }}"</h2>

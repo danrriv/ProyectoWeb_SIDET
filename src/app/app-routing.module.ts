@@ -51,16 +51,16 @@ const routes: Routes = [
   {path: 'mundo-literario/confirmation',component: ConfirmationComponent},
   {path: 'mundo-literario/compras', component:CustomersPurchasesComponent},
   {
-    path: 'mundo-literario/perfil',
-    canActivate: [AuthGuard], // Protege todas las rutas de perfil
+    path: 'mundo-literario/cuenta',
+    canActivate: [AuthGuard],
     children: [
-      { path: 'ajustes', component: ProfileFormComponent },
-      { path: '', component: ProfileComponent },
+      { path: 'editar-perfil', component: ProfileFormComponent },
+      { path: 'perfil', component: ProfileComponent },
+      { path: 'compras', component: CustomersPurchasesComponent }
     ]
   },
   {path: 'mundo-literario/reset-password',component: ResetpasswordComponent },
   {path: 'mundo-literario/libros/:id',component:ProductsDetailsComponent},
-  {path:'mundo-literario/compras', component:CustomersPurchasesComponent},
   {path: 'mundo-literario/continuar-compra',component:SaleConfirmationComponent},
 
   //Usuario - login

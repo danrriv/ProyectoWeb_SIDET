@@ -66,7 +66,7 @@ export class ProfileFormComponent implements OnInit{
       this.customerService.updateCustomer(this.customer)
         .subscribe(
           (customer) => {
-            this.router.navigate(['/mundo-literario/perfil']);
+            this.router.navigate(['/mundo-literario/cuenta/perfil']);
             Swal.fire(
               'Éxito!',
               'Se actualizaron sus datos.',

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ApiCustomersService } from 'src/app/services/api-customers/api-customers.service';
 import { CartProductsService } from 'src/app/services/cart-products/cart-products.service';
 import { SalesService } from 'src/app/services/api-sales/sales.service';
@@ -128,5 +128,18 @@ logout() {
 onToggleCart() {
   this.viewCart = !this.viewCart;
 };
+
+
+toggleMenu() {
+  this.showMenu = !this.showMenu;
+}
+
+@HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    const target = event.target as Window;
+    if (target.innerWidth > 767) {
+      this.showMenu = false;
+    }
+  }
  
 }

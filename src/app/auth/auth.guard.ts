@@ -29,14 +29,14 @@ export class AuthGuard implements CanActivate {
     } 
 
     // Verificar si el cliente está autenticado y quiere acceder a rutas de perfil
-    if (this.customerService.isAuthenticated() && state.url.includes('/perfil')) {
+    if (this.customerService.isAuthenticated() && state.url.includes('/cuenta')) {
       return true;
     }
 
     // Redirigir al formulario de inicio de sesión correspondiente
     if (state.url.includes('/admin/')) {
       this.router.navigate(['/mundo-literario/admin/login']);
-    } else if (state.url.includes('/perfil/')) {
+    } else if (state.url.includes('/cuenta/')) {
       this.router.navigate(['/mundo-literario/login']);
     } else {
       // Redirigir al login 

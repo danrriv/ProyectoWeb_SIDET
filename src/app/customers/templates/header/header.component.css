@@ -1,4 +1,4 @@
-.container{
+.container {
   width: 85%;
   max-width: 850px;
   margin: 0 auto;
@@ -8,7 +8,7 @@
   margin-right: 10px;
 }
 
-.header{
+.header {
   background-color: #4e109f;
   color: white;
   padding: 1rem 0;
@@ -18,12 +18,12 @@
   right: 0;
   z-index: 1000;
 }
-  .header a{
-    text-decoration: none;
-    color: white;
-  }
+.header a {
+  text-decoration: none;
+  color: white;
+}
 
-.logo-nav-container{
+.logo-nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,7 +31,7 @@
   width: min(100%, 1300px);
   margin: 0 auto;
 }
-.logo{
+.logo {
   letter-spacing: 0.2px;
   font-size: 1.4em;
   align-items: self-start;
@@ -42,26 +42,39 @@
   /* margin-left: 480px; */
 }
 
-.navigation ul{
+.navigation ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-  .navigation ul li {
-    display: inline-block;
-  } 
-    .navigation ul li a {
-      display: block;
-      padding: 0.5rem 1rem;
-      transition: all 0.4s linear;
-      border-radius: 5px;
-    }
-      .navigation ul li a:hover{
-        background: #845abd;
-      }
+.navigation ul li {
+  display: inline-block;
+}
+.navigation ul li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  transition: all 0.4s linear;
+  border-radius: 5px;
+}
+.navigation ul li a:hover {
+  background: #845abd;
+}
 
-.cart, .menu-icon{
+.cart,
+.menu-icon {
   display: none;
+}
+.cart-show {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+  position: absolute;
+  background-color: #e4daf0;
+  border-radius: 0.5rem;
+  right: 5px;
+  min-width: 30%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .show {
   display: flex;
@@ -69,7 +82,7 @@
   justify-content: center;
   z-index: 1;
   position: absolute;
-  background-color: #e4daf0;
+  background-color: #4e109f;
   border-radius: 0.5rem;
   right: 5px;
   min-width: 30%;
@@ -84,11 +97,12 @@
 .menu {
   position: relative;
 }
-.menu__title:hover + .submenu, .submenu:hover {
+.menu__title:hover + .submenu,
+.submenu:hover {
   max-height: 10rem;
   padding: 0.5rem !important;
 }
-.genre_title{
+.genre_title {
   color: #7a40bd;
   font-weight: bold;
 }
@@ -117,40 +131,109 @@ a.submenu__link {
 .menu__checkbox {
   display: none;
 }
-.icon{
+.icon {
   font-size: 20px;
-  text-align:center;
-  padding-top:7px;
+  text-align: center;
+  padding-top: 7px;
 }
 
-@media(max-width: 767px){
+.menu-icon{
+  margin-rigth: 10px !important;
+}
 
-  .menu-icon{
+@media (max-width: 767px) {
+  .menu-icon {
     display: block;
     cursor: pointer;
   }
-  .navigation{
-    width: 100%;
-    margin-top:1rem ;
+
+  .cuenta{
+    margin-left: 10px !important;
   }
-    .navigation ul{
-      display:none;
-    }
-    .navigation ul.show{
-      display: block;
-    }
+  
+  .navigation {
+    width: 100%;
+    margin-top: 1rem;
+    position: relative;
+  }
+  
+  .navigation ul {
+    display: none;
+    position: static;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+  
+  .navigation ul.show {
+    display: block;
+  }
+  
+  .navigation ul li {
+    display: block;
+    width: 100%;
+  }
+  
+  .navigation ul li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    transition: all 0.4s linear;
+    border-radius: 5px;
+    color: white;
+  }
+  
+  .navigation ul li a:hover {
+    background: #845abd;
+  }
+  
+  .submenu {
+    display: flex;
+    max-height: none; 
+    overflow: visible;
+    color: black; 
+    border-radius: 0;
+    position: static;
+    padding: 0;
+  }
+  a.submenu__link {
+  color: black !important;
+}
 
-    .navigation ul li {
-      display: block;
-    } 
-      .navigation ul li a {
-        display: block;
-        padding: 0.5rem 0;
-        transition: all 0.4s linear;
-        border-radius: 5px;
-      }
-        .navigation ul li a:hover{
-          background: #845abd;
-        }
-
+  
+  .navigation ul li:hover > .submenu {
+    display: block;
+    position: relative;
+    top: auto;
+    left: auto;
+    padding: 0.5rem;
+    border-radius: 0.25rem; 
+    z-index: 10;
+  }
+  
+  .submenu-list {
+    display: flex !important;
+    flex-direction: column;
+    border-radius: 0.25rem;
+    position: absolute;
+    padding: 0 !important;
+    top: 0;
+    left: 100%;
+    z-index: 10;
+  }
+  
+  
+  .submenu__link {
+    display: block !important;
+    color: black !important;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .submenu__link:hover {
+    background-color: #7a40bd;
+  }
 }

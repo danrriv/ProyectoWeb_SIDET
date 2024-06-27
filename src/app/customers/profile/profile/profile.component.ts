@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit{
   }
 
   navigateToEditProfile(): void {
-    this.router.navigate(['/mundo-literario/perfil/ajustes']);
+    this.router.navigate(['/mundo-literario/cuenta/editar-perfil']);
   }
 
 }
