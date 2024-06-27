@@ -73,6 +73,22 @@ search(name:string){
 
 
   async addToCart(product:Book){
+    if(product.book_stock< 1){
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        background: '#8e4346',
+        iconColor: '#4e109f',
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: false,
+      });
+      await Toast.fire({
+        icon: 'warning',
+        title: 'Alcanzaste el límite de stock',
+        color: '#090101'
+      });
+    }else{
     this.cartService.addProduct(this.cartService.convertCartBook(product));
     const Toast = Swal.mixin({
       toast: true,
@@ -87,6 +103,7 @@ search(name:string){
       icon: 'success',
       title: 'Producto agregado al carrito'
     });
+  }
   }
 
 //Configuración del carrusel

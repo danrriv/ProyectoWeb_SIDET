@@ -77,6 +77,25 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  async a(){
+    const b = this.cartService.getCart()
+    console.log(b);
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      background: '#da2626',
+      iconColor: '#ffffff',
+      showConfirmButton: false,
+      timer: 1000,
+      timerProgressBar: false,
+    });
+    await Toast.fire({
+      icon: 'warning',
+      title: 'Alcanzaste el límite de stock',
+      color: '#f9f1f1'
+    });
+    
+  }
   setCustomerData(){
     if(this.token){
       this.customerService.obtainProfile(this.token).subscribe(
@@ -104,21 +123,6 @@ logout() {
       this.islogged = false;
     }
   });
-}
- 
-//Manejo del menú dinámico
-getKeys(obj: any): string[] {
-  return Object.keys(obj);
-}
- 
-toggleMenu() {
-  this.showMenu = !this.showMenu;
-}
- 
-toggleSubMenu() {
-  if (this.showMenu) {
-    this.showSubMenu = !this.showSubMenu;
-  }
 }
 //Carrito
 onToggleCart() {

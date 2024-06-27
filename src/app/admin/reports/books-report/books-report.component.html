@@ -8,13 +8,14 @@
         <div class="col-md-5 p-0">
           <input type="text" class="form-control custom-input" [(ngModel)]="search" (keyup)="applyFilter()" placeholder="Buscar" />
         </div>
-        <button mat-raised-button color="primary" class="btn-excel" >
-          <mat-icon matPrefix class="material-icons icon-btn">description</mat-icon>EXCEL
-        </button>
-
-        <button mat-raised-button color="primary" class="btn-pdf">
-          <mat-icon matPrefix class="material-icons icon-btn">description</mat-icon>PDF
-        </button>
+        <div class="button-group">
+          <button (click)="exportExcel()" class="btn btn-success mr-2">
+            <i class="fa-solid fa-file-excel fa-lg" style="color: #ffffff;"></i>
+          </button>
+          <button (click)="exportPdf()" class="btn btn-danger">
+            <i class="fa-solid fa-file-pdf fa-lg" style="color: #fafafa;"></i>
+          </button>
+        </div>
       </div>
 
       <mat-table [dataSource]="dataSource">

@@ -41,6 +41,13 @@
     color: #7a40bd;
 }
 
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+   
+  }
+
   
 
   

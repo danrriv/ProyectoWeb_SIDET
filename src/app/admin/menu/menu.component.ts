@@ -26,6 +26,7 @@ export class MenuComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+    this.showLogo = true;
     if (this.userService.isAuthenticated()) {
       this.roleUser = localStorage.getItem('role');
       this.nameUser = localStorage.getItem('names');

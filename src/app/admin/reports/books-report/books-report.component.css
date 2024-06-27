@@ -24,12 +24,9 @@
     border-color: #7d2ae8;
   }
 
-  .btn-excel{
-    background-color: green !important;
-  }
-
-  .btn-pdf{
-    background-color: rgb(243, 32, 4) !important;
+  .button-group {
+    flex-direction: column;
+    width: 100%;
   }
 
   .icon-btn{

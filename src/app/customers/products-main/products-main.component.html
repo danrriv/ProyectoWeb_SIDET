@@ -8,14 +8,11 @@
     </button>
     <div id="emailHelp" class="form-text">¡Puedes realizar tus búsquedas aquí!</div>
   </div>
-<mat-spinner></mat-spinner>
 
-  <div *ngIf="subgenre; else noSubgenre">
-    <h2 class="product-title">{{ subgenre }}</h2>
-    <div *ngIf="books.length > 0; else noBooks">
-      <owl-carousel-o [options]="customOptions">
+  <div *ngIf="subgenre || name; else noSubgenre">
+    <h2 class="product-title">Resultados para "{{ subgenre ? subgenre : name }}"</h2>
+    <div *ngIf="books.length > 0; else noBooks"  class="products-container">
         <ng-container *ngFor="let p of books">
-          <ng-template class="slide" carouselSlide [id]="p.book_name">
             <div class="card">
               <a [routerLink]="['/mundo-literario/libros', p.book_name]">
                 <div class="img-wrapper">
@@ -28,9 +25,7 @@
                 <a class="btn btn-primary" (click)="addToCart(p)">Agregar al carrito</a>
               </div>
             </div>
-          </ng-template>
         </ng-container>
-      </owl-carousel-o>
     </div>
     <ng-template #noBooks>
       <p>No se encontraron libros de "{{ subgenre }}".</p>
