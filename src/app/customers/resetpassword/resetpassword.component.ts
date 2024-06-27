@@ -9,6 +9,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./resetpassword.component.css']
 })
 export class ResetpasswordComponent implements OnInit {
+
+  isLoading: boolean = false;
   email: string ="";
   resetCode: string="";
   newPassword: string="";
@@ -29,6 +31,7 @@ export class ResetpasswordComponent implements OnInit {
 
   sendResetCode(): void {
     // Verificar si el campo de correo electrónico está vacío
+    this.isLoading = true;
     if (!this.email.trim()) {
       Swal.fire({
         icon: 'error',
@@ -44,6 +47,7 @@ export class ResetpasswordComponent implements OnInit {
     this.apiService.sendResetCode(this.email).subscribe(
       () => {
         this.resetCodeSent = true;
+        this.isLoading = false
       },
       error => {
         Swal.fire({
@@ -61,6 +65,7 @@ gotoLogin(): void {
 }
 
   resetPassword(): void {
+    this.isLoading = true;
 
     this.errorMsj= "";
 
@@ -85,11 +90,12 @@ gotoLogin(): void {
 
     this.apiService.resetPassword(this.resetCode, this.newPassword, this.email).subscribe(
       () => {
+        this.isLoading = false
         this.resetSuccess = true;
         Swal.fire('¡En hora buena!', 'Se ha restablecido su contraseña correctamente', 'success');
         setTimeout(() => {
           this.router.navigate(['mundo-literario/login']);
-        }, 3000); // Redirigir después de 3 segundos
+        }, 2000); // Redirigir después de 3 segundos
       },
       error => {
         Swal.fire({

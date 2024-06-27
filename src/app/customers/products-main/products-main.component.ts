@@ -19,7 +19,7 @@ export class ProductsMainComponent implements OnInit {
   InfantilesProducts:Book[];
   DramasAdultosProducts:Book[];
 
-  search:string;
+  name:string;
   books: Book[] = [];
 
   subgenre: string | null;
@@ -64,20 +64,24 @@ listProductsGenre():void{
   })
 }
 
+search(name:string){
+  this.bookService.findSimilarNameBook(name).subscribe((data) =>{
+    return this.books = data;
+  })
+
+}
+
 
   async addToCart(product:Book){
     this.cartService.addProduct(this.cartService.convertCartBook(product));
     const Toast = Swal.mixin({
       toast: true,
       position: 'top',
-      background: '#cb9738',
-      iconColor: 'purple',
+      background: '#F4D06F',
+      iconColor: '#4e109f',
       showConfirmButton: false,
       timer: 1000,
       timerProgressBar: false,
-      customClass: {
-        title: 'purple-title' // Utiliza la clase personalizada aquí para el título
-      }
     });
     await Toast.fire({
       icon: 'success',

@@ -41,16 +41,18 @@ export class ConfirmSaleComponent implements OnInit {
       title: 'Confirmar venta',
       text: "Verifica que la venta entregada es correcta!",
       icon: 'warning',
+      background: '',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Continuar!'
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Continuar'
     }).then((result) => {
       if (result.isConfirmed) {
         this.salesService.confirmSale(id).subscribe(
           (venta) => {
             Swal.fire(
-              'Venta confirmada!',
+              '¡Venta confirmada!',
               'La venta ha sido entregada.',
               'success'
             );

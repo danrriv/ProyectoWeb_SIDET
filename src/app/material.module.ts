@@ -16,6 +16,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -39,7 +40,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatDialogModule,
     MatButtonModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
    ]
 })
 export class MaterialModule { }
