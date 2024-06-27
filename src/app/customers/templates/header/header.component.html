@@ -26,7 +26,7 @@
         <li class="nav-item login" *ngIf="islogged">
             <i class="fas fa-user"></i> {{ customer.customer_names}} {{customer.customer_surnames}}
             <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-              <mat-icon>more_vert</mat-icon>
+              <mat-icon class="icon">keyboard_arrow_down</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item [routerLink]="['/mundo-literario/compras'] " >
