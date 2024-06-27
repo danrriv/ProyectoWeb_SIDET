@@ -4,9 +4,17 @@
     </mat-card-header>
     
     <mat-card-content>
-      <div class="d-flex justify-content-between mb-3 align-items-center">
+      <div class="d-flex justify-content-between mb-3 align-items-center search-and-buttons">
         <div class="col-md-5 p-0">
           <input type="text" class="form-control custom-input" [(ngModel)]="search" (keyup)="applyFilter()" placeholder="Buscar" />
+        </div>
+        <div class="button-group">
+          <button (click)="exportExcel()" class="btn btn-success mr-2">
+            <i class="fa-solid fa-file-excel fa-lg" style="color: #ffffff;"></i>
+          </button>
+          <button (click)="exportPdf()" class="btn btn-danger">
+            <i class="fa-solid fa-file-pdf fa-lg" style="color: #fafafa;"></i>
+          </button>
         </div>
       </div>
 

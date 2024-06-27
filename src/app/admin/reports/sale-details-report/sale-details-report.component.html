@@ -5,6 +5,15 @@
     
     <mat-card-content>
 
+      <div class="button-group">
+        <button (click)="exportExcel()" class="btn btn-success mr-2">
+          <i class="fa-solid fa-file-excel fa-lg" style="color: #ffffff;"></i>
+        </button>
+        <button (click)="exportPdf()" class="btn btn-danger">
+          <i class="fa-solid fa-file-pdf fa-lg" style="color: #fafafa;"></i>
+        </button>
+      </div>
+
       <mat-table [dataSource]="dataSource">
         <!-- Columnas de la tabla -->
         <ng-container matColumnDef="saleDetails_id">

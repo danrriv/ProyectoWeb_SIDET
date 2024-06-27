@@ -25,13 +25,13 @@
   }
 
   .button-group {
-    flex-direction: column;
-    width: 100%;
+    display: flex;
   }
 
   .icon-btn{
     margin-right: 12px;
   }
+  
   
   .cancel-btn{
     background-color: #f0bf4c !important;
