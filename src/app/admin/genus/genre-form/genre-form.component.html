@@ -1,0 +1,38 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="title">{{ isNewGenre ? 'Registro de género' : 'Edición de género' }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form (ngSubmit)="onSubmit()" [formGroup]="genreForm">
+      <div class="input-container">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Género</mat-label>
+          <input matInput type="text" formControlName="genre_name" required>
+          <mat-error *ngIf="genreForm.controls['genre_name'].hasError('required')">
+            Campo requerido.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Categoría</mat-label>
+          <mat-select id="selectedCategory" name="selectedCategory" formControlName="selectedCategory">
+            <mat-option *ngFor="let category of categories" [value]="category.category_id">{{ category.category_name }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="genreForm.controls['selectedCategory'].hasError('required')">
+            Campo requerido.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="button-container">
+        <button mat-raised-button color="primary" type="submit">
+          <mat-icon matPrefix class="material-icons icon-btn">check_circle</mat-icon>
+          {{ isNewGenre? 'Crear' : 'Editar' }}
+        </button>
+        <button mat-raised-button class="btn-cancel" type="button" [routerLink]="['/mundo-literario/admin/mantenimiento-generos']">
+          <mat-icon matPrefix class="material-icons icon-btn">cancel</mat-icon>
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

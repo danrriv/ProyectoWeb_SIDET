@@ -1,0 +1,22 @@
+<app-header></app-header>
+<ng-container *ngIf="sales; else noVentas">
+<div class="products-container">
+    <article class="product-card" *ngFor="let s of sales">
+        <div class="product-header">
+            <p class="product-date">{{ s.sale_date }}</p>
+        </div>
+        <div class="product-details">
+            <p class="product-status">{{ s.sale_status }}</p>
+            <p class="product-price">S/. {{ s.sale_total }}</p>
+        </div>
+        <div class="product-bottom">
+            <p class="product-quantity">Productos comprados: {{ s.sale_total_products }}</p>
+        </div>
+    </article>
+</div>
+</ng-container>
+<ng-template #noVentas>
+    <div class="no-ventas-container">
+        <p>Cuando hagas una compra, aparecerá aquí</p>
+    </div>
+</ng-template>

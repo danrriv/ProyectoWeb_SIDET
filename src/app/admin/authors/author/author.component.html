@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="title">Autores</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <div class="d-flex justify-content-between mb-3 align-items-center">
+      <div class="col-md-5 p-0">
+        <input type="text" class="form-control custom-input" [(ngModel)]="search" (keyup)="applyFilter()" placeholder="Buscar" />
+      </div>
+      <button mat-raised-button color="primary" class="custom-btn-create" [routerLink]="['/mundo-literario/admin/form-autor']">
+        <mat-icon matPrefix class="material-icons icon-btn">add_circle</mat-icon>Registrar
+      </button>
+    </div>
+
+    <mat-table [dataSource]="dataSource">
+      <!-- Columnas de la tabla -->
+      <ng-container matColumnDef="author_id">
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let authors">{{ authors.author_id }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="author_name">
+        <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+        <mat-cell *matCellDef="let authors">{{ authors.author_name }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let authors">
+          <button class="cancel-btn" mat-raised-button [routerLink]="['/mundo-literario/admin/form-autor', authors.author_id]">
+            <mat-icon matPrefix class="material-icons icon-btn">edit</mat-icon>
+            Editar
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="['author_id', 'author_name','actions']"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: ['author_id', 'author_name','actions'];"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  </mat-card-content>
+</mat-card>
+

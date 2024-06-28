@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="title">Géneros - Subgéneros</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+      
+      <div class="d-flex justify-content-between mb-3 align-items-center">
+          <div class="col-md-5 p-0">
+            <input type="text" class="form-control custom-input"[(ngModel)]="searchInput" (keyup)="applyFilter()" placeholder="Buscar" />
+          </div>
+          <button mat-raised-button color="primary" class="custom-btn-create"  [routerLink]="['/mundo-literario/admin/form-genero-subgenero']">
+              <mat-icon matPrefix class="material-icons icon-btn">add_circle</mat-icon>Registrar</button>
+        </div>
+      <mat-table [dataSource]="dataSource">
+          <!-- Columnas de la tabla -->
+          <ng-container matColumnDef="genre">
+          <mat-header-cell *matHeaderCellDef>Género</mat-header-cell>
+          <mat-cell *matCellDef="let gensubdata">{{ gensubdata.genre }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="subgenre">
+            <mat-header-cell *matHeaderCellDef>Subgénero</mat-header-cell>
+            <mat-cell *matCellDef="let gensubdata">{{ gensubdata.subgenre }}</mat-cell>
+          </ng-container>
+    
+      
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  </mat-card-content>
+</mat-card>

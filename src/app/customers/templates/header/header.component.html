@@ -1,0 +1,61 @@
+<header class="header">
+  <div class="logo-nav-container">
+    <a href="/" class="logo">
+      <img class="image-logo" src="assets/images/LogoBlancoSLetras.png" alt="Logo">
+      Mundo Literario
+    </a>
+    <span class="menu-icon" (click)="toggleMenu()"><i class="fa-solid fa-bars"></i></span>
+    <nav class="navigation">
+      <ul [ngClass]="{ 'show': showMenu }">
+        <li *ngFor="let category of menuData">
+          <a class="menu__title">{{ category.name }}</a>
+          <ul class="submenu">
+            <li *ngFor="let genre of category.genre" class="submenu-group">
+              <h4 class="genre_title">{{ genre.name }}</h4>
+              <ul class="submenu-list">
+                <li *ngFor="let subgenre of genre.subgenre">
+                  <a class="submenu__link" [routerLink]="['/mundo-literario']" [queryParams]="{ subgenre: subgenre }">{{ subgenre }}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item login" *ngIf="islogged">
+          <i class="fas fa-user"></i> {{ customer.customer_names }} {{ customer.customer_surnames }}
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon class="icon">keyboard_arrow_down</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button class="cuenta" mat-menu-item [routerLink]="['/mundo-literario/cuenta/perfil']">
+              <mat-icon>person</mat-icon>
+              <span>Perfil</span>
+            </button>
+            <button mat-menu-item [routerLink]="['/mundo-literario/cuenta/compras']">
+              <mat-icon>shopping_bag</mat-icon>
+              <span>Mis compras</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Cerrar sesión</span>
+            </button>
+          </mat-menu>
+          <br>
+        </li>
+        <li class="nav-item login">
+          <a class="btn btn-link" *ngIf="!islogged" href="mundo-literario/login">
+            <i class="fas fa-user"></i> Iniciar sesión
+          </a>
+        </li>
+        <li class="carrito">
+          <a (click)="onToggleCart()">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span *ngIf="(myCart$ | async)?.length">{{ (myCart$ | async)?.length }}</span>
+          </a>
+        </li>
+        <div class="cart" [ngClass]="{ 'cart-show': viewCart }">
+          <app-car></app-car>
+        </div>
+      </ul>
+    </nav>
+  </div>
+</header>

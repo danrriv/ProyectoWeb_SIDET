@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Agregar stock</h1>
+<mat-dialog-content>
+  <h3>{{ book.book_name }}</h3>
+  <div>
+    <mat-form-field>
+      <mat-label>Stock actual</mat-label>
+      <input matInput [(ngModel)]="book.book_stock" readonly />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Cantidad</mat-label>
+      <input matInput [(ngModel)]="quantity" type="number" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Stock resultante</mat-label>
+      <input matInput [value]="stockResultante" readonly />
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="updateStock(quantity)">Guardar</button>
+  <button mat-button (click)="close()">Cancelar</button>
+</mat-dialog-actions>

@@ -1,0 +1,57 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="title">Clientes</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="d-flex justify-content-between mb-3 align-items-center search-and-buttons">
+      <div class="col-md-5 p-0">
+        <input type="text" class="form-control custom-input" [(ngModel)]="searchInput" (keyup)="applyFilter()" placeholder="Buscar" />
+      </div>
+      <div class="button-group">
+        <button (click)="exportExcel()" class="btn btn-success mr-2">
+          <i class="fa-solid fa-file-excel fa-lg" style="color: #ffffff;"></i>
+        </button>
+        <button (click)="exportPdf()" class="btn btn-danger">
+          <i class="fa-solid fa-file-pdf fa-lg" style="color: #fafafa;"></i>
+        </button>
+      </div>
+    </div>
+    <mat-table [dataSource]="dataSource">
+        <!-- Columnas de la tabla -->
+        <ng-container matColumnDef="customer_id">
+          <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+          <mat-cell *matCellDef="let customer">{{ customer.customer_id }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="customer_dni">
+          <mat-header-cell *matHeaderCellDef>DNI</mat-header-cell>
+          <mat-cell *matCellDef="let customer">{{ customer.customer_dni }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="customer_surnames">
+          <mat-header-cell *matHeaderCellDef>Apellidos</mat-header-cell>
+          <mat-cell *matCellDef="let customer">{{ customer.customer_surnames }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="customer_names">
+          <mat-header-cell *matHeaderCellDef>Nombres</mat-header-cell>
+          <mat-cell *matCellDef="let customer">{{ customer.customer_names }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="customer_phone_number">
+          <mat-header-cell *matHeaderCellDef>Teléfono</mat-header-cell>
+          <mat-cell *matCellDef="let customer">{{ customer.customer_phone_number }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="customer_email">
+          <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+          <mat-cell *matCellDef="let customer">{{ customer.customer_email }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  </mat-card-content>
+</mat-card>

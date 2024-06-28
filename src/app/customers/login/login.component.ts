@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { Login } from 'src/app/clases/login';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiCustomersService } from 'src/app/services/api-customers/api-customers.service';
 import Swal from 'sweetalert2';
 
@@ -8,38 +9,56 @@ import Swal from 'sweetalert2';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  email: string = '';
-  password: string = '';
+export class LoginComponent implements OnInit{
+  loginForm! : FormGroup
 
-  constructor(private apiCustomersService: ApiCustomersService) { }
+  constructor(
+    private customerService: ApiCustomersService,
+    private router: Router,
+    private formBuilder: FormBuilder){}
+
+    ngOnInit(): void {
+      this.loginForm = this.formBuilder.group({
+        email: ['',[Validators.required, Validators.email]],
+        password: ['', Validators.required]
+      })
+    }
 
   login(): void {
-    // Crea una instancia de la clase Login con los datos del formulario
-    const loginData = new Login(this.email, this.password);
 
-    this.apiCustomersService.login(loginData).subscribe(
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.customerService.login(this.loginForm.value).subscribe(
       (response) => {
-        console.log('Respuesta recibida:', response);
-        
         // Verificar si la respuesta es un token válido
         if (response) {
           console.log('Inicio de sesión exitoso');
-          Swal.fire('Bienvenido', '¡Inicio de sesión exitoso!', 'success');
-          // Guardar el token en el almacenamiento local
-          localStorage.setItem('token', response);
-          // Redirigir a otra página o realizar otras acciones necesarias
+          Swal.fire(
+            'Éxito!',
+            'Bienvenido',
+            'success'
+          );
+          this.router.navigate(['/']);      
         } 
       },
       (error) => {
         console.error('Error en el inicio de sesión:', error);
-        // Manejar el error de acuerdo a tus necesidades
-        Swal.fire({
+        if (error.error === "La cuenta no está activa") {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'La cuenta no está activa. Verifique su correo para activarla.'
+          });
+        }
+        else Swal.fire({
           icon: 'error',
           title: 'Error',
-          text: 'Usuario o contraseña incorrecta'
+          text: 'Correo electrónico o contraseña incorrecta'
         });
       }
+      
     );
   }
 }

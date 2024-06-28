@@ -1,1 +1,102 @@
-<p>menu works!</p>
+<div class="app-header">
+    <div class="logo"  routerLink="/mundo-literario/admin">
+        <img class="image-logo" src="assets/images/LogoBlancoSLetras.png">
+        <h2 class="title">Mundo Literario</h2>
+    </div>
+</div>
+<div class="sidebar-toggle" (click)="toggleSidenav()">
+    <button mat-icon-button class="toggle-button">
+        <mat-icon matPrefix class="material-icons icon">{{ isOpened ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+    </button>
+</div>
+<mat-sidenav-container class="menu-wrapper">
+    <mat-sidenav #sidenav mode="side" class="sidebar" [(opened)]="isOpened">
+        <div class="sidebar-header">
+            <mat-nav-list>
+                <mat-list-item>
+                    <div matLine class="account" routerLink="/mundo-literario/admin/perfil">
+                        <mat-icon matPrefix class="material-icons icon">account_circle</mat-icon>
+                        <div>
+                            <span class="name">{{ nameUser }} {{ surnameUser }}</span>
+                            <p class="role">{{ roleUser }}</p>
+                        </div>
+                    </div>
+                </mat-list-item>
+                <mat-list-item (click)="toggleSubMenu()">
+                    <div matLine class="item">
+                        <mat-icon matPrefix class="material-icons icon">shopping_cart</mat-icon>
+                        <span class="texto">Producto</span>
+                        <mat-icon class="material-icons icon-arrow"
+                            [ngClass]="{'arrow-rotated': isSubMenuOpen}">keyboard_arrow_down</mat-icon>
+                    </div>
+                </mat-list-item>
+                <div *ngIf="isSubMenuOpen" class="sub-menu">
+                    <a class="sub-options" routerLink="/mundo-literario/admin/mantenimiento-libros">
+                        <mat-icon matPrefix class="material-icons icon">book</mat-icon>Productos</a>
+                    <a class="sub-options" routerLink="/mundo-literario/admin/mantenimiento-autores">
+                        <mat-icon matPrefix class="material-icons icon">switch_account</mat-icon>Autores</a>
+                    <a class="sub-options" routerLink="/mundo-literario/admin/mantenimiento-categorias">
+                        <mat-icon matPrefix class="material-icons icon">category</mat-icon>Categorías</a>
+                    <a class="sub-options" routerLink="/mundo-literario/admin/mantenimiento-generos">
+                        <mat-icon matPrefix class="material-icons icon">workspaces</mat-icon>Géneros</a>
+                    <a class="sub-options" routerLink="/mundo-literario/admin/mantenimiento-subgeneros">
+                        <mat-icon matPrefix class="material-icons icon">workspaces</mat-icon>Subgéneros</a>
+                    <a class="sub-options" routerLink="/mundo-literario/admin/mantenimiento-generos-subgeneros">
+                        <mat-icon matPrefix class="material-icons icon">workspaces</mat-icon>Género-Subgénero</a>
+                </div>
+
+                <mat-list-item (click)="toggleSubMenuReports()">
+                    <div matLine class="item">
+                        <mat-icon matPrefix class="material-icons icon">file_open</mat-icon>
+                        <span class="texto">Reportes</span>
+                        <mat-icon class="material-icons icon-arrow"
+                            [ngClass]="{'arrow-rotated': isSubMenuOpenReports}">keyboard_arrow_down</mat-icon>
+                    </div>
+                </mat-list-item>
+                <div *ngIf="isSubMenuOpenReports" class="sub-menu">
+                    <a class="sub-options" routerLink="/mundo-literario/admin/reporte-libros">
+                        <mat-icon matPrefix class="material-icons icon">book</mat-icon>Reporte de Productos</a>
+                    <a *ngIf="roleUser === 'Administrador'" class="sub-options" routerLink="/mundo-literario/admin/reporte-ventas">
+                        <mat-icon matPrefix class="material-icons icon">point_of_sale</mat-icon>Reporte de Ventas</a>
+                </div>
+
+                <mat-list-item *ngIf="roleUser === 'Administrador'">
+                    <div matLine class="account" routerLink="/mundo-literario/admin/ventas-curso">
+                        <mat-icon matPrefix class="material-icons icon">bolt</mat-icon>
+                        <div>
+                            <span class="texto">Ventas en curso </span>
+                        </div>
+                    </div>
+                </mat-list-item>
+
+
+
+
+                <mat-list-item *ngIf="roleUser === 'Administrador'">
+                    <div matLine class="item" routerLink="/mundo-literario/admin/mantenimiento-usuarios">
+                        <mat-icon matPrefix class="material-icons icon">group</mat-icon>
+                        <span class="texto">Usuarios</span>
+                    </div>
+                </mat-list-item>
+                <mat-list-item *ngIf="roleUser === 'Administrador'">
+                    <div matLine class="item" routerLink="/mundo-literario/admin/clientes">
+                        <mat-icon matPrefix class="material-icons icon">groups</mat-icon>
+                        <span class="texto">Clientes</span>
+                    </div>
+                </mat-list-item>
+                <mat-list-item>
+                    <div matLine class="item" (click)="logout()">
+                        <mat-icon matPrefix class="material-icons icon">logout</mat-icon>
+                        <span class="texto">Cerrar Sesión</span>
+                    </div>
+                </mat-list-item>
+            </mat-nav-list>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+        <div class="content-data" [ngClass]="{ 'center-content': showLogo }">
+            <img *ngIf="showLogo" class="logo-in-content" src="assets/images/background_gris.png">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

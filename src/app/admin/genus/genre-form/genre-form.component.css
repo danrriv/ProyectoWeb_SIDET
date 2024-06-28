@@ -1,0 +1,43 @@
+.title {
+  font-size: 35px;
+  margin-bottom: 30px;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-field {
+  width: calc(50% - 10px);
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; 
+}
+
+button {
+  margin-left: 10px;
+}
+
+.btn-cancel {
+  background-color: rgb(90, 90, 90) !important;
+  color: white !important;
+}
+
+mat-card {
+  border: none !important;
+  padding: 20px;
+  box-shadow: none !important;
+}
+
+.icon-btn {
+  margin-right: 12px;
+}
+
+.icon {
+  margin-left: 12px;
+  margin-right: 12px;
+}

@@ -1,0 +1,123 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title class="title">{{ isNewBook ? 'Registro de Libro' : 'Edición de Libro' }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="createProduct()" [formGroup]="bookForm">
+        <div class="input-container">
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Nombre:</mat-label>
+                <input matInput formControlName="book_name" required>
+                <mat-error *ngIf="bookForm.get('book_name')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Editorial:</mat-label>
+                <input matInput formControlName="book_editorial" required>
+                <mat-error *ngIf="bookForm.get('book_editorial')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Peso:</mat-label>
+                <input matInput formControlName="book_weight" required>
+                <mat-error *ngIf="bookForm.get('book_weight')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+            </div>
+  
+            <div class="col-md-6">
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Alto:</mat-label>
+                <input matInput formControlName="book_heigth" required>
+                <mat-error *ngIf="bookForm.get('book_heigth')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Ancho:</mat-label>
+                <input matInput formControlName="book_width" required>
+                <mat-error *ngIf="bookForm.get('book_width')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Stock:</mat-label>
+                <input  matInput formControlName="book_stock" required [readonly]="isReadOnly">
+                <mat-error *ngIf="bookForm.get('book_stock')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Precio:</mat-label>
+                <input matInput formControlName="book_price" required>
+                <mat-error *ngIf="bookForm.get('book_price')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Año de Publicación:</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="book_year" required>
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="bookForm.get('book_year')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+              
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Nº Páginas:</mat-label>
+                <input matInput formControlName="book_npages" required>
+                <mat-error *ngIf="bookForm.get('book_npages')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+            </div>
+  
+            <div class="col-md-6">
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>URL Imagen:</mat-label>
+                <input matInput formControlName="book_img" required>
+                <mat-error *ngIf="bookForm.get('book_img')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Sinopsis:</mat-label>
+                <input matInput formControlName="book_synopsis" required>
+                <mat-error *ngIf="bookForm.get('book_synopsis')?.hasError('required')">Campo requerido</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Autor:</mat-label>
+                <mat-select id="selectedAuthor" name="selectedAuthor" formControlName="selectedAuthor">
+                  <mat-option *ngFor="let a of author" [value]="a.author_id">{{ a.author_name }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="bookForm.controls['selectedAuthor'].hasError('required')">Campo requerido.</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Subgénero</mat-label>
+                <mat-select id="selectedSubgenre" name="selectedSubgenre" formControlName="selectedSubgenre">
+                  <mat-option *ngFor="let s of subgenre" [value]="s.subgenre_id">{{ s.subgenre_name }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="bookForm.controls['selectedSubgenre'].hasError('required')">Campo requerido.</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+  
+          <div class="button-container">
+
+            <button mat-raised-button color="primary" type="submit">
+                <mat-icon matPrefix class="material-icons icon-btn">
+                  {{ isNewBook ? 'check_circle' : 'edit' }}
+                </mat-icon> 
+                {{ isNewBook ? 'Crear' : 'Editar' }}
+              </button>
+
+            <button mat-raised-button class="btn-cancel" type="button" [routerLink]="['/mundo-literario/admin/mantenimiento-libros']">
+              <mat-icon matPrefix class="material-icons icon-btn">cancel</mat-icon>Cancelar
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  

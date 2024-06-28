@@ -1,0 +1,48 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="title">Géneros</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+      
+      <div class="d-flex justify-content-between mb-3 align-items-center">
+          <div class="col-md-5 p-0">
+            <input type="text" class="form-control custom-input"[(ngModel)]="searchInput" (keyup)="applyFilter()" placeholder="Buscar" />
+          </div>
+          <button mat-raised-button color="primary"  class="custom-btn-create" [routerLink]="['/mundo-literario/admin/form-genero']">
+              <mat-icon matPrefix class="material-icons icon-btn">add_circle</mat-icon>Registrar</button>
+        </div>
+      <mat-table [dataSource]="dataSource">
+          <!-- Columnas de la tabla -->
+          <ng-container matColumnDef="genre_id">
+              <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+              <mat-cell *matCellDef="let genre">{{ genre.genre_id}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="genre_name">
+          <mat-header-cell *matHeaderCellDef>Género</mat-header-cell>
+          <mat-cell *matCellDef="let genre">{{ genre.genre_name }}</mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="category">
+          <mat-header-cell *matHeaderCellDef>Categoría</mat-header-cell>
+          <mat-cell *matCellDef="let genre">{{ genre.category.category_name }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+            <mat-cell *matCellDef="let genre">
+              <button class="edit-btn" mat-raised-button [routerLink]="['/mundo-literario/admin/form-genero', genre.genre_id]">
+                <mat-icon matPrefix class="material-icons icon-btn">edit</mat-icon>
+                Editar
+              </button>
+            </mat-cell>
+          </ng-container>
+    
+      
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  </mat-card-content>
+</mat-card>

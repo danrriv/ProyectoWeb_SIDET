@@ -1,0 +1,50 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title class="title">Detalle de Venta</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+
+      <div class="button-group">
+        <button (click)="exportExcel()" class="btn btn-success mr-2">
+          <i class="fa-solid fa-file-excel fa-lg" style="color: #ffffff;"></i>
+        </button>
+        <button (click)="exportPdf()" class="btn btn-danger">
+          <i class="fa-solid fa-file-pdf fa-lg" style="color: #fafafa;"></i>
+        </button>
+      </div>
+
+      <mat-table [dataSource]="dataSource">
+        <!-- Columnas de la tabla -->
+        <ng-container matColumnDef="saleDetails_id">
+          <mat-header-cell *matHeaderCellDef>Nº Producto</mat-header-cell>
+          <mat-cell *matCellDef="let saleDetails">{{ saleDetails.saleDetails_id }}</mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="book">
+          <mat-header-cell *matHeaderCellDef>Producto</mat-header-cell>
+          <mat-cell *matCellDef="let saleDetails">{{ saleDetails.book }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="saleDetails_quantity">
+            <mat-header-cell *matHeaderCellDef>Cantidad</mat-header-cell>
+            <mat-cell *matCellDef="let saleDetails">{{ saleDetails.saleDetails_quantity }}</mat-cell>
+        </ng-container>
+
+          <ng-container matColumnDef="saleDetails_unit_price">
+            <mat-header-cell *matHeaderCellDef>Precio unitario</mat-header-cell>
+            <mat-cell *matCellDef="let saleDetails">{{ saleDetails.saleDetails_unit_price}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="saleDetails_subtotal">
+            <mat-header-cell *matHeaderCellDef>Subtotal</mat-header-cell>
+            <mat-cell *matCellDef="let saleDetails">{{ saleDetails.saleDetails_subtotal}}</mat-cell>
+          </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="['saleDetails_id', 'book', 'saleDetails_quantity', 'saleDetails_unit_price', 'saleDetails_subtotal']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['saleDetails_id', 'book', 'saleDetails_quantity', 'saleDetails_unit_price', 'saleDetails_subtotal'];"></mat-row>
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
+
+

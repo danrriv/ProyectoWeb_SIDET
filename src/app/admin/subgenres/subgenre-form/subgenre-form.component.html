@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="title">{{ isNewSubgenre ? 'Registro de subgénero' : 'Edición de subgénero' }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+<form [formGroup]="subgenreForm" (ngSubmit)="saveSubgenre()">
+  <mat-form-field appearance="fill"  class="form-field">
+    <mat-label>Subgénero</mat-label>
+    <input matInput formControlName="subgenre_name" required>
+    <mat-error *ngIf="subgenreForm.get('subgenre_name')?.hasError('required')">Campo requerido</mat-error>
+  </mat-form-field>
+  <div class="button-group">
+    <button mat-raised-button color="primary" type="submit">
+      <mat-icon matPrefix class="material-icons icon-btn">
+        {{ isNewSubgenre ? 'check_circle' : 'edit' }}
+      </mat-icon> 
+      {{ isNewSubgenre ? 'Crear' : 'Editar' }}
+    </button>
+    <button mat-raised-button class="btn-cancel" type="button" [routerLink]="['/mundo-literario/admin/mantenimiento-subgeneros']">
+      <mat-icon matPrefix class="material-icons icon-btn">cancel</mat-icon>
+      Cancelar
+    </button>
+  </div>
+</form>
+</mat-card-content>
+</mat-card>

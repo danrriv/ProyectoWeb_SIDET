@@ -1,0 +1,83 @@
+.wrapper{
+    padding-bottom: 6rem;
+}
+.card {
+  margin: 0 0.5em;
+  border: none;
+  background: #fdfcf9;
+  align-items: center;
+  text-align: center;
+}
+.product-title{  /* Letras arriba de los libros */
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    font-weight: 500;
+    position: relative;
+    color: #12263a;
+    margin: 1rem 0;
+}
+
+.card .img-wrapper {
+    width: 140px; /* Tamaño fijo deseado */
+    height: 220px; /* Tamaño fijo deseado */
+    display: flex; 
+    box-shadow: 4px 8px 10px 0 rgba(22, 22, 26, 0.18);
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #353420;
+  }
+.card-autor{
+    font-size: 15px;
+    font-weight: bold;
+    color: #7a40bd;
+}
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+   
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-container .form-control {
+    flex: 1;
+    margin-right: 8px;
+}
+
+.btn-search {
+    color: #fff;
+    background-color: #4e109f;
+    border-radius: 5px !important;
+    font-size: 16px;
+    height: 40px; 
+    padding: 0 10px;
+}
+
+  
+@media (max-width: 600px) {
+    .search-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-container .form-control {
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+}
+
+  
